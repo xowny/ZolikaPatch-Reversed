@@ -37,25 +37,3 @@
 
 - `current_build_signature_audit.md`
   Useful reminder that this is not a simple signature-refresh job on GTA IV `1.2.0.59`.
-
-## What An Open Port Likely Needs To Implement
-
-- Treat the old ASI as a behavior reference, not as a patch template.
-- Reimplement feature-by-feature against current GTA IV code paths.
-- Prefer semantic ports over reproducing the old binary patch layout.
-- Recreate menu toggles only where they still make sense inside the target project.
-- Split legacy-launcher behavior from actual gameplay/render/save fixes.
-
-## Recommended Porting Priority
-
-- `IncreaseVehicleStructLimit`
-  Strongest confirmed current-build carry-over so far.
-
-- `IncreaseVehicleModelLimit`
-  Small feature with clear intent.
-
-- `HighQualityReflections`
-  Worth porting, but only after the current reflection path is understood on the game side.
-
-- Episode/content unlock features
-  Useful, but they are broader multi-site behavior patches and should follow the smaller wins.
