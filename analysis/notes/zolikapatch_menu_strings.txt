@@ -1,0 +1,7 @@
+AddOptionsInMenu
+IncreaseVehicleModelLimit
+IncreaseVehicleStructLimit
+EpisodicVehicleSupport
+TeleportProtection
+SkipMenu
+MENU_DISPLAY_ON_OFF

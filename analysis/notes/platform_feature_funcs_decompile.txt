@@ -1,0 +1,643 @@
+### Function FUN_10005500 @ 10005500
+
+/* WARNING: Function: __security_check_cookie replaced with injection: security_check_cookie */
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
+void FUN_10005500(void)
+
+{
+  int *lpAddress;
+  HMODULE pHVar1;
+  undefined1 *lpAddress_00;
+  DWORD local_c;
+  uint local_8;
+  
+  local_8 = DAT_1015800c ^ (uint)&stack0xfffffffc;
+  pHVar1 = GetModuleHandleA((LPCSTR)0x0);
+  lpAddress_00 = (undefined1 *)
+                 FindFirstPatternMatch
+                           ("2B C1 1B D6 89 44 24 0C 89 54 24 10 DF 6C 24 0C D8 0D ? ? ? ? D9 5C 24 08"
+                            ,pHVar1);
+  if (lpAddress_00 != (undefined1 *)0x0) {
+    _DAT_10159c18 = lpAddress_00 + 0xc;
+    VirtualProtect(lpAddress_00,1,0x40,&local_c);
+    *lpAddress_00 = 0xe9;
+    VirtualProtect(lpAddress_00,1,local_c,&local_c);
+    lpAddress = (int *)(lpAddress_00 + 1);
+    VirtualProtect(lpAddress,4,0x40,&local_c);
+    *lpAddress = (int)&UNK_100054db - (int)lpAddress_00;
+    VirtualProtect(lpAddress,4,local_c,&local_c);
+  }
+  return;
+}
+
+
+
+### Function FUN_10045ce0 @ 10045ce0
+
+/* WARNING: Function: __security_check_cookie replaced with injection: security_check_cookie */
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
+void FUN_10045ce0(void)
+
+{
+  LPVOID lpAddress;
+  int *lpAddress_00;
+  undefined8 uVar1;
+  undefined8 uVar2;
+  undefined4 uVar3;
+  undefined4 uVar4;
+  undefined4 uVar5;
+  undefined8 *puVar6;
+  uint uVar7;
+  HMODULE pHVar8;
+  undefined4 uVar9;
+  int iVar10;
+  undefined4 *puVar11;
+  void *pvVar12;
+  undefined1 *puVar13;
+  undefined2 *puVar14;
+  code *pcVar15;
+  code *pcVar16;
+  void *local_48 [2];
+  int local_40;
+  undefined8 *local_3c;
+  undefined8 local_38;
+  int local_30;
+  int local_2c;
+  DWORD local_28;
+  uint local_24;
+  undefined1 *puStack_20;
+  void *local_1c;
+  undefined1 *puStack_18;
+  undefined4 local_14;
+  
+  pcVar15 = GetModuleHandleA_exref;
+  puStack_20 = &stack0xfffffffc;
+  local_14 = 0xffffffff;
+  puStack_18 = &LAB_1006187d;
+  local_1c = ExceptionList;
+  uVar7 = DAT_1015800c ^ (uint)&stack0xfffffff0;
+  ExceptionList = &local_1c;
+  local_24 = uVar7;
+  puVar13 = &stack0xfffffffc;
+  if (DAT_10159b84 == '\0') {
+    pHVar8 = GetModuleHandleA((LPCSTR)0x0);
+    local_2c = FindFirstPatternMatch("84 DB 0F 85 43 01 00 00 8D 4C 24 28 8B C1",pHVar8);
+    pcVar16 = VirtualProtect_exref;
+    if (local_2c != 0) {
+      puVar13 = (undefined1 *)(local_2c + 0x22);
+      VirtualProtect(puVar13,1,0x40,&local_28);
+      *puVar13 = 0xeb;
+      VirtualProtect(puVar13,1,local_28,&local_28);
+      puVar13 = (undefined1 *)(local_2c + 0xdf);
+      VirtualProtect(puVar13,1,0x40,&local_28);
+      *puVar13 = 0xeb;
+      VirtualProtect(puVar13,1,local_28,&local_28);
+      pcVar15 = GetModuleHandleA_exref;
+    }
+    uVar9 = (*pcVar15)(0,uVar7);
+    iVar10 = FindFirstPatternMatch("68 ? ? ? ? 89 35 ? ? ? ? E8 ? ? ? ? 83 C4 04 84 C0 0F 84",uVar9)
+    ;
+    local_2c = 0;
+    if (iVar10 != 0) {
+      local_2c = iVar10;
+    }
+    uVar9 = (*pcVar15)(0);
+    local_3c = (undefined8 *)FindFirstPatternMatch("74 EC 38 5E 06 74 E7 68",uVar9);
+    if (local_3c != (undefined8 *)0x0) {
+      VirtualProtect(local_3c,2,0x40,&local_28);
+      puVar6 = local_3c;
+      *(undefined2 *)local_3c = 0x9090;
+      VirtualProtect(local_3c,2,local_28,&local_28);
+      puVar14 = (undefined2 *)((int)puVar6 + 5);
+      VirtualProtect(puVar14,2,0x40,&local_28);
+      *puVar14 = 0x9090;
+      VirtualProtect(puVar14,2,local_28,&local_28);
+      pcVar15 = GetModuleHandleA_exref;
+    }
+    uVar9 = (*pcVar15)(0);
+    local_3c = (undefined8 *)FindFirstPatternMatch("74 C4 8B 07 3B 46 18 75 BD 68",uVar9);
+    if (local_3c != (undefined8 *)0x0) {
+      VirtualProtect(local_3c,2,0x40,&local_28);
+      *(undefined2 *)local_3c = 0x9090;
+      VirtualProtect(local_3c,2,local_28,&local_28);
+    }
+    uVar9 = (*pcVar15)(0);
+    iVar10 = FindFirstPatternMatch("3B 56 18 0F 85",uVar9);
+    if (iVar10 != 0) {
+      puVar11 = (undefined4 *)(iVar10 + 3);
+      VirtualProtect(puVar11,6,0x40,&local_28);
+      *puVar11 = 0x90909090;
+      *(undefined2 *)(iVar10 + 7) = 0x9090;
+      VirtualProtect(puVar11,6,local_28,&local_28);
+      pcVar15 = GetModuleHandleA_exref;
+    }
+    uVar9 = (*pcVar15)(0);
+    iVar10 = FindFirstPatternMatch("3B 4E 18 0F 85",uVar9);
+    if (iVar10 != 0) {
+      puVar11 = (undefined4 *)(iVar10 + 3);
+      VirtualProtect(puVar11,6,0x40,&local_28);
+      *puVar11 = 0x90909090;
+      *(undefined2 *)(iVar10 + 7) = 0x9090;
+      VirtualProtect(puVar11,6,local_28,&local_28);
+      pcVar15 = GetModuleHandleA_exref;
+    }
+    uVar9 = (*pcVar15)(0);
+    local_3c = (undefined8 *)
+               FindFirstPatternMatch("0F 85 ? ? ? ? 8B 8C 24 ? ? ? ? 5F 5E 5B 33 CC C6",uVar9);
+    if (local_3c != (undefined8 *)0x0) {
+      VirtualProtect(local_3c,6,0x40,&local_28);
+      *(undefined4 *)local_3c = 0x90909090;
+      *(undefined2 *)((int)local_3c + 4) = 0x9090;
+      VirtualProtect(local_3c,6,local_28,&local_28);
+    }
+    uVar9 = (*pcVar15)(0);
+    local_3c = (undefined8 *)FindFirstPatternMatch("3B 46 18 75 BD",uVar9);
+    if (local_3c != (undefined8 *)0x0) {
+      puVar14 = (undefined2 *)((int)local_3c + 3);
+      VirtualProtect(puVar14,2,0x40,&local_28);
+      *puVar14 = 0xc033;
+      VirtualProtect(puVar14,2,local_28,&local_28);
+      puVar14 = (undefined2 *)((int)local_3c + 10);
+      VirtualProtect(puVar14,2,0x40,&local_28);
+      *puVar14 = 0xa390;
+      VirtualProtect(puVar14,2,local_28,&local_28);
+      pcVar15 = GetModuleHandleA_exref;
+    }
+    uVar9 = (*pcVar15)(0);
+    iVar10 = FindFirstPatternMatch("57 51 C7 44 24 ? ? ? ? ? C7 44 24 ? ? ? ? ? C7 44 24",uVar9);
+    if (iVar10 != 0) {
+      lpAddress = (LPVOID)(iVar10 + 1);
+      VirtualProtect(lpAddress,0x1bf,0x40,&local_28);
+      memset(lpAddress,0x90,0x1bf);
+      VirtualProtect(lpAddress,0x1bf,local_28,&local_28);
+      pcVar15 = GetModuleHandleA_exref;
+    }
+    local_30 = 0;
+    local_38 = 0;
+    uVar9 = (*pcVar15)(0);
+    FUN_1005afa0(&local_38,"A1 ? ? ? ? 85 C0 8B 0D ? ? ? ? 75",uVar9,0);
+    local_14 = 0;
+    if (local_38._4_4_ - (int)(undefined4 *)local_38 >> 2 != 0) {
+      puVar11 = (undefined4 *)*(undefined4 *)local_38;
+      VirtualProtect(puVar11,4,0x40,&local_28);
+      *puVar11 = 0x90c301b0;
+      VirtualProtect(puVar11,4,local_28,&local_28);
+      puVar11 = *(undefined4 **)((int)(undefined4 *)local_38 + 4);
+      VirtualProtect(puVar11,4,0x40,&local_28);
+      *puVar11 = 0x90c301b0;
+      VirtualProtect(puVar11,4,local_28,&local_28);
+      pcVar15 = GetModuleHandleA_exref;
+    }
+    uVar9 = (*pcVar15)(0);
+    FUN_1005afa0((undefined8 *)local_48,"33 C0 83 3D ? ? ? ? 01 0F 94 C0 C3",uVar9,0);
+    FUN_10056f90(&local_38,local_48);
+    if (local_48[0] != (void *)0x0) {
+      pvVar12 = local_48[0];
+      if (0xfff < (uint)((local_40 - (int)local_48[0] >> 2) * 4)) {
+        pvVar12 = *(void **)((int)local_48[0] + -4);
+        if (0x1f < (uint)((int)local_48[0] + (-4 - (int)pvVar12))) {
+                    /* WARNING: Subroutine does not return */
+          _invalid_parameter_noinfo_noreturn();
+        }
+      }
+      FUN_100603e3(pvVar12);
+    }
+    iVar10 = local_38._4_4_ - (int)(undefined4 *)local_38 >> 2;
+    if (iVar10 != 0) {
+      puVar11 = *(undefined4 **)((int)(undefined4 *)local_38 + iVar10 * 4 + -8);
+      VirtualProtect(puVar11,4,0x40,&local_28);
+      *puVar11 = 0x90c301b0;
+      VirtualProtect(puVar11,4,local_28,&local_28);
+      puVar11 = *(undefined4 **)
+                 ((int)(undefined4 *)local_38 + -4 +
+                 (local_38._4_4_ - (int)(undefined4 *)local_38 >> 2) * 4);
+      VirtualProtect(puVar11,4,0x40,&local_28);
+      *puVar11 = 0x90c301b0;
+      VirtualProtect(puVar11,4,local_28,&local_28);
+      pcVar15 = GetModuleHandleA_exref;
+    }
+    local_14 = 0xffffffff;
+    if ((undefined4 *)local_38 != (void *)0x0) {
+      pvVar12 = (undefined4 *)local_38;
+      if (0xfff < (local_30 - (int)(undefined4 *)local_38 & 0xfffffffcU)) {
+        pvVar12 = *(void **)((int)(undefined4 *)local_38 + -4);
+        if (0x1f < (uint)((int)(undefined4 *)local_38 + (-4 - (int)pvVar12))) {
+                    /* WARNING: Subroutine does not return */
+          _invalid_parameter_noinfo_noreturn();
+        }
+      }
+      FUN_100603e3(pvVar12);
+    }
+    uVar9 = (*pcVar15)(0);
+    local_3c = (undefined8 *)FindFirstPatternMatch("8B 56 1C 3B 56 20 ? ? 6A 00 6A 00",uVar9);
+    if ((local_3c != (undefined8 *)0x0) && (local_2c != 0)) {
+      VirtualProtect(local_3c,2,0x40,&local_28);
+      puVar6 = local_3c;
+      *(undefined2 *)local_3c = 0xc033;
+      VirtualProtect(local_3c,2,local_28,&local_28);
+      puVar14 = (undefined2 *)((int)puVar6 + 2);
+      VirtualProtect(puVar14,1,0x40,&local_28);
+      *(undefined1 *)puVar14 = 0xe9;
+      VirtualProtect(puVar14,1,local_28,&local_28);
+      lpAddress_00 = (int *)((int)puVar6 + 3);
+      VirtualProtect(lpAddress_00,4,0x40,&local_28);
+      pcVar16 = VirtualProtect_exref;
+      *lpAddress_00 = (local_2c - (int)puVar14) + -5;
+      VirtualProtect(lpAddress_00,4,local_28,&local_28);
+      pcVar15 = GetModuleHandleA_exref;
+    }
+    uVar9 = (*pcVar15)(0);
+    local_3c = (undefined8 *)FindFirstPatternMatch("89 35 ? ? ? ? E8 ? ? ? ? 83 C4 04 84 C0",uVar9);
+    if (local_3c != (undefined8 *)0x0) {
+      (*pcVar16)(local_3c,2,0x40,&local_2c);
+      *(undefined2 *)local_3c = 0xa390;
+      (*pcVar16)(local_3c,2,local_2c,&local_2c);
+    }
+    uVar9 = (*pcVar15)(0);
+    local_3c = (undefined8 *)FindFirstPatternMatch("8B 50 2C 3B 50 30",uVar9);
+    if (local_3c != (undefined8 *)0x0) {
+      (*pcVar16)(local_3c,2,0x40,&local_2c);
+      puVar6 = local_3c;
+      *(undefined2 *)local_3c = 0xc033;
+      (*pcVar16)(local_3c,2,local_2c,&local_2c);
+      puVar11 = (undefined4 *)((int)puVar6 + 2);
+      (*pcVar16)(puVar11,4,0x40,&local_2c);
+      *puVar11 = 0x90909090;
+      (*pcVar16)(puVar11,4,local_2c,&local_2c);
+      pcVar15 = GetModuleHandleA_exref;
+    }
+    uVar9 = (*pcVar15)(0);
+    puVar14 = (undefined2 *)FindFirstPatternMatch("8B 48 2C 83 EC 78",uVar9);
+    local_3c = (undefined8 *)puVar14;
+    if (puVar14 != (undefined2 *)0x0) {
+      (*pcVar16)(puVar14,3,0x40,&local_2c);
+      *puVar14 = 0x9090;
+      *(undefined1 *)(puVar14 + 1) = 0x90;
+      (*pcVar16)(puVar14,3,local_2c,&local_2c);
+      puVar11 = (undefined4 *)(puVar14 + 3);
+      (*pcVar16)(puVar11,0xb,0x40,&local_2c);
+      *puVar11 = 0x90909090;
+      *(undefined4 *)(puVar14 + 5) = 0x90909090;
+      puVar14[7] = 0x9090;
+      *(undefined1 *)(puVar14 + 8) = 0x90;
+      (*pcVar16)(puVar11,0xb,local_2c,&local_2c);
+      pcVar15 = GetModuleHandleA_exref;
+    }
+    uVar9 = (*pcVar15)(0);
+    puVar14 = (undefined2 *)FindFirstPatternMatch("8B 48 2C 83 EC 74",uVar9);
+    local_3c = (undefined8 *)puVar14;
+    if (puVar14 != (undefined2 *)0x0) {
+      (*pcVar16)(puVar14,3,0x40,&local_2c);
+      *puVar14 = 0x9090;
+      *(undefined1 *)(puVar14 + 1) = 0x90;
+      (*pcVar16)(puVar14,3,local_2c,&local_2c);
+      puVar11 = (undefined4 *)(puVar14 + 3);
+      (*pcVar16)(puVar11,0xb,0x40,&local_2c);
+      *puVar11 = 0x90909090;
+      *(undefined4 *)(puVar14 + 5) = 0x90909090;
+      puVar14[7] = 0x9090;
+      *(undefined1 *)(puVar14 + 8) = 0x90;
+      (*pcVar16)(puVar11,0xb,local_2c,&local_2c);
+      pcVar15 = GetModuleHandleA_exref;
+    }
+    uVar9 = (*pcVar15)(0);
+    local_3c = (undefined8 *)FindFirstPatternMatch("8B 48 2C 3B 48 30 74 03",uVar9);
+    if (local_3c != (undefined8 *)0x0) {
+      (*pcVar16)(local_3c,0xb,0x40,&local_2c);
+      *(undefined4 *)local_3c = 0x90909090;
+      *(undefined4 *)((int)local_3c + 4) = 0x90909090;
+      *(undefined2 *)((int)local_3c + 8) = 0x9090;
+      *(undefined1 *)((int)local_3c + 10) = 0x90;
+      (*pcVar16)(local_3c,0xb,local_2c,&local_2c);
+    }
+    uVar9 = (*pcVar15)(0);
+    local_3c = (undefined8 *)FindFirstPatternMatch("8B 48 2C 3B 48 30 53",uVar9);
+    if (local_3c != (undefined8 *)0x0) {
+      (*pcVar16)(local_3c,0x20,0x40,&local_2c);
+      uVar5 = _UNK_1015240c;
+      uVar4 = _UNK_10152408;
+      uVar3 = _UNK_10152404;
+      uVar9 = _DAT_10152400;
+      *(undefined4 *)local_3c = _DAT_10152400;
+      *(undefined4 *)((int)local_3c + 4) = uVar3;
+      *(undefined4 *)((int)local_3c + 8) = uVar4;
+      *(undefined4 *)((int)local_3c + 0xc) = uVar5;
+      *(undefined4 *)((int)local_3c + 0x10) = uVar9;
+      *(undefined4 *)((int)local_3c + 0x14) = uVar3;
+      *(undefined4 *)((int)local_3c + 0x18) = uVar4;
+      *(undefined4 *)((int)local_3c + 0x1c) = uVar5;
+      (*pcVar16)(local_3c,0x20,local_2c,&local_2c);
+    }
+    uVar9 = (*pcVar15)(0);
+    local_3c = (undefined8 *)FindFirstPatternMatch("8B 48 2C 3B 48 30 74 11",uVar9);
+    if (local_3c != (undefined8 *)0x0) {
+      (*pcVar16)(local_3c,0x19,0x40,&local_2c);
+      uVar1 = CONCAT44(_UNK_10152404,_DAT_10152400);
+      uVar2 = CONCAT44(_UNK_1015240c,_UNK_10152408);
+      *local_3c = uVar1;
+      local_3c[1] = uVar2;
+      local_3c[2] = uVar1;
+      *(undefined1 *)(local_3c + 3) = 0x90;
+      (*pcVar16)(local_3c,0x19,local_2c,&local_2c);
+    }
+    uVar9 = (*pcVar15)(0);
+    local_3c = (undefined8 *)FindFirstPatternMatch("8B 48 2C 3B 48 30 75 DC 8D 54 24 18",uVar9);
+    if (local_3c != (undefined8 *)0x0) {
+      (*pcVar16)(local_3c,8,0x40,&local_2c);
+      *(undefined4 *)local_3c = 0x90909090;
+      *(undefined4 *)((int)local_3c + 4) = 0x90909090;
+      (*pcVar16)(local_3c,8,local_2c,&local_2c);
+    }
+    uVar9 = (*pcVar15)(0);
+    local_3c = (undefined8 *)FindFirstPatternMatch("8B 48 2C 3B 48 30 75 DC 8D 54 24 1C",uVar9);
+    if (local_3c != (undefined8 *)0x0) {
+      (*pcVar16)(local_3c,8,0x40,&local_2c);
+      *(undefined4 *)local_3c = 0x90909090;
+      *(undefined4 *)((int)local_3c + 4) = 0x90909090;
+      (*pcVar16)(local_3c,8,local_2c,&local_2c);
+    }
+    uVar9 = (*pcVar15)(0);
+    local_3c = (undefined8 *)FindFirstPatternMatch("8B 0D ? ? ? ? 8B 51 2C",uVar9);
+    if (local_3c != (undefined8 *)0x0) {
+      (*pcVar16)(local_3c,0xe,0x40,&local_2c);
+      *(undefined4 *)local_3c = 0x90909090;
+      *(undefined4 *)((int)local_3c + 4) = 0x90909090;
+      *(undefined4 *)((int)local_3c + 8) = 0x90909090;
+      *(undefined2 *)((int)local_3c + 0xc) = 0x9090;
+      (*pcVar16)(local_3c,0xe,local_2c,&local_2c);
+    }
+    uVar9 = (*pcVar15)(0);
+    local_3c = (undefined8 *)FindFirstPatternMatch("51 53 55 56 57 8B 3D ? ? ? ? 8B 47 2C",uVar9);
+    if (local_3c != (undefined8 *)0x0) {
+      (*pcVar16)(local_3c,1,0x40,&local_2c);
+      *(undefined1 *)local_3c = 0xc3;
+      (*pcVar16)(local_3c,1,local_2c,&local_2c);
+    }
+    uVar9 = (*pcVar15)(0);
+    local_3c = (undefined8 *)FindFirstPatternMatch("3B C7 0F 85 ? ? ? ? 85 C0",uVar9);
+    if (local_3c != (undefined8 *)0x0) {
+      (*pcVar16)(local_3c,0x10,0x40,&local_2c);
+      uVar4 = _UNK_1015240c;
+      uVar3 = _UNK_10152408;
+      uVar9 = _UNK_10152404;
+      *(undefined4 *)local_3c = _DAT_10152400;
+      *(undefined4 *)((int)local_3c + 4) = uVar9;
+      *(undefined4 *)((int)local_3c + 8) = uVar3;
+      *(undefined4 *)((int)local_3c + 0xc) = uVar4;
+      (*pcVar16)(local_3c,0x10,local_2c,&local_2c);
+    }
+    uVar9 = (*pcVar15)(0);
+    local_3c = (undefined8 *)
+               FindFirstPatternMatch("0F 85 ? ? ? ? 85 C0 0F 84 ? ? ? ? E8 ? ? ? ? 85 D2",uVar9);
+    if (local_3c != (undefined8 *)0x0) {
+      (*pcVar16)(local_3c,0xe,0x40,&local_2c);
+      *(undefined4 *)local_3c = 0x90909090;
+      *(undefined4 *)((int)local_3c + 4) = 0x90909090;
+      *(undefined4 *)((int)local_3c + 8) = 0x90909090;
+      *(undefined2 *)((int)local_3c + 0xc) = 0x9090;
+      (*pcVar16)(local_3c,0xe,local_2c,&local_2c);
+    }
+    uVar9 = (*pcVar15)(0);
+    local_3c = (undefined8 *)FindFirstPatternMatch("83 EC 24 A1 ? ? ? ? 8B 48 14 53 55 56 57",uVar9)
+    ;
+    if (local_3c != (undefined8 *)0x0) {
+      (*pcVar16)(local_3c,4,0x40,&local_2c);
+      *(undefined4 *)local_3c = 0x90c3c033;
+      (*pcVar16)(local_3c,4,local_2c,&local_2c);
+    }
+    uVar9 = (*pcVar15)(0);
+    puVar11 = (undefined4 *)
+              FindFirstPatternMatch("83 EC 08 8B 0D ? ? ? ? 8B 51 14 8D 04 24 50 6A 00 52",uVar9);
+    if (puVar11 != (undefined4 *)0x0) {
+      (*pcVar16)(puVar11,4,0x40,&local_28);
+      *puVar11 = 0x90c3c033;
+      (*pcVar16)(puVar11,4,local_28,&local_28);
+    }
+    FUN_10004850();
+    puVar13 = puStack_20;
+  }
+  puStack_20 = puVar13;
+  FUN_10004620();
+  ExceptionList = local_1c;
+  return;
+}
+
+
+
+### Function FUN_10045490 @ 10045490
+
+/* WARNING: Function: __security_check_cookie replaced with injection: security_check_cookie */
+
+void FUN_10045490(void)
+
+{
+  int *piVar1;
+  int iVar2;
+  HMODULE pHVar3;
+  undefined1 *puVar4;
+  DWORD local_c;
+  uint local_8;
+  
+  local_8 = DAT_1015800c ^ (uint)&stack0xfffffffc;
+  pHVar3 = GetModuleHandleA((LPCSTR)0x0);
+  puVar4 = (undefined1 *)
+           FindFirstPatternMatch
+                     ("83 EC 44 A1 ? ? ? ? 33 C4 89 44 24 40 53 8B 5C 24 4C 56 68 ? ? ? ? E8 ? ? ? ? 83 C4"
+                      ,pHVar3);
+  iVar2 = DAT_1015ad70;
+  if (puVar4 != (undefined1 *)0x0) {
+    VirtualProtect(puVar4,1,0x40,&local_c);
+    *puVar4 = 0xe9;
+    VirtualProtect(puVar4,1,local_c,&local_c);
+    piVar1 = (int *)(puVar4 + 1);
+    VirtualProtect(piVar1,4,0x40,&local_c);
+    *piVar1 = (int)&UNK_1003854b - (int)puVar4;
+    VirtualProtect(piVar1,4,local_c,&local_c);
+    return;
+  }
+  if (DAT_1015be04 == 9) {
+    puVar4 = (undefined1 *)(DAT_1015ad70 + 0x498460);
+    VirtualProtect(puVar4,1,0x40,&local_c);
+    *puVar4 = 0xe9;
+    VirtualProtect(puVar4,1,local_c,&local_c);
+    piVar1 = (int *)(iVar2 + 0x498461);
+    VirtualProtect(piVar1,4,0x40,&local_c);
+    *piVar1 = (int)&UNK_1003854b - (int)puVar4;
+    VirtualProtect(piVar1,4,local_c,&local_c);
+  }
+  return;
+}
+
+
+
+### Function FUN_100441b0 @ 100441b0
+
+/* WARNING: Function: __security_check_cookie replaced with injection: security_check_cookie */
+
+void FUN_100441b0(void)
+
+{
+  int iVar1;
+  undefined4 *puVar2;
+  int local_10;
+  DWORD local_c;
+  uint local_8;
+  
+  local_8 = DAT_1015800c ^ (uint)&stack0xfffffffc;
+  iVar1 = FUN_10003a10();
+  if (iVar1 != 0) {
+    if (DAT_1015be04 == 1) {
+      iVar1 = 0x9f043c;
+      local_10 = 0x98fa0c;
+    }
+    else if (DAT_1015be04 == 5) {
+      iVar1 = 0x9ea184;
+      local_10 = 0x9dd8a0;
+    }
+    else if (DAT_1015be04 == 7) {
+      iVar1 = 0x9f8f40;
+      local_10 = 0xa9d0d8;
+    }
+    else if (DAT_1015be04 == 8) {
+      iVar1 = 0x9f9f70;
+      local_10 = 0xa9e118;
+    }
+    else {
+      if (DAT_1015be04 != 9) {
+        return;
+      }
+      iVar1 = 0xa508f8;
+      local_10 = 0xa5a5e4;
+    }
+    puVar2 = (undefined4 *)(DAT_1015ad70 + iVar1);
+    VirtualProtect(puVar2,8,0x40,&local_c);
+    *puVar2 = 0x79616c50;
+    puVar2[1] = 0x49415447;
+    VirtualProtect(puVar2,8,local_c,&local_c);
+    puVar2 = (undefined4 *)(DAT_1015ad70 + 8 + iVar1);
+    VirtualProtect(puVar2,8,0x40,&local_c);
+    *puVar2 = 0x78652e56;
+    puVar2[1] = 0x650065;
+    VirtualProtect(puVar2,8,local_c,&local_c);
+    puVar2 = (undefined4 *)(DAT_1015ad70 + local_10);
+    VirtualProtect(puVar2,8,0x40,&local_c);
+    *puVar2 = 0x79616c50;
+    puVar2[1] = 0x49415447;
+    VirtualProtect(puVar2,8,local_c,&local_c);
+    puVar2 = (undefined4 *)(DAT_1015ad70 + 8 + local_10);
+    VirtualProtect(puVar2,8,0x40,&local_c);
+    *puVar2 = 0x78652e56;
+    puVar2[1] = 0x650065;
+    VirtualProtect(puVar2,8,local_c,&local_c);
+  }
+  return;
+}
+
+
+
+### Function FUN_100467a0 @ 100467a0
+
+/* WARNING: Function: __security_check_cookie replaced with injection: security_check_cookie */
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
+void FUN_100467a0(void)
+
+{
+  int *piVar1;
+  HMODULE pHVar2;
+  int iVar3;
+  undefined1 *puVar4;
+  DWORD local_c;
+  uint local_8;
+  
+  local_8 = DAT_1015800c ^ (uint)&stack0xfffffffc;
+  pHVar2 = GetModuleHandleA((LPCSTR)0x0);
+  iVar3 = FindFirstPatternMatch("01 96 98 00 00 00 8B 47 04 29 46 54 8B 4F 0C",pHVar2);
+  if (iVar3 != 0) {
+    _DAT_10159c6c = iVar3 + 0x88;
+    puVar4 = (undefined1 *)(iVar3 + 0x7b);
+    VirtualProtect(puVar4,1,0x40,&local_c);
+    *puVar4 = 0xe9;
+    VirtualProtect(puVar4,1,local_c,&local_c);
+    piVar1 = (int *)(iVar3 + 0x7c);
+    VirtualProtect(piVar1,4,0x40,&local_c);
+    *piVar1 = (int)&UNK_1004677b - (int)puVar4;
+    VirtualProtect(piVar1,4,local_c,&local_c);
+    puVar4 = (undefined1 *)(iVar3 + -0x26);
+    VirtualProtect(puVar4,1,0x40,&local_c);
+    *puVar4 = 0xeb;
+    VirtualProtect(puVar4,1,local_c,&local_c);
+    pHVar2 = GetModuleHandleA((LPCSTR)0x0);
+    puVar4 = (undefined1 *)FindFirstPatternMatch("8B 48 70 83 C0 40 50 51 8D 51 10",pHVar2);
+    if (puVar4 != (undefined1 *)0x0) {
+      _DAT_10159c70 = puVar4 + 0x1c;
+      _DAT_10159c68 = puVar4 + 0xe;
+      VirtualProtect(puVar4,1,0x40,&local_c);
+      *puVar4 = 0xe9;
+      VirtualProtect(puVar4,1,local_c,&local_c);
+      piVar1 = (int *)(puVar4 + 1);
+      VirtualProtect(piVar1,4,0x40,&local_c);
+      *piVar1 = 0x1004674b - (int)puVar4;
+      VirtualProtect(piVar1,4,local_c,&local_c);
+    }
+  }
+  return;
+}
+
+
+
+### Function FUN_10046b30 @ 10046b30
+
+/* WARNING: Function: __security_check_cookie replaced with injection: security_check_cookie */
+
+void FUN_10046b30(void)
+
+{
+  HMODULE pHVar1;
+  undefined1 *lpAddress;
+  DWORD local_c;
+  uint local_8;
+  
+  local_8 = DAT_1015800c ^ (uint)&stack0xfffffffc;
+  pHVar1 = GetModuleHandleA((LPCSTR)0x0);
+  lpAddress = (undefined1 *)
+              FindFirstPatternMatch("81 EC 40 08 00 00 53 55 8B AC 24 4C 08 00 00",pHVar1);
+  if (lpAddress != (undefined1 *)0x0) {
+    VirtualProtect(lpAddress,1,0x40,&local_c);
+    *lpAddress = 0xc3;
+    VirtualProtect(lpAddress,1,local_c,&local_c);
+  }
+  return;
+}
+
+
+
+### Function FUN_10022f60 @ 10022f60
+
+/* WARNING: Function: __security_check_cookie replaced with injection: security_check_cookie */
+
+void FUN_10022f60(void)
+
+{
+  undefined4 *lpAddress;
+  HMODULE pHVar1;
+  int iVar2;
+  DWORD local_c;
+  uint local_8;
+  
+  local_8 = DAT_1015800c ^ (uint)&stack0xfffffffc;
+  pHVar1 = GetModuleHandleA((LPCSTR)0x0);
+  iVar2 = FindFirstPatternMatch("68 ? ? ? ? E8 ? ? ? ? 83 C4 04 E8 ? ? ? ? E8 ? ? ? ? E8",pHVar1);
+  if (iVar2 != 0) {
+    lpAddress = (undefined4 *)(iVar2 + 1);
+    VirtualProtect(lpAddress,4,0x40,&local_c);
+    *lpAddress = s_common__data_gta_dat_10158068;
+    VirtualProtect(lpAddress,4,local_c,&local_c);
+  }
+  return;
+}
+
+
+

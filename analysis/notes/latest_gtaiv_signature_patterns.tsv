@@ -1,0 +1,12 @@
+IncreaseVehicleModelLimit	83 C7 01 81 FF 18 79 00 00 7C D2
+IncreaseVehicleStructLimit	68 ? ? ? ? 6A 32 8B C8
+TeleportProtection	55 8B EC 83 E4 F8 51 53 8B 5D 08 56 57 6A 08 8D 44 24 10 8B F1 8D 7B 04 50 8B CF C7 44 24 14 00
+SkipIntro	89 91 ? ? ? ? 8D 44 24 ? 68 ? ? ? ? 50
+SkipMenuPrimary	83 F8 03 75 ? A1 ? ? ? ? 80 88 ? ? ? ? ? 84 DB 74 0A 6A 00 E8 ? ? ? ? 83 C4 04 5F 5E
+SkipMenuFallbackA	6A 00 E8 ? ? ? ? 83 C4 04 8B 8C 24 ? ? ? ? 5F 5E 5D 5B 33 CC E8 ? ? ? ? 81 C4 ? ? ? ? C3
+SkipMenuFallbackB	6A 00 E8 ? ? ? ? 83 C4 04 8B 8C 24 ? ? ? ? 5F 5E 5B 33 CC E8 ? ? ? ? 8B E5 5D C3
+EpisodicVehicleSupport_A	83 3D ? ? ? ? 02 0F 8C 0E 05 00 00
+EpisodicVehicleSupport_B	83 3D ? ? ? ? 02 7C 35 0F BF 43 2E
+EpisodicVehicleSupport_C	83 3D ? ? ? ? 02 8A 0D
+EpisodicVehicleSupport_D	83 3D ? ? ? ? 02 75 21 8B 96 20 08 00 00
+EpisodicVehicleSupport_E	83 3D ? ? ? ? 02 7C 4A 0F BF 46 2E

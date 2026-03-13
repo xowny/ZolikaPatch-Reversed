@@ -1,0 +1,601 @@
+﻿# Graphics / Render / Streaming Feature Notes
+
+These functions are the graphics-side patch installers in `ZolikaPatch.asi`.
+
+Raw decompile:
+
+- `graphics_feature_funcs_decompile.txt`
+
+## Recovered Semantics
+
+- `0x10005b20` -> `InstallBuildingDynamicShadowsPatch`
+  - Mixed patch: collects two existing game addresses into globals, then installs a jump to custom code at `UNK_10005aeb`.
+  - Also zeroes a byte in a second matched site.
+  - This is a true custom-behavior shadow patch, not just a branch flip.
+
+- `0x10005ca0` -> `InstallBuildingAlphaFixPatch`
+  - Removes one 13-byte conditional block entirely.
+  - Rewrites a second branch from conditional to unconditional flow-preserving jump.
+  - This is a localized render-state/alpha gate fix.
+
+- `0x1001afa0` -> `InstallEmissiveLerpFixPatch`
+  - Hooks a floating-point math site into custom code at `0x1001af5b`.
+  - Saves nearby source addresses in globals first.
+  - This is a math/lighting behavior fix, not a simple constant patch.
+
+- `0x1001eed0` -> `InstallForceShadowsOnObjectsPatch`
+  - Converts one conditional branch into an unconditional `JMP`.
+  - This is a straightforward force-enable patch.
+
+- `0x1001ee50` -> `InstallForceDynamicShadowsEverywherePatch`
+  - NOPs a two-byte conditional branch after a bit-test.
+  - This removes a gate that prevented dynamic shadows in some contexts.
+
+- `0x10023dc0` -> `InstallHighQualityReflectionsPatch`
+  - Thin wrapper around `InvokeHighQualityReflectionsCallback`.
+  - The real callee is a callback bridge, not a classic byte-patch body.
+  - `0x10001060` initializes the reflection callback context by calling `AssignHighQualityReflectionCallbacks(0x10190ac0)`.
+  - current caller evidence only shows that setup helper being reached from the init path, which strongly suggests this is a dedicated patch-owned callback record rooted at `0x10190ac0`, not a shared multi-feature object.
+  - Nearby context at `0x10023cc0` writes three callback/reset pointers into a larger render/reflection context object rooted at `0x10190ac0`.
+  - `DAT_10192f14` at `0x10190ac0 + 0x2454` is the resolver/dispatch slot.
+  - That slot is initialized with `ResolveHighQualityReflectionHookTarget` at `0x1001f390`.
+  - `DAT_10192f18` at `0x10190ac0 + 0x2458` is the companion trampoline-entry slot.
+  - That slot is initialized with `HighQualityReflectionStageTrampoline` at `0x1001f030`.
+  - The trampoline saves registers, invokes the resolved engine target in stages `0` through `0xb`, then tails into another resolved callback.
+  - `DAT_10196370` at `0x10190ac0 + 0x58b0` is the reset slot.
+  - `ClearHighQualityReflectionCallbackSlots` at `0x10023d70` zeroes all three slots before returning.
+  - `ResolveHighQualityReflectionHookTarget` builds a managed payload, calls the reset slot mid-flow, resolves and patches the target using the trampoline-entry slot, and leaves the resolved engine call target in globals for the trampoline to use.
+  - after patching the matched engine site, the resolver derives both follow-on globals directly from that site:
+    - `DAT_10159cfc = matched_site + 0x13`
+    - `DAT_10159d04 = matched_site + *(rel32 at matched_site + 0xf) + 0x13`
+  - that means the trampoline is not calling arbitrary helpers; it is staging through the original engine call target recovered from the displaced instruction stream and then jumping back to the continuation immediately after the patched block.
+  - the resolver populates a small scratch block that the trampoline uses to preserve registers:
+    - `DAT_10159ce4` saved `EBP`
+    - `DAT_10159ce8` saved `EAX`
+    - `DAT_10159cec` saved `ESI`
+    - `DAT_10159cf0` saved `ESP`
+    - `DAT_10159cf4` saved `EDX`
+    - `DAT_10159cf8` saved `EBX`
+    - `DAT_10159d00` saved `ECX`
+    - `DAT_10159d0c` saved `EDI`
+  - `DAT_10159ce0` staged callback context
+  - `DAT_10159d04` is the resolved stage callback entry used for stages `0` through `0xb`
+  - `DAT_10159cfc` is the indirect continuation/tail target reached after the staged callback sequence
+  - direct decompilation now confirms that `HighQualityReflectionStageTrampoline` never dereferences either `DAT_10158060` or `DAT_10159ce0`
+  - it saves registers once, then repeatedly pushes `(stage_index, DAT_10158060, DAT_10159ce0)` into the resolved stage callback and finally jumps to `DAT_10159cfc`
+  - the staged callback calling convention is now clearer too:
+    - argument 1 is the stage index `0 .. 0xb`
+    - argument 2 is the shared render/reflection state at `DAT_10158060`
+    - argument 3 is the staged callback context in `DAT_10159ce0`
+  - within the ASI itself, `DAT_10158060` is only referenced by those staged trampoline calls
+  - that means the host-object semantics are not being interpreted locally by the patch; they belong to the original game-side callback target, not to extra logic hidden inside the ASI
+  - direct decompilation of `ResolveHighQualityReflectionHookTarget` also confirms the patch boundary:
+    - the resolver builds a managed signature string
+    - pattern-scans the game module
+    - redirects the matched site to the trampoline-entry slot from `DAT_10192f18`
+    - computes `DAT_10159cfc` and `DAT_10159d04` from the displaced instruction stream
+    - clears the callback slots through `DAT_10196370`
+  - taken together, that means the ASI owns the hook plumbing, but not the meaning of the forwarded render/reflection state object
+  - Best current interpretation: this feature wires a reflection-hook resolver, its trampoline entry, and a reset callback into an existing runtime object instead of patching the game directly at one fixed address.
+
+- `0x10038770` -> `InstallRemoveBoundingBoxCullingPatch`
+  - Rewrites a conditional branch into an unconditional jump that preserves the original taken target.
+  - This is a classic "remove culling gate" patch.
+
+- `0x10038800` -> `InstallRemoveStaticCarShadowsPatch`
+  - Converts one branch byte from conditional to unconditional.
+  - This bypasses a static-car-shadow code path rather than hooking a new routine.
+
+- `0x10038860` -> `InstallRemoveStaticCutsceneCarShadowsPatch`
+  - Same pattern as static car shadows, but at a distinct cutscene-specific site.
+
+- `0x10045ad0` -> `InstallImprovedShaderStreamingPatch`
+  - Large custom hook patch.
+  - Replaces multiple call/jump sites with redirects to custom code blocks at `UNK_10045a2b` and `0x10045a7b`.
+  - Also rewrites two forward branches with manual relative displacements.
+  - This is one of the bigger render/streaming behavior patches in the mod.
+
+- `0x10046a10` -> `InstallSuperLODFixPatch`
+  - Version-specific hook for build ids `8` and `9`.
+  - Stores several game addresses in globals, then redirects execution to custom code at `0x100469db`.
+  - This is a genuine LOD behavior patch, not just a data tweak.
+
+- `0x1004aae0` -> `InstallVRAMFixPatch`
+  - Hooks a small function epilogue/prologue region into custom code at `UNK_1004aaab`.
+  - Strong signal this is an allocator / memory-accounting fix rather than a plain config override.
+
+## Cluster Takeaway
+
+This cluster splits into three patch styles:
+
+- simple branch/NOP overrides:
+  - building alpha
+  - force shadows
+  - dynamic shadows everywhere
+  - remove bounding-box culling
+  - remove static car shadows
+- wrapper/callback-bridge entries:
+  - high quality reflections
+- heavy custom hooks:
+  - building dynamic shadows
+  - emissive lerp
+  - improved shader streaming
+  - super LOD
+  - VRAM fix
+
+## Logical Internal Layouts
+
+- High-quality reflection callback record rooted at `0x10190ac0`
+  - `+0x2454` resolver / dispatch slot
+  - `+0x2458` staged trampoline entry slot
+  - `+0x58b0` reset slot
+  - in the recovered ASI, these are the only fields that are directly populated, cleared, or dispatched through
+
+- High-quality reflection scratch frame
+  - `DAT_10159ce0` staged callback context
+  - `DAT_10159ce4` saved `EBP`
+  - `DAT_10159ce8` saved `EAX`
+  - `DAT_10159cec` saved `ESI`
+  - `DAT_10159cf0` saved `ESP`
+  - `DAT_10159cf4` saved `EDX`
+  - `DAT_10159cf8` saved `EBX`
+  - `DAT_10159cfc` post-stage continuation target
+  - `DAT_10159d00` saved `ECX`
+  - `DAT_10159d04` resolved staged callback entry
+  - `DAT_10159d0c` saved `EDI`
+  - taken together, these globals behave like one logical frame object even though the original binary stores them as loose symbols
+
+## RE Follow-up
+
+- identify the custom code blocks behind:
+  - `UNK_10005aeb`
+  - `0x1001af5b`
+  - `UNK_10045a2b`
+  - `0x10045a7b`
+  - `0x100469db`
+  - `UNK_1004aaab`
+- recover more of the engine-side object semantics around the host state passed as `DAT_10158060`
+  - the patch-owned callback lifecycle and scratch-frame layout are now clear; the remaining gap is what the game-side object itself represents inside the original executable
+- current-build string-led discovery does not currently shortcut that work
+  - a targeted `GTAIV.exe` sweep did surface plausible render/probe strings such as `AsyncProbeMgr`, `LightOcclusionTex`, and `lightmap`
+  - but the first `AsyncProbeMgr` xref/vtable pass produced no direct references or nearby vtable lead
+  - `LightOcclusionTex` did yield one concrete modern render landmark at `0x0065d2b0`, now named `InitializeIntervalShadowAndOcclusionParameterIndices`
+  - that function lives inside a real `rage::IntervalShadows::IntervalShadowVarCache` vtable rooted at `0x00fe3030`
+  - `0x0065b5c0` allocates that `0x30`-byte cache object and writes the vtable directly
+  - `0x0065bf20` registers the owning `rage__IntervalShadows` subsystem, `0x0065de10` creates the runtime `rage::IntervalShadows` object, and `0x0065d6c0` seeds that object's default state
+  - this gives the modern executable a defended interval-shadow / ambient-occlusion module path, but it still looks like adjacent lighting context rather than the direct host object used by the legacy reflection hook
+- current-build probing now has one real reflection-specific anchor
+  - `0x0062ca10`, now named `InitializeProceduralReflectionSubsystemRegistration`, lazily registers a subsystem named `rage__ProceduralReflection`
+  - the registration publishes into the zero-initialized global storage slot `DAT_018b74bc`
+  - that published module uses a factory callback thunk at `0x0062e410`
+  - the registration record layout is now partly defended from direct decompile:
+    - `+0x04` -> subsystem name `"rage__ProceduralReflection"`
+    - `+0x10` -> runtime object size `0x60`
+    - `+0x20` -> zero
+    - `+0x24` -> factory callback `0x0062e410`
+    - `+0x28` -> zero
+    - `+0x2c` -> shared class-ops / type record `DAT_0043ead0`
+    - `+0x08/+0x0c` are cleared before publish
+    - `+0x1c/+0x1e` are normalized before the finalize/publish helper pair runs
+  - a sibling comparison now shows this reflection definition is comparatively thin:
+    - `rage__ProceduralTextureRenderTargetDef` and `rage__IntervalShadows` publish through the same helper tail, but they also seed extra field-offset metadata before publish
+    - `rage__ProceduralReflection` does not seed equivalent metadata in its registration path
+  - practical reading:
+    - the missing reflection semantics are unlikely to be hidden in rich published-field descriptors
+    - they are more likely to live only in the later runtime consumers or in the live object path
+  - that thunk allocates `0x60` bytes and tail-jumps into `0x0062d6d0`
+  - `0x0062d6d0`, now named `InitializeProceduralReflectionDefaults`, writes `rage::ProceduralReflection::vftable` and seeds the runtime object's default scalar fields
+  - the top recovered vtable entries are only:
+    - `0x0062bef0` object release/destructor path
+    - `0x0062bee0` singleton-accessor path returning `DAT_018b74bc`
+  - a fresh vtable probe shows the table does not continue into a rich virtual method surface; the next dwords after those two entries fall straight into adjacent data
+  - practical reading:
+    - the remaining live behavior is probably not hidden behind many reflection-specific virtual methods
+    - it is more likely to live in the generic registration/runtime systems that consume the published record
+  - the only recovered non-self xref to the registration routine is a data reference at `0x0110ec30`
+  - that address sits inside a broader static startup table that also includes neighboring procedural-render registration routines such as `0x0062c8b0` and `0x0062cb00`
+  - raw assembly at `0x00e5edea` / `0x00e5ee2a` shows those startup-table records being chained into two global lists through `DAT_017acd24` and `DAT_017ad1b8`
+  - a fresh boundary probe shows those writes are not inside normal functions
+    - the roots are populated by many tiny RET-terminated stubs of the form:
+      - load current root
+      - store it into `node.next`
+      - replace the root with the new node
+      - return
+    - so this area is genuine linker-style static-initializer glue, not a missed high-level startup routine
+  - practical reading:
+    - the engine is not "calling the reflection registration function directly" from many places
+    - it is discovering the procedural-render modules through linker-style registration lists built during startup
+  - a direct xref dump on `DAT_017acd24` and `DAT_017ad1b8` stayed fully consistent with that model:
+    - every defended xref is still a raw read/write pair from those same tiny stub regions
+    - no normal recovered function reads either chain head directly
+    - practical reading:
+      - the runtime consumer of those startup-built lists is still not surfacing as a normal static xref reader of the chain heads themselves
+  - the recovered cluster does not land in one shared list:
+    - `rage__ProceduralReflection` and `rage__ProceduralTextureSkyhat` are linked through the `DAT_017acd24` chain
+    - `rage__IntervalShadows` and `rage__ProceduralTextureVerletWater` are linked through the `DAT_017ad1b8` chain
+  - that split is not enough to name the two lifecycle buckets yet, but it does show that the engine is already classifying these render modules at startup
+  - the startup records themselves now have a defensible common `0x20`-byte layout:
+    - `+0x00` registration function pointer
+    - `+0x04` next-pointer field used by the startup chain builder
+    - `+0x08/+0x0c/+0x10/+0x14` first opaque descriptor tuple
+    - `+0x18/+0x1c` start of a second opaque descriptor tuple
+  - example records:
+    - `0x0110ec30` (`rage__ProceduralReflection`) starts with `0x0062ca10, 0x00000000, 0x00f96a28, 0x010f0618, 0x0000aa4d, 0x00000000, 0x00f96a50, 0x010d9a78`
+    - `0x0110ec10` (`rage__IntervalShadows`) starts with `0x00f96b00, 0x010e5bc8, 0x0000aa4d, 0x00000000, 0x00f96b2c, 0x010e44e0, 0x000016e8, 0x00000000`
+  - those non-function fields do not currently have independent xrefs, which implies the node records are consumed as opaque startup descriptors rather than as piecemeal shared globals
+  - a direct xref pass against those tuple fields tightened that boundary further:
+    - `0x00f96a28`, `0x00f96a50`, `0x00f96b00`, and `0x00f96b2c` only feed their owning startup records at `0x0110ec38`, `0x0110ec48`, `0x0110ec10`, and `0x0110ec20`
+    - the paired values `0x010f0618`, `0x010d9a78`, `0x010e5bc8`, and `0x010e44e0` still have no defended xrefs at all
+    - practical reading:
+      - the tuple fields are not exposing a missed later runtime reader either
+      - they still behave like opaque startup-record payload rather than a bridge into the live reflection runtime
+  - every recovered registration routine in this render-module family then calls the same helper pair:
+    - `0x0041d240`
+    - `0x00409110`
+  - the decompiler view of both helpers is corrupted by overlapping/bad instruction data, but the caller-set match is strong
+  - behavioral reading:
+    - `0x0041d240` finalizes or normalizes the module descriptor after the caller fills its fields
+    - `0x00409110` is the generic sink that hands the finished descriptor to the engine's module-registration machinery
+  - raw caller assembly now pins down the tail-call pattern:
+    - `ECX` is loaded from `DAT_01bb5520` and then adjusted to `ECX + 0x18`
+    - the caller also passes the descriptor name field and the address of the descriptor-global storage slot on the stack
+    - practical reading:
+      - `DAT_01bb5520` is best treated as a broader engine definition / registration context
+      - it is not safely classifiable as a render-only registry object because separate xrefs show it in setup/config resource flows such as `extra:/setup2.xml` and `audConfig` lookups
+      - one concrete non-render producer is `0x006019e0`, which allocates a `0x30`-byte object into `DAT_01bb5520`, initializes internal state, and then routes into the shared setup path
+      - `0x00409110` still behaves like a method-style publish sink on that shared context
+      - a fresh registry-context probe now confirms that this same context is reused by generic setup/resource lookups such as:
+        - `extra:/setup2.xml`
+        - `memory:$...`
+      - so `DAT_01bb5520` / `0x00407d40` should be treated as broad setup machinery, not as the missing reflection-runtime consumer
+  - a shared shader-fragment family is now visible in the current build:
+    - `0x0062e7b0` -> `InitializeShaderFragmentSubsystemRegistration`
+    - `0x006178f0` -> `InitializeSkyhatMiniNoiseSubsystemRegistration`
+    - `0x00617a70` -> `InitializeSkyLightControllerSubsystemRegistration`
+    - `0x0065c060` -> `InitializeAtmosphericScatteringSubsystemRegistration`
+    - `0x0065c190` -> `InitializeFogControlSubsystemRegistration`
+  - those module registrations all publish through the same `0x0041d240 -> 0x00409110` path and explicitly inherit the shared `rage__ShaderFragment` descriptor through field `+0x08`
+  - `rage__ProceduralReflection` and `rage__IntervalShadows` sit in that same published module-definition system, but they do not look like simple shader-fragment children
+  - the first runtime-object semantics are now defended too:
+    - `0x0062be20` is a destructor/reset path for `rage::ProceduralReflection`
+    - it drops refcounts through the tail region at `+0x50`, `+0x54`, and `+0x58` when those fields are populated, then restores the base `rage::datBase` vftable
+    - that confirms the `0x60`-byte procedural-reflection instance is a real `datBase`-style object, but the exact typing of the tail fields is still unresolved
+    - `0x0062e410` is a thin factory thunk that allocates `0x60` bytes and tail-jumps into `InitializeProceduralReflectionDefaults`
+    - `InitializeProceduralReflectionDefaults` seeds the runtime object with a small default float block:
+      - `+0x14 = 1.0f`
+      - `+0x1c = -15.0f`
+      - `+0x24 = 15.0f`
+      - `+0x2c = constructor-supplied float`
+      - `+0x34 = 100000.0f`
+      - `+0x50/+0x54/+0x58 = cleared tail slots`
+  - a fresh probe on the adjacent static block at `0x018b74bc .. 0x018b7538` shows the image is fully zero-initialized there
+    - the neighboring globals:
+      - `DAT_018b7518`
+      - `DAT_018b751c`
+      - `DAT_018b74fc`
+      - `DAT_018b74d8`
+      - `DAT_018b7510`
+      have only read-side xrefs, all from the same fragment/physics binding cluster:
+      - `0x005f9f30`
+      - `0x005fa3b0`
+      - `0x005fa650`
+      - `0x00612b20`
+    - `0x00612b20` maps those globals explicitly to runtime holder-slot bindings:
+      - `DAT_018b7518` -> `Holder<Matrix34 const*>`
+      - `DAT_018b751c` -> `Holder<phInst*>`
+      - `DAT_018b74fc` -> `Holder<fragInst*>`
+      - `DAT_018b74d8` -> `Holder<int>`
+      - `DAT_018b7510` -> second `Holder<phInst*>`
+    - practical reading:
+      - those globals are runtime-populated holder-slot IDs for an adjacent fragment/physics binding cluster
+      - they should not be conflated with the live `rage::ProceduralReflection` instance fields just because they sit in the same broader `.data` neighborhood
+      - the procedural-reflection object tail at `+0x50/+0x54/+0x58` remains a separate partially resolved live-object area
+  - the shared pointer at `DAT_0043ead0` is now also better classified:
+    - it is reused by many published render definitions, including `rage__ProceduralTextureRenderTargetDef`
+    - it should be treated as a generic class-ops / type record for this module-definition system, not as a reflection-only callback target
+  - direct assembly dumps of `0x0041d240` and `0x00409110` are still too corrupted to recover source-equivalent helper bodies
+  - a fresh decompile retry did not improve that:
+    - `0x00409110` still decompiles as obvious garbage
+    - `0x0041d240` still falls apart into overlapping/bad instruction data with unusable high-level output
+  - but the caller-side comparison still makes one thing clear:
+    - the generic publish path is shared
+    - the reflection-specific gap is no longer in how the record is registered, but in how the engine later consumes the thin record and the live object
+  - a fresh published-slot xref pass makes that boundary tighter:
+    - `DAT_018b74bc` is only referenced directly by:
+      - `InitializeProceduralReflectionSubsystemRegistration`
+      - `GetProceduralReflectionSubsystemRegistration`
+    - the companion pointer `DAT_018b74b4` is only referenced from the registration function itself
+    - no defended runtime consumer currently reads the published reflection record/global slot directly
+    - practical reading:
+      - the missing semantics are almost certainly behind indirect generic registry-managed lookup/instantiation, not in a missed local function with a direct `DAT_018b74bc` xref
+    - a direct string-reference sweep now says the same thing for the subsystem names:
+      - `rage__ProceduralReflection`
+      - `rage__IntervalShadows`
+      - `rage__ProceduralTextureSkyhat`
+      - `rage__ProceduralTextureVerletWater`
+      only have defended xrefs inside their own registration routines
+    - practical reading:
+      - the later runtime does not appear to resolve these module records through obvious static lookup-by-name code paths either
+      - the remaining bridge still looks like opaque generic traversal/dispatch after publish
+  - a direct follow-up on the local procedural-reflection family reinforces that boundary:
+    - `GetProceduralReflectionSubsystemRegistration` is only a raw accessor for `DAT_018b74bc`
+    - `0x0062bef0` is only the deleting-destructor wrapper over `0x0062be20`
+    - the adjacent table entry at `0x00fe24e0/0x00fe24e4` only packages that destructor/accessor pair
+    - the startup record at `0x0110ec30` is still only a linker-style registration entry pointing at `InitializeProceduralReflectionSubsystemRegistration`
+    - practical reading:
+      - the local `rage__ProceduralReflection` side really is thin registration/object plumbing
+      - the unresolved behavior is still in the later generic runtime consumer
+  - a deeper pass over the local `0x0062d0a0 .. 0x0062e470` code island now makes the subsystem split much clearer:
+    - `0x0062d0a0` is still the only large local function that looks plausibly procedural-reflection-specific:
+      - it consumes the live object transform/quaternion block at `+0x70 .. +0x80`
+      - it derives a basis matrix, pushes render-state changes through `DAT_017ed8d8` / `DAT_017f5630`, and optionally calls object-owned callbacks through `+0xa0 / +0xac`
+      - safest reading:
+        - this is a live render-style method on the procedural-reflection object
+        - but it still does not expose the later generic engine consumer that schedules or owns that work
+    - a scalar/data-use sweep now reinforces that same boundary:
+      - `0x0062d0a0` still has no defended scalar or defined-data hits anywhere in the image
+      - the local vftable value `0x00fe24e0` is only written by `FUN_0062be20` and `InitializeProceduralReflectionDefaults`
+      - the published-definition global `0x018b74bc` still only appears as the registration-time stack argument in `InitializeProceduralReflectionSubsystemRegistration`
+      - practical reading:
+        - none of those three local anchors expose a missed static table-driven bridge into the runtime
+        - the remaining reflection-specific dispatch is still downstream of publish and outside the local reflection island
+    - the larger neighboring functions mostly resolve to sibling systems:
+      - `0x0062d790` -> `InitializeProceduralTextureSkyhatDefaults`
+        - zeroes and seeds a `rage::ProceduralTextureSkyhat` object with default dimensions/flags
+      - `0x0062d800` -> `DeleteProceduralTextureSkyhat`
+      - `0x0062d830` -> `ReleaseProceduralTextureSkyhatResources`
+        - releases the sibling object's held resources and tails into the common release helper
+      - `0x0062d8e0` -> `InitializeSkyhatPerlinNoiseResources`
+        - allocates `rage::SkyhatPerlinNoise`
+        - loads `basePerlinNoise3Channel.dds`
+      - `0x0062dc80` -> `InitializeMiniSkyRenderResources`
+        - builds `__perlinnoisert__%d`
+        - allocates `__miniskyrt__.dds` and `__miniskyblurredrt__.dds`
+        - creates `rage::ProceduralTextureShaderDef` instances such as `rage_perlinnoise`
+      - `0x0062e150` -> `RenderSkyMapTexturePass`
+      - `0x0062e2e0` -> `UpdateSkyMapTexturesIfEnabled`
+        - gates the work on flags at `+0x54/+0x55`
+        - binds the shader parameter `SkyMapTexture`
+      - `0x0062e470` is an RTTI/type-init helper for `VerletWaterSimulation`
+    - practical reading:
+      - this address island is mixed with `ProceduralTextureSkyhat`, `Skyhat`, minisky, and `VerletWater` siblings
+      - it no longer looks like the missing procedural-reflection bridge is hidden in those larger neighboring methods
+    - a scalar/table sweep now narrows `0x0062d0a0` further:
+      - no defended scalar or defined-data hit in the image stores `0x0062d0a0`
+      - the local vftable value `0x00fe24e0` is only written by `InitializeProceduralReflectionDefaults` and the destructor/reset path
+      - the adjacent slot at `0x00fe24e4` also does not surface any defended scalar/data readers
+    - practical reading:
+      - the live `0x0062d0a0` render-style method is not sitting in an obvious static callback/data table in this local subsystem island
+      - the remaining bridge still looks downstream in generic runtime dispatch
+    - a broader displacement sweep over `+0x70..+0x80` and `+0xa0..+0xac` stayed noisy and mostly false-positive:
+      - the strongest extra hits, such as `0x0059f940` and `0x005a6710`, decompile into unrelated benchmark/config runtime paths rather than reflection ownership
+    - practical reading:
+      - shared field offsets alone are not enough to tie those distant objects back to procedural reflection
+      - the missing bridge still does not surface as an obvious second object family through simple displacement matching
+  - the same narrowing now applies to the shared registry context too:
+    - `DAT_01bb5520` and `0x00407d40` belong to generic setup/resource lookup flows
+    - they are not the missing live reflection path
+  - a deeper sink-cluster probe now sharpens that classification:
+    - `0x00409110` and `0x0041d240` are called by a wide family of module registrations across the same render-definition system
+    - the caller set spans shader-fragment, procedural-reflection, interval-shadows, procedural-texture, fog, atmospheric-scattering, and nearby unnamed siblings
+    - `0x00407d40` does not share that caller family; it stays confined to broader setup/resource consumers
+    - practical reading:
+      - the finalize/publish sink is genuinely generic across the render-definition system
+      - the unresolved reflection semantics are downstream of that publish step, not hidden in the sink helpers themselves
+  - a tighter "read `+0x10`, call `+0x24`" sequence scan also stayed negative for procedural reflection:
+    - no defended reflection-side function currently shows the obvious static "read definition size, then call definition factory" pattern
+    - the strongest hits were unrelated runtime virtual/container paths
+    - practical reading:
+      - even the object-instantiation step appears to be hidden behind a more indirect generic manager than the static binary patterns expose directly
+  - there is also a nearby modern reflection runtime/config cluster outside the procedural-reflection registration path:
+    - `0x00ad1ad0` -> `InitializeDeferredLightingShaderHandles`
+      - registers deferred-lighting shader handles
+      - resolves a uniform/parameter named `ReflectionParams`
+    - `0x00ad61c0` -> `InitializeWaterReflectionRuntime`
+      - seeds a water-reflection tuning block with defaults:
+        - `DAT_01550e5c = 1.0f`
+        - `DAT_01550e60 = 0.1f`
+        - `DAT_01550e64 = 0.01f`
+        - `DAT_01550e68/+0x6c/+0x70 = 0.5f`
+        - `DAT_01550e74/+0x78 = 1.0f`
+      - builds follow-on reflection runtime state used through `DAT_01550ea4`
+    - `0x00adc280` -> `UpdateWaterReflectionRuntimeParameters`
+      - consumes the water-reflection tuning globals
+      - derives the follow-on runtime values in `DAT_015932dc .. DAT_01593300`
+    - `0x00ad5ab0` -> `UpdateWaterReflectionClipBounds`
+      - refreshes the active clip rectangle from view-space globals plus the selected water-reflection bucket state
+    - `0x00ad5cd0` -> `GetActiveWaterReflectionBucketState`
+      - returns the live state block at `&DAT_0154fd24 - DAT_01550df8 * 0x10c4`
+    - later users of `DAT_01550ea4` are now classified:
+      - `0x00ad7ef0` -> `ExecuteWaterReflectionBucketPass`
+      - `0x00ad88d0` -> `FlushQueuedWaterReflectionGeometry`
+      - `0x00ad8960` -> `QueueWaterReflectionQuad`
+      - `0x00ad9130` -> `QueueWaterReflectionGridStrip`
+    - the object behind `DAT_01550ea4` is also tighter now even though its constructor helper `FUN_00430460` sits in an overlapped region:
+      - unrelated callers use the same object contract
+      - virtual `+0x04` prepares writable storage
+      - byte `+0x06` is the mapped/ready flag
+      - dword `+0x08` is the writable base pointer when mapped
+      - virtual `+0x10` finalizes or submits the filled records
+      - safest reading:
+        - this is a generic mapped geometry-buffer helper reused by multiple render systems
+        - it is not a reflection-only object
+    - practical meaning of the modern water-reflection lane:
+      - `ExecuteWaterReflectionBucketPass` refreshes the active clip rectangle, opens the optional mapped-buffer path, walks several per-bucket geometry ranges from the active state block, closes the buffer path, flushes queued geometry, and closes the pass
+      - `FlushQueuedWaterReflectionGeometry` submits any queued records through `DAT_01550ea0` and clears `DAT_01550ea8`
+      - `QueueWaterReflectionQuad` clips one quad against the active bounds and appends it into the mapped buffer when batching is enabled, or falls back to immediate draw calls when it is not
+      - `QueueWaterReflectionGridStrip` builds larger interpolated reflection geometry and uses the same queue/flush contract
+    - a wider deferred-render pass now clarifies the attachment points:
+      - `0x00ad1410` -> `InitializeDeferredGBufferRenderTargets`
+        - creates deferred render targets including `_DEFERRED_GBUFFER_1_`, `_DEFERRED_GBUFFER_2_`, `_DEFERRED_GBUFFER_3_`, and `_STENCIL_BUFFER_`
+      - `0x00ad1a70` -> `GetDeferredGBuffer3RenderTarget`
+      - `0x00ad1a80` -> `GetDeferredStencilBufferRenderTarget`
+      - `0x00ad3040` -> `AssignDeferredRenderTargetSlot`
+        - stores deferred target handles into slot globals `DAT_0154e230 .. DAT_0154e240`
+      - `0x00d67a50` -> `InitializeDeferredRenderTargetCallbackBindings`
+        - registers generic callback wrappers around:
+          - `InitializeDeferredLightingCompositeState`
+          - `AssignDeferredRenderTargetSlot` for slots `0 .. 4`
+          - `ResetDeferredLightingCompositeState`
+      - `InitializeDeferredLightingShaderHandles`
+        - resolves `ParabTexture`, `ReflectionParams`, and `depthSourceTexture` into `DAT_0154e244`, `DAT_0154e248`, and `DAT_0154e24c`
+      - `0x00add200` -> `InitializeSceneRenderCallbackBindings`
+        - allocates generic 1-arg callback wrappers for scene/render passes
+        - registers `ExecuteWaterReflectionBucketPass` as one of those callbacks
+        - binds the active bucket/pass index from `ECX + 0x938` as the callback argument
+        - pairs that callback with a second bound callback at `0x00b59900`
+        - the surrounding static record centered on `0x00ea7014` currently has no defended direct scalar/data readers
+        - record-owned helpers are clearer now:
+          - `UpdateSceneRenderBindingViewState` copies live view-state values from `param_1 + 0x50c/+0x510/+0x514` into the owning context at `ECX + 0x958/+0x95c/+0x960`
+          - `ExecuteDeferredSceneBindingRecord` is now clearer than a plain descriptor walker:
+            - it first materializes one owner-selected runtime object through owner virtual `+0x24` and `InitializeNewDrawListCommand` (`CNewDrawListDC`)
+            - it then walks four descriptor entries at `ECX + 0x224`, creating runtime objects through `InitializeLockRenderTargetCommand` (`CLockRenderTargetDC`)
+            - after owner virtual `+0x20`, it walks four more descriptor entries at `ECX + 0x230` in reverse order, creating runtime objects through `InitializeUnlockRenderTargetCommand` (`CUnLockRenderTargetDC`)
+            - when the record flag at `ECX + 0x1c` is set, it also materializes an extra `0x410`-byte owner-derived object from `ECX + 0x2c`
+            - the surrounding helper layer is now clearer too:
+              - `InitializeSetCurrentViewportCommand` (`CSetCurrentViewportDC`) restores the active viewport
+              - `InitializeEndDrawListCommand` (`CEndDrawListDC`) closes the assembled draw list
+              - the isolated large owner-derived object constructor is `InitializeDrawMobilePhoneCameraCommand` (`CDrawMobilePhoneCameraDC`)
+        - the live water-reflection pass wrapper family is now clearer too:
+          - `ExecuteWaterReflectionScenePass` is the common scene-pass body reached from multiple opaque callback records centered on `0x00ea7000`, `0x00eea150`, `0x00eec400`, and `0x00eec448`
+          - those wrappers all follow the same bracketed pattern:
+            - allocate or refresh the active pass index through `FUN_00b05750`
+            - snapshot scene state through `FUN_00b022e0`
+            - execute `ExecuteWaterReflectionScenePass`
+            - close or restore state through `FUN_00b022c0`
+          - the record-specific entry slots are now more concrete too:
+            - `ExecuteInheritedWaterReflectionScenePassBinding` either runs the common scene pass directly or inherits the active pass index from the owner at `ECX + 0x944`, then finishes through `FUN_00a9ebc0`
+            - `ExecuteAngularWaterReflectionScenePassBinding` derives an angle from the live direction vector at `DAT_012fb1b8 + 0x110/+0x114/+0x118`, stages that through `DAT_01797640` / `DAT_01797644`, runs the common scene pass, and then restores the saved vector globals
+            - `ExecuteConditionalWaterReflectionScenePassBinding` only runs the common scene pass when the paired global/owner-state gate allows it
+            - `ExecuteOverrideStateWaterReflectionScenePassBinding` temporarily swaps owner state from the `DAT_0166da3c` / `DAT_0166da40` tables, runs the common scene pass, and then restores the original state
+            - `ConfigureWaterReflectionPostPassCallbackSet` installs a gated post-pass callback set around the active pass index and funnels the result through the generic state composer at `FUN_00b1dee0`
+          - xrefs on the shared helper slots make the descriptor split clearer:
+            - `ExecuteDeferredSceneBindingRecord`, `FUN_00a87b20`, `FUN_005e1380`, and `FUN_00401690` are all referenced from large numbers of unrelated data records
+            - the per-record entry slots above are only referenced from their owning records
+            - practical reading:
+              - these callback records are phase descriptors built out of heavily reused generic helper slots plus small record-local wrapper bodies
+              - the remaining reflection-specific gap is therefore not in the shared helper slots, but in the runtime that chooses and orchestrates these phase descriptors
+              - more specifically, this layer is already the generic phase/callback object materializer
+              - the materialized objects are generic draw-list / render-target / viewport commands rather than a hidden reflection-only command family
+              - the remaining missing bridge is now the owner-selection path feeding those virtuals, not whether the descriptors are turned into runtime objects at all
+          - RTTI on the record-owned data tightens that model further:
+            - `0x00ff0aac` is the `RTTICompleteObjectLocator` for `.?AV?$T_CB_Generic_4Args@P6AXAAVVector4@rage@@MMM@ZV12@MMM@@`
+            - `0x00ffa0ac` is the `RTTICompleteObjectLocator` for `.?AV?$T_CB_Generic_1Arg@P6AXAAVMatrix44@rage@@@ZV12@@@`
+            - `0x00ffa43c` is the `RTTICompleteObjectLocator` for `.?AVCRenderPhaseWaterReflection@@`
+            - `0x00ffa488` is the `RTTICompleteObjectLocator` for `.?AVCRenderPhaseMirrorReflection@@`
+            - a follow-up base-descriptor probe gives one clean hierarchy fact:
+              - the shared base RTTI name at `0x0114ec88` is `.?AVCRenderPhase@@`
+              - `CRenderPhaseMirrorReflection` sits in a simple two-entry hierarchy that includes that shared `CRenderPhase` base
+              - the neighboring `CRenderPhaseWaterReflection` hierarchy block is noisier because adjacent RTTI also references `.?AVCReplayOverlay@@` and `.?AVCReplayWidget@@`, so that broader inheritance tree is not yet safe to name
+            - a direct scalar/data-use sweep against the inferred phase vtables also stayed negative:
+              - `0x00ffa440` (water-reflection-side vtable region) has no defended scalar/data hits
+              - `0x00ffa48c` (mirror-reflection-side vtable region) has no defended scalar/data hits
+              - practical reading:
+                - the runtime is not exposing an obvious static table of those phase vtables either
+                - the selector/orchestrator is still hidden behind more indirect generic traversal
+            - the tiny record-owned code entries tied to those RTTI blocks are a little clearer too:
+              - `GetGenericRenderPhaseId0x1f` returns `0x1f` and is reused across several descriptor records, including one reflection-adjacent binding record
+              - `GetWaterReflectionRenderPhaseId` returns `0x11`
+              - `GetMirrorReflectionRenderPhaseId` returns `0x24`
+              - `DestroyGenericCallbackWrapper` is only the common callback-wrapper cleanup body that restores `CBaseDC::vftable` and conditionally frees the object
+            - the water/mirror phase records are now concrete slot tables rather than just opaque RTTI-adjacent blobs:
+              - the water-reflection record centered on `0x00eec400` carries `DeleteWaterReflectionRenderPhase`, `ExecuteConditionalWaterReflectionScenePassBinding`, `ExecuteDeferredSceneBindingRecord`, `ExecuteWaterReflectionPhaseStateCallbacks`, `GetWaterReflectionRenderPhaseId`, and `EvaluateRenderPhaseBit9Predicate`
+              - the mirror-reflection record centered on `0x00eec448` carries `DeleteMirrorReflectionRenderPhase`, `ExecuteOverrideStateWaterReflectionScenePassBinding`, `ExecuteDeferredSceneBindingRecord`, `ExecuteMirrorReflectionPhaseStateCallbacks`, `GetMirrorReflectionRenderPhaseId`, and `GetBoundPhaseRenderTargetState`
+            - the shared phase-owned helpers beneath those records are clearer too:
+              - `InitializeRenderPhaseBase` is the common constructor for this family:
+                - it zeroes the command-entry blocks at `ECX + 0x224 .. 0x233`
+                - seeds the phase-control fields at `+0x23d/+0x23e/+0x23f/+0x24e`
+                - optionally binds the source object passed through `param_1 + 0x10`
+              - the derived constructors are now identified too:
+                - `InitializeMirrorReflectionRenderPhase` seeds `CRenderPhaseMirrorReflection::vftable`, stores a companion object at `ECX + 0x940`, back-links that companion through `+0x50`, publishes `DAT_0166da10 = this`, and sets phase mode `ECX + 0x40 = 2`
+                - `InitializeWaterReflectionRenderPhase` seeds `CRenderPhaseWaterReflection::vftable`, sets flag block `ECX + 0x8d0 = 0x232d20`, phase kind `ECX + 0x8f4 = 3`, and phase mode `ECX + 0x40 = 2`
+                - `InitializeWaterSurfaceRenderPhase` seeds `CRenderPhaseWaterSurface::vftable`, sets flag block `ECX + 0x8d0 = 0x20000`, phase kind `ECX + 0x8f4 = 3`, and clears `ECX + 0x940/+0x944`
+                - `InitializeRainUpdateRenderPhase` seeds `CRenderPhaseRainUpdate::vftable`, clears `ECX + 0x8d0`, and sets phase kind `ECX + 0x8f4 = 2`
+              - the mirror-phase singleton bridge is now explicit too:
+                - `DAT_0166da10` is only written by `InitializeMirrorReflectionRenderPhase` and `ReleaseMirrorReflectionPhaseState`
+                - the only recovered read is from `ExecuteWaterReflectionPhaseStateCallbacks`
+                - practical reading:
+                  - this global is the local hand-off from the water-reflection state stack into the live mirror-reflection phase object
+                  - it is not a broad engine render registry or unrelated global
+              - the phase owner/orchestrator is now identified too:
+                - `InitializeSceneRenderPhasesFromFeatureFlags` allocates and registers the concrete `CRenderPhase*` objects from the live feature-flag word at `ECX + 0x40c/0x414`
+                - it directly instantiates:
+                  - `InitializeMirrorReflectionRenderPhase` when bit `0x40` is present
+                  - `InitializeWaterReflectionRenderPhase` and `InitializeWaterSurfaceRenderPhase` when bit `0x20000` is present
+                  - `InitializeReflectionRenderPhase` and `InitializeInteriorReflectionRenderPhase` when bit `0x40000` is present
+                  - `InitializeRainUpdateRenderPhase` near the end of the pass setup
+                - it also allocates the scripted colour/depth, water-reflection colour/depth, water-surface colour, and reflection-map colour/depth render targets that those phases bind through `FUN_00a87db0` / `FUN_00a87dd0`
+              - the follow-on publish/finalize step is now identified too:
+                - `0x005d49d0`, now named `InitializeAndFinalizeSceneRenderPhases`, is only a thin wrapper that calls `InitializeSceneRenderPhasesFromFeatureFlags` and then `FinalizeSceneRenderPhaseSlots`
+                - `FinalizeSceneRenderPhaseSlots` walks the active phase-slot array, allocates one wrapper object per active slot, stores that wrapper at `phase + 8`, and publishes it through `FUN_00b007d0`
+                - the remaining data xref at `0x00e93f70` is only a static table entry containing `InitializeSceneRenderPhasesFromFeatureFlags` among other generic slots
+              - the reflection-map phase pair is now concrete too:
+                - `InitializeReflectionRenderPhase` seeds `CRenderPhaseReflection::vftable`, stores render-mask selector `DAT_00450920` at `ECX + 0x8d0`, marks the phase active, and sets phase class `ECX + 0x8f4 = 3`
+                - `InitializeInteriorReflectionRenderPhase` seeds `CRenderPhaseInteriorReflection::vftable`, stores render mask `0x800880` at `ECX + 0x8d0`, allocates a `0xd0`-byte companion object, back-links it through `+0x50`, and marks the phase as the interior-reflection variant through `ECX + 0x40 = 1`
+              - `ReleaseRenderPhaseBaseState` is the common `CRenderPhase` teardown path
+              - `ReleaseMirrorReflectionPhaseState` clears the mirror-specific bound target at `ECX + 0x940` and then falls back to `ReleaseRenderPhaseBaseState`
+              - `ExecuteWaterReflectionPhaseStateCallbacks` builds the water-reflection state stack, including the `FUN_00b1dee0(..., 0x90d, 2)` state composer path and a forced-technique push/pop pair
+              - `ExecuteMirrorReflectionPhaseStateCallbacks` builds the mirror-reflection state stack, including the `FUN_00b1dee0(..., 0x307, mode)` state composer path and the follow-on generic finalization helper
+              - `EvaluateRenderPhaseBit9Predicate` is just a bit-9 flag test over `ECX + 0x8e8`, with optional inversion through byte `ECX + 0x1d`
+            - practical reading:
+              - these records are not anonymous payload blobs
+              - they are typed render-phase / callback-wrapper descriptors
+              - the generic runtime that selects and executes those typed phase descriptors is now concretely recovered in `InitializeSceneRenderPhasesFromFeatureFlags` plus `InitializeAndFinalizeSceneRenderPhases`
+              - the live reflection-map phases are now concrete too through `InitializeReflectionRenderPhase` and `InitializeInteriorReflectionRenderPhase`
+              - for implementation purposes, this `CRenderPhaseReflection` / `CRenderPhaseInteriorReflection` family is the direct modern runtime target for the legacy high-quality-reflections feature
+          - the queue/collector side beneath that pass is now defended:
+            - `BuildWaterReflectionPassQueues` snapshots the shared queue counters, binds the pass-owned queue counters through `DAT_01550de8`, `DAT_01550dec`, and `DAT_01550df0`, clears them, and dispatches traversal
+            - `TraverseWaterReflectionVisibilityTree` derives reflection-space clip/projection bounds from the live camera/view globals, clears visitation bits in `DAT_01550ebc` and `DAT_0154e30e`, and invokes `0x00d62dc0` with callback `0x00ad4a70`
+            - `QueueWaterReflectionIndexedPrimitive` consumes typed entries from `DAT_0154e358` / `DAT_0154e478`, marks visited quad and strip records, appends them into the active per-pass queues, and optionally forwards debug geometry into `FUN_00b03ea0`
+            - `ResetWaterReflectionPassQueues` clears the same per-pass queue bindings without traversing visibility
+          - follow-up sibling-pass probing narrows one more uncertainty:
+            - the paired callback at `0x00b59900` is a gated post-pass cleanup/state routine, not the missing reflection controller
+            - the shared helper `0x00b1dee0` is used by the reflection-adjacent wrappers and by several unrelated render passes with different bitmasks, so it is best treated as a generic render-pass state composer rather than a reflection-specific bridge
+            - the downstream helper `0x00c0fa50` is also broader than just water reflection:
+              - it is called by the same reflection-adjacent wrapper family and pushes several generic no-arg callbacks gated by render flags
+              - the callback bodies hung off it (`0x00c108e0`, `0x00c10730`, `0x009bdbe0`, `0x00c1f170`) mostly resolve to flag-conditioned render-state or technique toggles rooted in the shared flag word returned by `FUN_00b00780`
+              - practical reading:
+                - this layer is still part of a generic render-pass finalization/state stack
+                - it still does not expose the missing direct bridge to `rage__ProceduralReflection`
+            - practical reading:
+              - the remaining gap is not hidden in those callback wrappers or in `0x00b1dee0`
+              - any tighter architectural relationship to `rage__ProceduralReflection` is now background context rather than a blocker for understanding the live reflection path
+      - `InitializeDeferredLightingCompositeState`
+        - uses `GetDeferredGBuffer3RenderTarget`
+        - seeds fixed shader/render state
+        - publishes one extra deferred target slot through `DAT_0154e24c`
+        - tails into `ResetDeferredLightingCompositeState`
+      - `InitializeDeferredRenderTargetCallbackBindings`
+        - sits in a second static record centered on `0x00eea1a4`
+        - that record also has no defended direct scalar/data readers
+        - `ExecuteDeferredRenderTargetBindingRecordIfEnabled` gates and then tail-calls into `ExecuteDeferredSceneBindingRecord`
+      - reflection-occlusion parameter state is still indirect:
+        - `FUN_00abd480` consumes `DAT_0154e278` and `DAT_0154e27c` through `CSetReflctOccParamsDC`
+        - no defended direct writes or immediate/scalar references to those two globals were recovered
+      - non-water callers such as `0x0092f570` and `0x009303d0` still use `GetDeferredStencilBufferRenderTarget`
+      - practical reading:
+        - the water/reflection batching lane is definitely attached to the deferred G-buffer / stencil pipeline
+        - the controller-level path is now defended too:
+          - the live reflection pass is explicitly routed through a generic scene/render callback system
+          - that live pass now has a defended internal collector pipeline:
+            - wrapper family -> `ExecuteWaterReflectionScenePass` -> `BuildWaterReflectionPassQueues` -> `TraverseWaterReflectionVisibilityTree` -> `QueueWaterReflectionIndexedPrimitive`
+          - the deferred target setup path uses that same callback ecosystem
+          - both callback-binding records still look like opaque phase/descriptor tables consumed indirectly at runtime
+          - the reflection parameter handles and reflection-occlusion state look indirect in the same way
+        - these extra callers still do not by themselves prove a direct bridge to the separately registered `rage__ProceduralReflection` module
+        - but the direct runtime path is now clear enough without it:
+          - scene phase manager -> concrete reflection phases -> finalized published slots -> callback-driven reflection/deferred pipeline
+    - `0x0065bcb0` -> `HasSphericalAmbientOnParameter`
+      - checks whether the interval-shadow parameter set exposes `SphericalAmbientOn`
+  - neighboring registrations at `0x0062c8b0` and `0x0062cb00` show that `rage__ProceduralTextureVerletWater` and `rage__ProceduralTextureSkyhat` explicitly inherit the common procedural-texture parent pointer
+  - `rage__ProceduralReflection` does not wire that parent pointer, which makes it look like a standalone render module rather than just another procedural-texture specialization
+  - the only substantial local procedural-reflection body recovered so far is `0x0062d0a0`; the larger neighbors in that address band are mostly sibling `ProceduralTextureSkyhat`, sky/minisky, and water systems
+  - `0x0062d0a0` also has no defended scalar/data-table uses, and the local vftable/table entries are only touched by the constructor/destructor plumbing
+  - inference:
+    - `rage__ProceduralReflection` is still the strongest adjacent subsystem-level reflection context in the modern executable
+    - but the direct runtime anchor for reimplementation is now the scene-managed `CRenderPhaseReflection` / `CRenderPhaseInteriorReflection` family, not the thin registration object by itself
+    - the live water/reflection batching lane and the reflection-map phase pair together are enough to explain the modern reflection runtime behavior needed for implementation
+- the reflection porting path is still code-path driven
+  - the important change is that the code-path search now has a credible target subsystem instead of only adjacent render landmarks
+
+

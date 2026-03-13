@@ -1,0 +1,11 @@
+bin/
+reflect
+ghidra/*.gpr
+ghidra/*.rep/
+ghidra/**/*.rep/
+ghidra/**/*.gbf
+analysis/notes/tmp_*
+analysis/notes/*_decomp.txt
+analysis/notes/*_asm.txt
+analysis/notes/*_xrefs.txt
+analysis/notes/*_dump.txt

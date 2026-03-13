@@ -1,0 +1,7 @@
+0x10005500	InstallLegacyModCheckOrGFWLPopupHook
+0x10045ce0	InstallSkipLauncherPatch
+0x10045490	InstallRemoveRGSCLoginRequirementPatch
+0x100441b0	RedirectLauncherTargetToPlayGTAIV
+0x100467a0	InstallSMPA60FixPatch
+0x10046b30	InstallTryToSkipAllErrorsPatch
+0x10022f60	InstallOverrideGTADatPathPatch

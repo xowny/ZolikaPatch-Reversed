@@ -1,0 +1,495 @@
+### Function FUN_10022fc0 @ 10022fc0
+
+/* WARNING: Function: __security_check_cookie replaced with injection: security_check_cookie */
+
+void FUN_10022fc0(void)
+
+{
+  undefined4 *lpAddress;
+  HMODULE pHVar1;
+  int iVar2;
+  DWORD local_c;
+  uint local_8;
+  
+  local_8 = DAT_1015800c ^ (uint)&stack0xfffffffc;
+  pHVar1 = GetModuleHandleA((LPCSTR)0x0);
+  iVar2 = FUN_10003830("83 C7 01 81 FF 18 79 00 00 7C D2",pHVar1);
+  if (iVar2 != 0) {
+    lpAddress = *(undefined4 **)(iVar2 + 0x4d);
+    VirtualProtect(lpAddress,4,0x40,&local_c);
+    *lpAddress = 0x400;
+    VirtualProtect(lpAddress,4,local_c,&local_c);
+  }
+  return;
+}
+
+
+
+### Function FUN_10023020 @ 10023020
+
+/* WARNING: Function: __security_check_cookie replaced with injection: security_check_cookie */
+
+void FUN_10023020(void)
+
+{
+  undefined1 *lpAddress;
+  HMODULE pHVar1;
+  int iVar2;
+  DWORD local_c;
+  uint local_8;
+  
+  local_8 = DAT_1015800c ^ (uint)&stack0xfffffffc;
+  pHVar1 = GetModuleHandleA((LPCSTR)0x0);
+  iVar2 = FUN_10003830("68 ? ? ? ? 6A 32 8B C8",pHVar1);
+  if (iVar2 != 0) {
+    lpAddress = (undefined1 *)(iVar2 + 6);
+    VirtualProtect(lpAddress,1,0x40,&local_c);
+    *lpAddress = 100;
+    VirtualProtect(lpAddress,1,local_c,&local_c);
+  }
+  return;
+}
+
+
+
+### Function FUN_1001b580 @ 1001b580
+
+/* WARNING: Function: __security_check_cookie replaced with injection: security_check_cookie */
+
+void FUN_1001b580(void)
+
+{
+  HMODULE pHVar1;
+  undefined4 *puVar2;
+  int iVar3;
+  void *pvVar4;
+  undefined2 *puVar5;
+  void *local_34 [2];
+  int local_2c;
+  int local_28;
+  undefined8 local_24;
+  int local_1c;
+  DWORD local_18;
+  uint local_14;
+  void *local_10;
+  undefined1 *puStack_c;
+  undefined4 local_8;
+  
+  local_8 = 0xffffffff;
+  puStack_c = &LAB_1006168d;
+  local_10 = ExceptionList;
+  local_14 = DAT_1015800c ^ (uint)&stack0xfffffffc;
+  ExceptionList = &local_10;
+  if (5 < DAT_1015be04) {
+    pHVar1 = GetModuleHandleA((LPCSTR)0x0);
+    puVar2 = (undefined4 *)FUN_10003830("83 3D ? ? ? ? 02 0F 8C 0E 05 00 00",pHVar1);
+    if (puVar2 != (undefined4 *)0x0) {
+      VirtualProtect(puVar2,0xd,0x40,&local_18);
+      *puVar2 = 0x90909090;
+      puVar2[1] = 0x90909090;
+      puVar2[2] = 0x90909090;
+      *(undefined1 *)(puVar2 + 3) = 0x90;
+      VirtualProtect(puVar2,0xd,local_18,&local_18);
+    }
+    pHVar1 = GetModuleHandleA((LPCSTR)0x0);
+    puVar2 = (undefined4 *)FUN_10003830("83 3D ? ? ? ? 02 7C 35 0F BF 43 2E",pHVar1);
+    if (puVar2 != (undefined4 *)0x0) {
+      VirtualProtect(puVar2,9,0x40,&local_18);
+      *puVar2 = 0x90909090;
+      puVar2[1] = 0x90909090;
+      *(undefined1 *)(puVar2 + 2) = 0x90;
+      VirtualProtect(puVar2,9,local_18,&local_18);
+    }
+    pHVar1 = GetModuleHandleA((LPCSTR)0x0);
+    puVar2 = (undefined4 *)FUN_10003830("83 3D ? ? ? ? 02 8A 0D",pHVar1);
+    if (puVar2 != (undefined4 *)0x0) {
+      VirtualProtect(puVar2,7,0x40,&local_18);
+      *puVar2 = 0x90909090;
+      *(undefined2 *)(puVar2 + 1) = 0x9090;
+      *(undefined1 *)((int)puVar2 + 6) = 0x90;
+      VirtualProtect(puVar2,7,local_18,&local_18);
+      puVar5 = (undefined2 *)((int)puVar2 + 0x11);
+      VirtualProtect(puVar5,2,0x40,&local_18);
+      *puVar5 = 0x9090;
+      VirtualProtect(puVar5,2,local_18,&local_18);
+    }
+    pHVar1 = GetModuleHandleA((LPCSTR)0x0);
+    puVar2 = (undefined4 *)FUN_10003830("83 3D ? ? ? ? 02 75 21 8B 96 20 08 00 00",pHVar1);
+    if (puVar2 != (undefined4 *)0x0) {
+      VirtualProtect(puVar2,9,0x40,&local_18);
+      *puVar2 = 0x90909090;
+      puVar2[1] = 0x90909090;
+      *(undefined1 *)(puVar2 + 2) = 0x90;
+      VirtualProtect(puVar2,9,local_18,&local_18);
+    }
+    pHVar1 = GetModuleHandleA((LPCSTR)0x0);
+    puVar2 = (undefined4 *)FUN_10003830("83 3D ? ? ? ? 02 7C 4A 0F BF 46 2E",pHVar1);
+    if (puVar2 != (undefined4 *)0x0) {
+      VirtualProtect(puVar2,0xd,0x40,&local_18);
+      *puVar2 = 0x90909090;
+      puVar2[1] = 0x90909090;
+      puVar2[2] = 0x90909090;
+      *(undefined1 *)(puVar2 + 3) = 0x90;
+      VirtualProtect(puVar2,0xd,local_18,&local_18);
+    }
+    local_1c = 0;
+    local_24 = 0;
+    pHVar1 = GetModuleHandleA((LPCSTR)0x0);
+    FUN_1005afa0(&local_24,"7C 18 0F BF 4E 2E",pHVar1,0);
+    local_8 = 0;
+    if (local_24._4_4_ - (int)(int *)local_24 >> 2 != 0) {
+      iVar3 = *(int *)local_24;
+      puVar2 = (undefined4 *)(iVar3 + -6);
+      VirtualProtect(puVar2,8,0x40,&local_18);
+      *puVar2 = 0x90909090;
+      *(undefined4 *)(iVar3 + -2) = 0x90909090;
+      VirtualProtect(puVar2,8,local_18,&local_18);
+      iVar3 = *(int *)((int)(int *)local_24 + 4);
+      puVar2 = (undefined4 *)(iVar3 + -6);
+      VirtualProtect(puVar2,8,0x40,&local_18);
+      *puVar2 = 0x90909090;
+      *(undefined4 *)(iVar3 + -2) = 0x90909090;
+      VirtualProtect(puVar2,8,local_18,&local_18);
+    }
+    pHVar1 = GetModuleHandleA((LPCSTR)0x0);
+    puVar2 = (undefined4 *)FUN_10003830("83 3D ? ? ? ? 02 75 08 3B 05",pHVar1);
+    if (puVar2 != (undefined4 *)0x0) {
+      VirtualProtect(puVar2,9,0x40,&local_18);
+      *puVar2 = 0x90909090;
+      puVar2[1] = 0x90909090;
+      *(undefined1 *)(puVar2 + 2) = 0x90;
+      VirtualProtect(puVar2,9,local_18,&local_18);
+    }
+    pHVar1 = GetModuleHandleA((LPCSTR)0x0);
+    puVar2 = (undefined4 *)FUN_10003830("83 3D ? ? ? ? 02 75 1F 8B 44 24 04",pHVar1);
+    if (puVar2 != (undefined4 *)0x0) {
+      VirtualProtect(puVar2,9,0x40,&local_18);
+      *puVar2 = 0x90909090;
+      puVar2[1] = 0x90909090;
+      *(undefined1 *)(puVar2 + 2) = 0x90;
+      VirtualProtect(puVar2,9,local_18,&local_18);
+    }
+    pHVar1 = GetModuleHandleA((LPCSTR)0x0);
+    puVar2 = (undefined4 *)FUN_10003830("83 3D ? ? ? ? 02 75 38 8B 16",pHVar1);
+    if (puVar2 != (undefined4 *)0x0) {
+      VirtualProtect(puVar2,9,0x40,&local_18);
+      *puVar2 = 0x90909090;
+      puVar2[1] = 0x90909090;
+      *(undefined1 *)(puVar2 + 2) = 0x90;
+      VirtualProtect(puVar2,9,local_18,&local_18);
+    }
+    pHVar1 = GetModuleHandleA((LPCSTR)0x0);
+    puVar2 = (undefined4 *)FUN_10003830("83 3D ? ? ? ? 02 75 24 F6 87 6C 02 00 00 04",pHVar1);
+    if (puVar2 != (undefined4 *)0x0) {
+      VirtualProtect(puVar2,9,0x40,&local_18);
+      *puVar2 = 0x90909090;
+      puVar2[1] = 0x90909090;
+      *(undefined1 *)(puVar2 + 2) = 0x90;
+      VirtualProtect(puVar2,9,local_18,&local_18);
+    }
+    pHVar1 = GetModuleHandleA((LPCSTR)0x0);
+    iVar3 = FUN_10003830("74 17 83 3D ? ? ? ? 02 75 0E F3 0F 10 05",pHVar1);
+    if (iVar3 != 0) {
+      puVar2 = (undefined4 *)(iVar3 + 2);
+      VirtualProtect(puVar2,9,0x40,&local_18);
+      *puVar2 = 0x90909090;
+      *(undefined4 *)(iVar3 + 6) = 0x90909090;
+      *(undefined1 *)(iVar3 + 10) = 0x90;
+      VirtualProtect(puVar2,9,local_18,&local_18);
+    }
+    pHVar1 = GetModuleHandleA((LPCSTR)0x0);
+    iVar3 = FUN_10003830("8B 56 04 8B 4A 0C 89 4C 24 1C 7C 18",pHVar1);
+    local_28 = iVar3;
+    if (iVar3 != 0) {
+      puVar2 = (undefined4 *)(iVar3 + -0xf);
+      VirtualProtect(puVar2,7,0x40,&local_18);
+      *puVar2 = 0x90909090;
+      *(undefined2 *)(iVar3 + -0xb) = 0x9090;
+      *(undefined1 *)(iVar3 + -9) = 0x90;
+      VirtualProtect(puVar2,7,local_18,&local_18);
+      puVar5 = (undefined2 *)(local_28 + 10);
+      VirtualProtect(puVar5,2,0x40,&local_18);
+      *puVar5 = 0x9090;
+      VirtualProtect(puVar5,2,local_18,&local_18);
+    }
+    pHVar1 = GetModuleHandleA((LPCSTR)0x0);
+    puVar2 = (undefined4 *)FUN_10003830("83 3D ? ? ? ? 02 75 35 0F BF 46 2E",pHVar1);
+    if (puVar2 != (undefined4 *)0x0) {
+      VirtualProtect(puVar2,9,0x40,&local_18);
+      *puVar2 = 0x90909090;
+      puVar2[1] = 0x90909090;
+      *(undefined1 *)(puVar2 + 2) = 0x90;
+      VirtualProtect(puVar2,9,local_18,&local_18);
+    }
+    pHVar1 = GetModuleHandleA((LPCSTR)0x0);
+    puVar2 = (undefined4 *)FUN_10003830("83 3D ? ? ? ? 02 7C 26 8B 85 40 0B 00 00",pHVar1);
+    if (puVar2 != (undefined4 *)0x0) {
+      VirtualProtect(puVar2,9,0x40,&local_18);
+      *puVar2 = 0x90909090;
+      puVar2[1] = 0x90909090;
+      *(undefined1 *)(puVar2 + 2) = 0x90;
+      VirtualProtect(puVar2,9,local_18,&local_18);
+    }
+    pHVar1 = GetModuleHandleA((LPCSTR)0x0);
+    FUN_1005afa0((undefined8 *)local_34,"83 3D ? ? ? ? 02 75 17 F3 0F 10 44 24 08",pHVar1,0);
+    FUN_10056f90(&local_24,local_34);
+    if (local_34[0] != (void *)0x0) {
+      pvVar4 = local_34[0];
+      if (0xfff < (local_2c - (int)local_34[0] & 0xfffffffcU)) {
+        pvVar4 = *(void **)((int)local_34[0] + -4);
+        if (0x1f < (uint)((int)local_34[0] + (-4 - (int)pvVar4))) {
+                    /* WARNING: Subroutine does not return */
+          _invalid_parameter_noinfo_noreturn();
+        }
+      }
+      FUN_100603e3(pvVar4);
+    }
+    if (local_24._4_4_ - (int)(int *)local_24 >> 2 != 0) {
+      puVar2 = (undefined4 *)*(int *)local_24;
+      VirtualProtect(puVar2,9,0x40,&local_18);
+      *puVar2 = 0x90909090;
+      puVar2[1] = 0x90909090;
+      *(undefined1 *)(puVar2 + 2) = 0x90;
+      VirtualProtect(puVar2,9,local_18,&local_18);
+      puVar2 = *(undefined4 **)((int)(int *)local_24 + 4);
+      VirtualProtect(puVar2,9,0x40,&local_18);
+      *puVar2 = 0x90909090;
+      puVar2[1] = 0x90909090;
+      *(undefined1 *)(puVar2 + 2) = 0x90;
+      VirtualProtect(puVar2,9,local_18,&local_18);
+    }
+    pHVar1 = GetModuleHandleA((LPCSTR)0x0);
+    puVar2 = (undefined4 *)FUN_10003830("83 3D ? ? ? ? 02 75 17 F3 0F 10 44 24 0C",pHVar1);
+    if (puVar2 != (undefined4 *)0x0) {
+      VirtualProtect(puVar2,9,0x40,&local_18);
+      *puVar2 = 0x90909090;
+      puVar2[1] = 0x90909090;
+      *(undefined1 *)(puVar2 + 2) = 0x90;
+      VirtualProtect(puVar2,9,local_18,&local_18);
+    }
+    pHVar1 = GetModuleHandleA((LPCSTR)0x0);
+    iVar3 = FUN_10003830("83 3D ? ? ? ? 02 F3 0F 10 05 ? ? ? ? F3 0F 11 44 24 20 75 4C",pHVar1);
+    if (iVar3 != 0) {
+      puVar5 = (undefined2 *)(iVar3 + 0x15);
+      VirtualProtect(puVar5,2,0x40,&local_18);
+      *puVar5 = 0x9090;
+      VirtualProtect(puVar5,2,local_18,&local_18);
+    }
+    pHVar1 = GetModuleHandleA((LPCSTR)0x0);
+    puVar5 = (undefined2 *)FUN_10003830("7C 22 83 F8 28 75 1D",pHVar1);
+    if (puVar5 != (undefined2 *)0x0) {
+      VirtualProtect(puVar5,2,0x40,&local_18);
+      *puVar5 = 0x9090;
+      VirtualProtect(puVar5,2,local_18,&local_18);
+    }
+    pHVar1 = GetModuleHandleA((LPCSTR)0x0);
+    iVar3 = FUN_10003830("83 3D ? ? ? ? 02 89 44 24 38",pHVar1);
+    if (iVar3 != 0) {
+      puVar2 = (undefined4 *)(iVar3 + 0xb);
+      VirtualProtect(puVar2,6,0x40,&local_18);
+      *puVar2 = 0x90909090;
+      *(undefined2 *)(iVar3 + 0xf) = 0x9090;
+      VirtualProtect(puVar2,6,local_18,&local_18);
+    }
+    pHVar1 = GetModuleHandleA((LPCSTR)0x0);
+    iVar3 = FUN_10003830("83 3D ? ? ? ? 02 7C 43",pHVar1);
+    if (iVar3 != 0) {
+      puVar5 = (undefined2 *)(iVar3 + 7);
+      VirtualProtect(puVar5,2,0x40,&local_18);
+      *puVar5 = 0x9090;
+      VirtualProtect(puVar5,2,local_18,&local_18);
+    }
+    pHVar1 = GetModuleHandleA((LPCSTR)0x0);
+    iVar3 = FUN_10003830("83 3D ? ? ? ? 02 7C 1F 8B",pHVar1);
+    if (iVar3 != 0) {
+      puVar5 = (undefined2 *)(iVar3 + 7);
+      VirtualProtect(puVar5,2,0x40,&local_18);
+      *puVar5 = 0x9090;
+      VirtualProtect(puVar5,2,local_18,&local_18);
+    }
+    pHVar1 = GetModuleHandleA((LPCSTR)0x0);
+    iVar3 = FUN_10003830("83 3D ? ? ? ? 02 7C 11 8B 4E",pHVar1);
+    if (iVar3 != 0) {
+      puVar5 = (undefined2 *)(iVar3 + 7);
+      VirtualProtect(puVar5,2,0x40,&local_18);
+      *puVar5 = 0x9090;
+      VirtualProtect(puVar5,2,local_18,&local_18);
+    }
+    pHVar1 = GetModuleHandleA((LPCSTR)0x0);
+    iVar3 = FUN_10003830("39 35 ? ? ? ? 75 0E 80 3D",pHVar1);
+    if (iVar3 != 0) {
+      puVar5 = (undefined2 *)(iVar3 + 6);
+      VirtualProtect(puVar5,2,0x40,&local_18);
+      *puVar5 = 0x9090;
+      VirtualProtect(puVar5,2,local_18,&local_18);
+    }
+    if (DAT_1015be04 == 8) {
+      puVar2 = (undefined4 *)(DAT_1015ad70 + 0x21500);
+      VirtualProtect(puVar2,4,0x40,&local_18);
+      *puVar2 = &DAT_10158128;
+      VirtualProtect(puVar2,4,local_18,&local_18);
+      puVar2 = (undefined4 *)(DAT_1015ad70 + 0x7d91ae);
+      VirtualProtect(puVar2,4,0x40,&local_18);
+      *puVar2 = &DAT_10158128;
+      VirtualProtect(puVar2,4,local_18,&local_18);
+    }
+    if (DAT_1015be04 == 9) {
+      puVar2 = (undefined4 *)(DAT_1015ad70 + 0x95040);
+      VirtualProtect(puVar2,4,0x40,&local_18);
+      *puVar2 = &DAT_10158128;
+      VirtualProtect(puVar2,4,local_18,&local_18);
+      puVar2 = (undefined4 *)(DAT_1015ad70 + 0x684abe);
+      VirtualProtect(puVar2,4,0x40,&local_18);
+      *puVar2 = &DAT_10158128;
+      VirtualProtect(puVar2,4,local_18,&local_18);
+    }
+    if ((int *)local_24 != (void *)0x0) {
+      pvVar4 = (int *)local_24;
+      if (0xfff < (local_1c - (int)(int *)local_24 & 0xfffffffcU)) {
+        pvVar4 = *(void **)((int)(int *)local_24 + -4);
+        if (0x1f < (uint)((int)(int *)local_24 + (-4 - (int)pvVar4))) {
+                    /* WARNING: Subroutine does not return */
+          _invalid_parameter_noinfo_noreturn();
+        }
+      }
+      FUN_100603e3(pvVar4);
+    }
+  }
+  ExceptionList = local_10;
+  return;
+}
+
+
+
+### Function FUN_10037170 @ 10037170
+
+/* WARNING: Function: __security_check_cookie replaced with injection: security_check_cookie */
+
+void FUN_10037170(void)
+
+{
+  HMODULE pHVar1;
+  undefined1 *lpAddress;
+  undefined2 *lpAddress_00;
+  DWORD local_c;
+  uint local_8;
+  
+  local_8 = DAT_1015800c ^ (uint)&stack0xfffffffc;
+  pHVar1 = GetModuleHandleA((LPCSTR)0x0);
+  lpAddress = (undefined1 *)
+              FUN_10003830("55 8B EC 83 E4 F8 51 53 8B 5D 08 56 57 6A 08 8D 44 24 10 8B F1 8D 7B 04 50 8B CF C7 44 24 14 00"
+                           ,pHVar1);
+  if (lpAddress != (undefined1 *)0x0) {
+    VirtualProtect(lpAddress,1,0x40,&local_c);
+    *lpAddress = 0xc2;
+    VirtualProtect(lpAddress,1,local_c,&local_c);
+    lpAddress_00 = (undefined2 *)(lpAddress + 1);
+    VirtualProtect(lpAddress_00,2,0x40,&local_c);
+    *lpAddress_00 = 8;
+    VirtualProtect(lpAddress_00,2,local_c,&local_c);
+  }
+  return;
+}
+
+
+
+### Function FUN_10045c50 @ 10045c50
+
+/* WARNING: Function: __security_check_cookie replaced with injection: security_check_cookie */
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
+void FUN_10045c50(void)
+
+{
+  undefined1 *lpAddress;
+  int *lpAddress_00;
+  HMODULE pHVar1;
+  int iVar2;
+  DWORD local_c;
+  uint local_8;
+  
+  local_8 = DAT_1015800c ^ (uint)&stack0xfffffffc;
+  pHVar1 = GetModuleHandleA((LPCSTR)0x0);
+  iVar2 = FUN_10003830("89 91 ? ? ? ? 8D 44 24 ? 68 ? ? ? ? 50",pHVar1);
+  if (iVar2 != 0) {
+    lpAddress = (undefined1 *)(iVar2 + -6);
+    _DAT_1015ad74 = iVar2;
+    VirtualProtect(lpAddress,1,0x40,&local_c);
+    *lpAddress = 0xe9;
+    VirtualProtect(lpAddress,1,local_c,&local_c);
+    lpAddress_00 = (int *)(iVar2 + -5);
+    VirtualProtect(lpAddress_00,4,0x40,&local_c);
+    *lpAddress_00 = (int)&UNK_10045c2b - (int)lpAddress;
+    VirtualProtect(lpAddress_00,4,local_c,&local_c);
+  }
+  return;
+}
+
+
+
+### Function FUN_10046640 @ 10046640
+
+/* WARNING: Function: __security_check_cookie replaced with injection: security_check_cookie */
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
+void FUN_10046640(void)
+
+{
+  undefined1 *puVar1;
+  HMODULE pHVar2;
+  int iVar3;
+  int *piVar4;
+  int iVar5;
+  code *pcVar6;
+  DWORD *pDVar7;
+  DWORD local_10;
+  DWORD local_c;
+  uint local_8;
+  
+  local_8 = DAT_1015800c ^ (uint)&stack0xfffffffc;
+  pHVar2 = GetModuleHandleA((LPCSTR)0x0);
+  iVar3 = FUN_10003830("83 F8 03 75 ? A1 ? ? ? ? 80 88 ? ? ? ? ? 84 DB 74 0A 6A 00 E8 ? ? ? ? 83 C4 04 5F 5E"
+                       ,pHVar2);
+  pcVar6 = VirtualProtect_exref;
+  if (iVar3 == 0) {
+    pHVar2 = GetModuleHandleA((LPCSTR)0x0);
+    iVar3 = FUN_10003830("6A 00 E8 ? ? ? ? 83 C4 04 8B 8C 24 ? ? ? ? 5F 5E 5D 5B 33 CC E8 ? ? ? ? 81 C4 ? ? ? ? C3"
+                         ,pHVar2);
+    if (iVar3 == 0) {
+      pHVar2 = GetModuleHandleA((LPCSTR)0x0);
+      iVar3 = FUN_10003830("6A 00 E8 ? ? ? ? 83 C4 04 8B 8C 24 ? ? ? ? 5F 5E 5B 33 CC E8 ? ? ? ? 8B E5 5D C3"
+                           ,pHVar2);
+      if (iVar3 == 0) {
+        return;
+      }
+    }
+    pcVar6 = VirtualProtect_exref;
+    puVar1 = (undefined1 *)(iVar3 + 2);
+    iVar5 = iVar3 + 7 + *(int *)(iVar3 + 3);
+    VirtualProtect(puVar1,1,0x40,&local_10);
+    *puVar1 = 0xe8;
+    VirtualProtect(puVar1,1,local_10,&local_10);
+    VirtualProtect((LPVOID)(iVar3 + 3),4,0x40,&local_c);
+    piVar4 = (int *)(iVar3 + 3);
+    *piVar4 = 0x1004660b - (int)puVar1;
+    pDVar7 = &local_c;
+    local_10 = local_c;
+  }
+  else {
+    puVar1 = (undefined1 *)(iVar3 + 0x17);
+    iVar5 = iVar3 + 0x1c + *(int *)(iVar3 + 0x18);
+    VirtualProtect(puVar1,1,0x40,&local_c);
+    *puVar1 = 0xe8;
+    VirtualProtect(puVar1,1,local_c,&local_c);
+    VirtualProtect((LPVOID)(iVar3 + 0x18),4,0x40,&local_10);
+    piVar4 = (int *)(iVar3 + 0x18);
+    *piVar4 = 0x1004660b - (int)puVar1;
+    pDVar7 = &local_10;
+  }
+  (*pcVar6)(piVar4,4,local_10,pDVar7);
+  _DAT_10159348 = iVar5;
+  return;
+}
+
+
+

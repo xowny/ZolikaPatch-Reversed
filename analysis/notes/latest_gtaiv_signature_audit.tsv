@@ -1,0 +1,13 @@
+label	hit_count	hits
+IncreaseVehicleModelLimit	0	
+IncreaseVehicleStructLimit	1	00a7b107
+TeleportProtection	0	
+SkipIntro	0	
+SkipMenuPrimary	0	
+SkipMenuFallbackA	1	005a636c
+SkipMenuFallbackB	1	0094b106
+EpisodicVehicleSupport_A	0	
+EpisodicVehicleSupport_B	0	
+EpisodicVehicleSupport_C	0	
+EpisodicVehicleSupport_D	0	
+EpisodicVehicleSupport_E	0	

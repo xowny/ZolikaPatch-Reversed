@@ -1,0 +1,5 @@
+addr	function_entry	function_name
+0x100054db		
+0x1003854b		
+0x1004677b		
+0x1004674b	10046640	InstallSkipMenuPatch

@@ -1,0 +1,672 @@
+### Address 0x100054db
+Function: __break @ 100054db
+   100054c2: POP EDI
+   100054c3: POP ESI
+   100054c4: MOV ECX,dword ptr [EBP + -0x10]
+   100054c7: XOR ECX,EBP
+   100054c9: CALL 0x1005fe7b
+   100054ce: MOV ESP,EBP
+   100054d0: POP EBP
+   100054d1: RET
+>> 100054db: INT3
+   100054e0: PUSHAD
+   100054e1: CALL 0x10005340
+   100054e6: POPAD
+   100054e7: SUB EAX,ECX
+   100054e9: SBB EDX,ESI
+   100054eb: MOV dword ptr [ESP + 0xc],EAX
+   100054ef: MOV dword ptr [ESP + 0x10],EDX
+   100054f3: JMP dword ptr [0x10159c18]
+   10005500: PUSH EBP
+
+### Address 0x1000564b
+Function: __break @ 1000564b
+   10005636: POP EDI
+   10005637: POP ESI
+   10005638: XOR ECX,EBP
+   1000563a: POP EBX
+   1000563b: CALL 0x1005fe7b
+   10005640: MOV ESP,EBP
+   10005642: POP EBP
+   10005643: RET
+>> 1000564b: INT3
+   10005650: TEST EAX,EAX
+   10005652: JZ 0x1000565f
+   10005654: PUSH EDI
+   10005655: MOV EBX,EAX
+   10005657: CALL ESI
+   10005659: JMP dword ptr [0x1015ad50]
+   1000565f: XOR AL,AL
+   10005661: POP ESI
+   10005662: POP EBP
+
+### Address 0x1000566b
+Function: __break @ 1000566b
+   10005657: CALL ESI
+   10005659: JMP dword ptr [0x1015ad50]
+   1000565f: XOR AL,AL
+   10005661: POP ESI
+   10005662: POP EBP
+   10005663: POP EBX
+   10005664: ADD ESP,0x10
+   10005667: RET
+>> 1000566b: INT3
+   10005670: TEST EAX,EAX
+   10005672: JZ 0x1000567f
+   10005674: PUSH EDI
+   10005675: MOV EBX,EAX
+   10005677: CALL ESI
+   10005679: JMP dword ptr [0x1015ad54]
+   1000567f: XOR AL,AL
+   10005681: POP ESI
+   10005682: POP EBP
+
+### Address 0x100057eb
+Function: __break @ 100057eb
+   100057dc: POP EDI
+   100057dd: POP ESI
+   100057de: XOR ECX,EBP
+   100057e0: POP EBX
+   100057e1: CALL 0x1005fe7b
+   100057e6: MOV ESP,EBP
+   100057e8: POP EBP
+   100057e9: RET
+>> 100057eb: INT3
+   100057f0: XOR EAX,EAX
+   100057f2: RET
+   10005800: PUSH EBP
+   10005801: MOV EBP,ESP
+   10005803: SUB ESP,0xc
+   10005806: MOV EAX,[0x1015800c]
+   1000580b: XOR EAX,EBP
+   1000580d: MOV dword ptr [EBP + -0x4],EAX
+   10005810: PUSH EBX
+
+### Address 0x10005aeb
+Function: __break @ 10005aeb
+   10005ad9: POP EDI
+   10005ada: POP ESI
+   10005adb: XOR ECX,EBP
+   10005add: POP EBX
+   10005ade: CALL 0x1005fe7b
+   10005ae3: MOV ESP,EBP
+   10005ae5: POP EBP
+   10005ae6: RET
+>> 10005aeb: INT3
+   10005af0: MOV EAX,dword ptr [EDI]
+   10005af2: CMP EAX,dword ptr [0x10159c1c]
+   10005af8: JZ 0x10005b14
+   10005afa: CMP EAX,dword ptr [0x10159c24]
+   10005b00: JZ 0x10005b14
+   10005b02: MOV EAX,dword ptr [EDI + 0x28]
+   10005b05: SHR EAX,0x6
+   10005b08: AND EAX,0xf
+   10005b0b: ADD EAX,-0x1
+
+### Address 0x10005ecb
+Function: __break @ 10005ecb
+   10005eb4: POP EDI
+   10005eb5: POP ESI
+   10005eb6: XOR ECX,EBP
+   10005eb8: POP EBX
+   10005eb9: CALL 0x1005fe7b
+   10005ebe: MOV ESP,EBP
+   10005ec0: POP EBP
+   10005ec1: RET
+>> 10005ecb: INT3
+   10005ed0: MOV EAX,0x13
+   10005ed5: RET
+   10005ee0: PUSH EBP
+   10005ee1: MOV EBP,ESP
+   10005ee3: SUB ESP,0xc
+   10005ee6: MOV EAX,[0x1015800c]
+   10005eeb: XOR EAX,EBP
+   10005eed: MOV dword ptr [EBP + -0x4],EAX
+   10005ef0: PUSH EBX
+
+### Address 0x1001b05b
+Function: __break @ 1001b05b
+   1001b04a: JMP dword ptr [0x10159bbc]
+   1001b050: XOR AL,AL
+   1001b052: POP EDI
+   1001b053: POP ESI
+   1001b054: POP EBX
+   1001b055: MOV ESP,EBP
+   1001b057: POP EBP
+   1001b058: RET 0x10
+>> 1001b05b: INT3
+   1001b060: CMP EBX,0x0
+   1001b063: JZ 0x1001b071
+   1001b065: MOV ECX,dword ptr [EBX + 0x10]
+   1001b068: CMP ECX,dword ptr [EBX + 0x14]
+   1001b06b: JMP dword ptr [0x10159bb4]
+   1001b071: MOV byte ptr [EDI],0x0
+   1001b074: POP EDI
+   1001b075: POP ESI
+   1001b076: MOV EAX,EBP
+
+### Address 0x1001b07b
+Function: FUN_1001b07b @ 1001b07b
+   1001b06b: JMP dword ptr [0x10159bb4]
+   1001b071: MOV byte ptr [EDI],0x0
+   1001b074: POP EDI
+   1001b075: POP ESI
+   1001b076: MOV EAX,EBP
+   1001b078: POP EBP
+   1001b079: POP EBX
+   1001b07a: POP ECX
+>> 1001b07b: RET
+   1001b080: CMP ECX,0x0
+   1001b083: JZ 0x1001b08c
+   1001b085: MOV EAX,dword ptr [ECX + 0x10]
+   1001b088: ADD EAX,dword ptr [ECX + 0xc]
+   1001b08b: RET
+   1001b08c: MOV EAX,0x0
+   1001b091: RET
+   1001b09b: INT3
+   1001b0a0: CMP ECX,0x0
+
+### Address 0x1001b09b
+Function: __break @ 1001b09b
+   1001b07b: RET
+   1001b080: CMP ECX,0x0
+   1001b083: JZ 0x1001b08c
+   1001b085: MOV EAX,dword ptr [ECX + 0x10]
+   1001b088: ADD EAX,dword ptr [ECX + 0xc]
+   1001b08b: RET
+   1001b08c: MOV EAX,0x0
+   1001b091: RET
+>> 1001b09b: INT3
+   1001b0a0: CMP ECX,0x0
+   1001b0a3: JZ 0x1001b0b5
+   1001b0a5: MOV EAX,ECX
+   1001b0a7: MOV ECX,dword ptr [EAX]
+   1001b0a9: MOV EDX,dword ptr [ECX]
+   1001b0ab: MOV EAX,dword ptr [EAX + 0x4]
+   1001b0ae: MOV EDX,dword ptr [EDX + 0x30]
+   1001b0b1: PUSH EAX
+   1001b0b2: CALL EDX
+
+### Address 0x1001b0bb
+Function: __break @ 1001b0bb
+   1001b0a9: MOV EDX,dword ptr [ECX]
+   1001b0ab: MOV EAX,dword ptr [EAX + 0x4]
+   1001b0ae: MOV EDX,dword ptr [EDX + 0x30]
+   1001b0b1: PUSH EAX
+   1001b0b2: CALL EDX
+   1001b0b4: RET
+   1001b0b5: MOV EAX,0x0
+   1001b0ba: RET
+>> 1001b0bb: INT3
+   1001b0c0: CMP ECX,0x0
+   1001b0c3: JZ 0x1001b0d2
+   1001b0c5: PUSH ESI
+   1001b0c6: MOV ESI,ECX
+   1001b0c8: CMP dword ptr [ESI + 0x14],0x0
+   1001b0cc: JMP dword ptr [0x10159bb8]
+   1001b0d2: MOV EAX,0x0
+   1001b0d7: RET
+   1001b0e0: PUSH EBP
+
+### Address 0x1001ef5b
+Function: __break @ 1001ef5b
+   1001ef2c: RET
+   1001ef30: MOVSS XMM1,dword ptr [0x1015ad7c]
+   1001ef38: MOVSD XMM0,qword ptr [0x10152308]
+   1001ef40: CVTPS2PD XMM1,XMM1
+   1001ef43: COMISD XMM0,XMM1
+   1001ef47: JBE 0x1001ef53
+   1001ef49: MOV dword ptr [0x1015ad7c],0x3bda740e
+   1001ef53: RET
+>> 1001ef5b: INT3
+   1001ef60: FLD float ptr [EBP + 0x8]
+   1001ef63: FSTP float ptr [0x1015ad7c]
+   1001ef69: PUSHAD
+   1001ef6a: CALL 0x1001ef30
+   1001ef6f: POPAD
+   1001ef70: MOV [0x1015ad80],EAX
+   1001ef75: MOV EAX,[0x1015ad7c]
+   1001ef7a: MOV dword ptr [EBP + 0x8],EAX
+   1001ef7d: MOV EAX,[0x1015ad80]
+
+### Address 0x1002347b
+Function: __break @ 1002347b
+   10023466: POP ESI
+   10023467: POP EBX
+   10023468: XOR ECX,ESP
+   1002346a: MOV byte ptr [EAX + 0x166],0x2
+   10023471: CALL 0x1005fe7b
+   10023476: MOV ESP,EBP
+   10023478: POP EBP
+   10023479: RET
+>> 1002347b: INT3
+   10023480: MOV AL,0x1
+   10023482: RET 0x8
+   1002348b: INT3
+   10023490: MOV byte ptr [ESI],0x0
+   10023493: MOV byte ptr [ESI + 0x40],0x0
+   10023497: MOV byte ptr [ESI + 0x80],0x0
+   1002349e: MOV byte ptr [ESI + 0xc0],0x0
+   100234a5: MOV byte ptr [ESI + 0x100],0x0
+   100234ac: CMP byte ptr [ESI + 0x167],0x0
+
+### Address 0x1002348b
+Function: __break @ 1002348b
+   1002346a: MOV byte ptr [EAX + 0x166],0x2
+   10023471: CALL 0x1005fe7b
+   10023476: MOV ESP,EBP
+   10023478: POP EBP
+   10023479: RET
+   1002347b: INT3
+   10023480: MOV AL,0x1
+   10023482: RET 0x8
+>> 1002348b: INT3
+   10023490: MOV byte ptr [ESI],0x0
+   10023493: MOV byte ptr [ESI + 0x40],0x0
+   10023497: MOV byte ptr [ESI + 0x80],0x0
+   1002349e: MOV byte ptr [ESI + 0xc0],0x0
+   100234a5: MOV byte ptr [ESI + 0x100],0x0
+   100234ac: CMP byte ptr [ESI + 0x167],0x0
+   100234b3: JZ 0x100234c2
+   100234b5: MOV byte ptr [ESI + 0x168],0x1
+   100234bc: POP ESI
+
+### Address 0x10036e8b
+Function: __break @ 10036e8b
+   10036e72: POP ESI
+   10036e73: POP EBX
+   10036e74: MOV ECX,dword ptr [EBP + -0x10]
+   10036e77: XOR ECX,EBP
+   10036e79: CALL 0x1005fe7b
+   10036e7e: MOV ESP,EBP
+   10036e80: POP EBP
+   10036e81: RET
+>> 10036e8b: INT3
+   10036e90: XOR EAX,EAX
+   10036e92: ADD ECX,0x4
+   10036e95: LEA EDX,[EAX + 0x7]
+   10036e98: CMP ECX,0xc
+   10036e9b: JZ 0x10036ea6
+   10036e9d: CMP dword ptr [ECX],0x0
+   10036ea0: JMP dword ptr [0x1015ad60]
+   10036ea6: RET
+   10036eab: INT3
+
+### Address 0x10036eab
+Function: __break @ 10036eab
+   10036e90: XOR EAX,EAX
+   10036e92: ADD ECX,0x4
+   10036e95: LEA EDX,[EAX + 0x7]
+   10036e98: CMP ECX,0xc
+   10036e9b: JZ 0x10036ea6
+   10036e9d: CMP dword ptr [ECX],0x0
+   10036ea0: JMP dword ptr [0x1015ad60]
+   10036ea6: RET
+>> 10036eab: INT3
+   10036eb0: MOV ECX,dword ptr [EAX + 0x38]
+   10036eb3: TEST ECX,ECX
+   10036eb5: MOV ESI,dword ptr [EAX + 0x40]
+   10036eb8: CMP ESI,0xcdcdcdcd
+   10036ebe: JZ 0x10036ed1
+   10036ec0: CMP ESI,-0x1
+   10036ec3: JZ 0x10036ed1
+   10036ec5: CMP ESI,0x0
+   10036ec8: JZ 0x10036ed1
+
+### Address 0x10036edb
+Function: __break @ 10036edb
+   10036ec3: JZ 0x10036ed1
+   10036ec5: CMP ESI,0x0
+   10036ec8: JZ 0x10036ed1
+   10036eca: PUSH EDI
+   10036ecb: JMP dword ptr [0x1015ad64]
+   10036ed1: XOR EAX,EAX
+   10036ed3: POP ESI
+   10036ed4: RET 0x8
+>> 10036edb: INT3
+   10036ee0: MOV EAX,[0x1015ad5c]
+   10036ee5: MOV EAX,dword ptr [EAX]
+   10036ee7: CMP EAX,0x7
+   10036eea: JLE 0x10036ef1
+   10036eec: CMP EAX,0xb
+   10036eef: JL 0x10036ef7
+   10036ef1: JMP dword ptr [0x1015ad58]
+   10036ef7: RET
+   10036efb: INT3
+
+### Address 0x10036efb
+Function: __break @ 10036efb
+   10036ee0: MOV EAX,[0x1015ad5c]
+   10036ee5: MOV EAX,dword ptr [EAX]
+   10036ee7: CMP EAX,0x7
+   10036eea: JLE 0x10036ef1
+   10036eec: CMP EAX,0xb
+   10036eef: JL 0x10036ef7
+   10036ef1: JMP dword ptr [0x1015ad58]
+   10036ef7: RET
+>> 10036efb: INT3
+   10036f00: CALL dword ptr [0x1015ad68]
+   10036f06: MOV DL,byte ptr [EAX]
+   10036f08: TEST DL,DL
+   10036f0a: JZ 0x10036f20
+   10036f0c: MOV ECX,EAX
+   10036f0e: NOP
+   10036f10: CMP DL,0x7e
+   10036f13: JNZ 0x10036f18
+   10036f15: MOV byte ptr [ECX],0x20
+
+### Address 0x10037b9b
+Function: __break @ 10037b9b
+   10037b80: MOV [0x10159ca4],EAX
+   10037b85: MOV ECX,dword ptr [EBP + -0x4]
+   10037b88: XOR ECX,EBP
+   10037b8a: POP ESI
+   10037b8b: CALL 0x1005fe7b
+   10037b90: MOV ESP,EBP
+   10037b92: POP EBP
+   10037b93: RET
+>> 10037b9b: INT3
+   10037ba0: PUSH EDI
+   10037ba1: MOV EDI,dword ptr [EBP + 0xc]
+   10037ba4: MOV dword ptr [0x10159c8c],EDI
+   10037baa: MOV EDI,dword ptr [EBP + 0x10]
+   10037bad: MOV dword ptr [0x10159ca4],EDI
+   10037bb3: PUSHAD
+   10037bb4: CALL 0x10037ac0
+   10037bb9: POPAD
+   10037bba: MOV EDI,dword ptr [0x10159ca4]
+
+### Address 0x1003854b
+Function: __break @ 1003854b
+   1003852e: MOV ECX,dword ptr [EBP + -0x4]
+   10038531: XOR ECX,EBP
+   10038533: CALL 0x1005fe7b
+   10038538: MOV ESP,EBP
+   1003853a: POP EBP
+   1003853b: RET 0x4
+   10038540: MOV EAX,ECX
+   10038542: RET 0x4
+>> 1003854b: INT3
+   10038550: MOV AL,0x1
+   10038552: RET
+   10038560: RET 0x0
+   1003856b: INT3
+   10038570: XOR EAX,EAX
+   10038572: RET 0x8
+   10038580: RET 0x8
+   10038590: XOR AL,AL
+   10038592: RET
+
+### Address 0x1003856b
+Function: __break @ 1003856b
+   1003853a: POP EBP
+   1003853b: RET 0x4
+   10038540: MOV EAX,ECX
+   10038542: RET 0x4
+   1003854b: INT3
+   10038550: MOV AL,0x1
+   10038552: RET
+   10038560: RET 0x0
+>> 1003856b: INT3
+   10038570: XOR EAX,EAX
+   10038572: RET 0x8
+   10038580: RET 0x8
+   10038590: XOR AL,AL
+   10038592: RET
+   100385a0: PUSH EBP
+   100385a1: MOV EBP,ESP
+   100385a3: SUB ESP,0x8
+   100385a6: PUSH ESI
+
+### Address 0x1003d7ab
+Function: __break @ 1003d7ab
+   1003d799: CALL EAX
+   1003d79b: POPAD
+   1003d79c: RET
+   1003d7a0: PUSH EBP
+   1003d7a1: MOV EBP,ESP
+   1003d7a3: CALL 0x1003d790
+   1003d7a8: POP EBP
+   1003d7a9: RET
+>> 1003d7ab: INT3
+   1003d7b0: CMP EAX,0x1fffdf
+   1003d7b5: JZ 0x1003d7c3
+   1003d7b7: MOV DL,byte ptr [EAX + 0x1f]
+   1003d7ba: TEST DL,0x1
+   1003d7bd: JMP dword ptr [0x1015be00]
+   1003d7c3: JMP dword ptr [0x1015bdfc]
+   1003d7d0: PUSH EBP
+   1003d7d1: MOV EBP,ESP
+   1003d7d3: SUB ESP,0xc
+
+### Address 0x1003d86b
+Function: __break @ 1003d86b
+   1003d855: POP EDI
+   1003d856: POP ESI
+   1003d857: XOR ECX,EBP
+   1003d859: POP EBX
+   1003d85a: CALL 0x1005fe7b
+   1003d85f: MOV ESP,EBP
+   1003d861: POP EBP
+   1003d862: RET
+>> 1003d86b: INT3
+   1003d870: CMP EAX,0x0
+   1003d873: JZ 0x1003d886
+   1003d875: MOV byte ptr [EAX + 0x26],BL
+   1003d878: MOV EDX,dword ptr [ESI]
+   1003d87a: MOV EAX,dword ptr [EDX + 0xf4]
+   1003d880: JMP dword ptr [0x1015be14]
+   1003d886: JMP dword ptr [0x1015be18]
+   1003d890: PUSH EBP
+   1003d891: MOV EBP,ESP
+
+### Address 0x1003d99b
+Function: __break @ 1003d99b
+   1003d980: CMOVZ ECX,EDX
+   1003d983: MOV dword ptr [0x10159d20],ECX
+   1003d989: MOV ECX,dword ptr [EBP + -0x4]
+   1003d98c: XOR ECX,EBP
+   1003d98e: CALL 0x1005fe7b
+   1003d993: MOV ESP,EBP
+   1003d995: POP EBP
+   1003d996: RET
+>> 1003d99b: INT3
+   1003d9a0: PUSHAD
+   1003d9a1: MOV [0x10159d28],EAX
+   1003d9a6: CALL 0x1003d930
+   1003d9ab: POPAD
+   1003d9ac: PUSH dword ptr [0x10159d20]
+   1003d9b2: PUSH ECX
+   1003d9b3: JMP dword ptr [0x10159d2c]
+   1003d9c0: PUSH EBP
+   1003d9c1: MOV EBP,ESP
+
+### Address 0x10045a2b
+Function: __break @ 10045a2b
+   10045a11: MOV EBP,ESP
+   10045a13: MOV ECX,dword ptr [EBP + 0xc]
+   10045a16: XOR EDX,EDX
+   10045a18: MOV EAX,0x2
+   10045a1d: CMP byte ptr [ECX + 0x4],0x76
+   10045a21: CMOVZ EAX,EDX
+   10045a24: POP EBP
+   10045a25: RET
+>> 10045a2b: INT3
+   10045a30: PUSH EBX
+   10045a31: PUSH ESI
+   10045a32: PUSH EDI
+   10045a33: MOV EDI,ECX
+   10045a35: XOR ESI,ESI
+   10045a37: CMP word ptr [EDI + 0xc],SI
+   10045a3b: JBE 0x10045a6b
+   10045a3d: MOV EBX,dword ptr [ESP + 0x10]
+   10045a41: MOV EAX,dword ptr [EDI + 0x8]
+
+### Address 0x1004559b
+Function: __break @ 1004559b
+   1004557f: RET
+   10045580: PUSH EBP
+   10045581: MOV EBP,ESP
+   10045583: PUSH dword ptr [EBP + 0x8]
+   10045586: CALL dword ptr [0x10063058]
+   1004558c: XOR EAX,EAX
+   1004558e: POP EBP
+   1004558f: RET 0x4
+>> 1004559b: INT3
+   100455a0: PUSH EBP
+   100455a1: MOV EBP,ESP
+   100455a3: PUSH ESI
+   100455a4: MOV ESI,dword ptr [EBP + 0xc]
+   100455a7: PUSH EDI
+   100455a8: MOV EDI,dword ptr [EBP + 0x14]
+   100455ab: CMP dword ptr [EDI],ESI
+   100455ad: JNC 0x100455bc
+   100455af: MOV dword ptr [EDI],ESI
+
+### Address 0x100455db
+Function: __break @ 100455db
+   100455c8: CALL 0x10060f11
+   100455cd: ADD ESP,0xc
+   100455d0: MOV dword ptr [EDI],ESI
+   100455d2: XOR EAX,EAX
+   100455d4: POP EDI
+   100455d5: POP ESI
+   100455d6: POP EBP
+   100455d7: RET 0x14
+>> 100455db: INT3
+   100455e0: PUSH EBP
+   100455e1: MOV EBP,ESP
+   100455e3: PUSH ESI
+   100455e4: MOV ESI,dword ptr [EBP + 0xc]
+   100455e7: TEST ESI,ESI
+   100455e9: JZ 0x10045600
+   100455eb: PUSH 0x0
+   100455ed: PUSH 0x0
+   100455ef: PUSH 0x0
+
+### Address 0x1004677b
+Function: __break @ 1004677b
+   1004675e: PUSH EAX
+   1004675f: PUSH ECX
+   10046760: LEA EDX,[ECX + 0x10]
+   10046763: PUSH EDX
+   10046764: PUSH ECX
+   10046765: PUSH ECX
+   10046766: JMP dword ptr [0x10159c68]
+   1004676c: JMP dword ptr [0x10159c70]
+>> 1004677b: INT3
+   10046780: MOV ECX,dword ptr [EAX + 0x14]
+   10046783: TEST ECX,ECX
+   10046785: JZ 0x10046795
+   10046787: CMP ECX,0xcdcdcdcd
+   1004678d: JZ 0x10046795
+   1004678f: MOV EDX,dword ptr [EAX + 0x10]
+   10046792: MOV dword ptr [ECX + 0x10],EDX
+   10046795: JMP dword ptr [0x10159c6c]
+   100467a0: PUSH EBP
+
+### Address 0x1004aaab
+Function: __break @ 1004aaab
+   1004aa8c: TEST EAX,EAX
+   1004aa8e: JS 0x1004aaa0
+   1004aa90: CMP dword ptr [0x1015d630],0x0
+   1004aa97: JNZ 0x1004aaa0
+   1004aa99: CMP EAX,0x3e800000
+   1004aa9e: JGE 0x1004aaa7
+   1004aaa0: MOV byte ptr [0x1015d638],0x1
+   1004aaa7: RET
+>> 1004aaab: INT3
+   1004aab0: MOV EAX,dword ptr [ESP + 0x14]
+   1004aab4: MOV [0x1015d630],EAX
+   1004aab9: MOV EAX,dword ptr [ESP + 0x10]
+   1004aabd: MOV [0x1015d634],EAX
+   1004aac2: PUSHAD
+   1004aac3: CALL 0x1004aa80
+   1004aac8: POPAD
+   1004aac9: CMP byte ptr [0x1015d638],0x0
+   1004aad0: JZ 0x1004aad7
+
+### Address 0x1005048b
+Function: __break @ 1005048b
+   10050474: MOV ECX,dword ptr [EBP + -0x4]
+   10050477: POP EDI
+   10050478: XOR ECX,EBP
+   1005047a: POP ESI
+   1005047b: CALL 0x1005fe7b
+   10050480: MOV ESP,EBP
+   10050482: POP EBP
+   10050483: RET
+>> 1005048b: INT3
+   10050490: CMP ECX,0x0
+   10050493: JZ 0x100504a7
+   10050495: MOV EAX,dword ptr [ECX]
+   10050497: MOV EDX,dword ptr [EAX + 0x128]
+   1005049d: CALL EDX
+   1005049f: TEST AL,AL
+   100504a1: JMP dword ptr [0x1015ad6c]
+   100504a7: POP EBX
+   100504a8: RET
+
+### Address 0x1005086b
+Function: __break @ 1005086b
+   10050859: CALL EAX
+   1005085b: POPAD
+   1005085c: RET
+   10050860: PUSH EBP
+   10050861: MOV EBP,ESP
+   10050863: CALL 0x10050850
+   10050868: POP EBP
+   10050869: RET
+>> 1005086b: INT3
+   10050870: PUSH EBP
+   10050871: MOV EBP,ESP
+   10050873: SUB ESP,0x8
+   10050876: MOV EAX,[0x1015800c]
+   1005087b: XOR EAX,EBP
+   1005087d: MOV dword ptr [EBP + -0x4],EAX
+   10050880: PUSH ESI
+   10050881: PUSH 0x1013a038
+   10050886: MOV ESI,ECX
+
+### Address 0x100515fb
+Function: __break @ 100515fb
+   100515d8: MOV dword ptr [EAX],0x1
+   100515de: POP EBP
+   100515df: RET
+   100515e0: PUSH 0x100515d0
+   100515e5: PUSH 0x2c89a1f9
+   100515ea: CALL dword ptr [0x10159c08]
+   100515f0: ADD ESP,0x8
+   100515f3: RET
+>> 100515fb: INT3
+   10051600: PUSHAD
+   10051601: CALL 0x100515e0
+   10051606: POPAD
+   10051607: RET
+   10051610: PUSH EBP
+   10051611: MOV EBP,ESP
+   10051613: PUSH -0x1
+   10051615: PUSH 0x10061a8d
+   1005161a: MOV EAX,FS:[0x0]
+
+### Address 0x100521db
+Function: __break @ 100521db
+   100521c2: POP EDI
+   100521c3: POP ESI
+   100521c4: MOV ECX,dword ptr [EBP + -0x10]
+   100521c7: XOR ECX,EBP
+   100521c9: CALL 0x1005fe7b
+   100521ce: MOV ESP,EBP
+   100521d0: POP EBP
+   100521d1: RET
+>> 100521db: INT3
+   100521e0: PUSHAD
+   100521e1: CALL 0x10051fd0
+   100521e6: POPAD
+   100521e7: MOV dword ptr [ESP + 0x1e0],EAX
+   100521ee: MOV EAX,dword ptr [EBP + 0x8]
+   100521f1: PUSH EBX
+   100521f2: XOR EBX,EBX
+   100521f4: JMP dword ptr [0x1015ad88]
+   10052200: PUSH EBP
+

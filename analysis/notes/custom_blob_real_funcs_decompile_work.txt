@@ -1,0 +1,675 @@
+### Function FUN_100054e0 @ 100054e0
+
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
+void FUN_100054e0(void)
+
+{
+  FUN_10005340();
+                    /* WARNING: Could not recover jumptable at 0x100054f3. Too many branches */
+                    /* WARNING: Treating indirect jump as call */
+  (*_DAT_10159c18)();
+  return;
+}
+
+
+
+### Function FUN_10005650 @ 10005650
+
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
+undefined4 FUN_10005650(void)
+
+{
+  int in_EAX;
+  undefined4 uVar1;
+  code *unaff_ESI;
+  
+  if (in_EAX != 0) {
+    (*unaff_ESI)();
+                    /* WARNING: Could not recover jumptable at 0x10005659. Too many branches */
+                    /* WARNING: Treating indirect jump as call */
+    uVar1 = (*_DAT_1015ad50)();
+    return uVar1;
+  }
+  return 0;
+}
+
+
+
+### Function FUN_10005670 @ 10005670
+
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
+undefined4 FUN_10005670(void)
+
+{
+  int in_EAX;
+  undefined4 uVar1;
+  code *unaff_ESI;
+  
+  if (in_EAX != 0) {
+    (*unaff_ESI)();
+                    /* WARNING: Could not recover jumptable at 0x10005679. Too many branches */
+                    /* WARNING: Treating indirect jump as call */
+    uVar1 = (*_DAT_1015ad54)();
+    return uVar1;
+  }
+  return 0;
+}
+
+
+
+### Function FUN_100057f0 @ 100057f0
+
+undefined4 FUN_100057f0(void)
+
+{
+  return 0;
+}
+
+
+
+### Function FUN_10005af0 @ 10005af0
+
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
+void FUN_10005af0(void)
+
+{
+  int *unaff_EDI;
+  
+  if ((*unaff_EDI != DAT_10159c1c) && (*unaff_EDI != DAT_10159c24)) {
+                    /* WARNING: Could not recover jumptable at 0x10005b0e. Too many branches */
+                    /* WARNING: Treating indirect jump as call */
+    (*_DAT_10159c20)();
+    return;
+  }
+                    /* WARNING: Could not recover jumptable at 0x10005b14. Too many branches */
+                    /* WARNING: Treating indirect jump as call */
+  (*_DAT_10159c28)();
+  return;
+}
+
+
+
+### Function FUN_10005ed0 @ 10005ed0
+
+undefined4 FUN_10005ed0(void)
+
+{
+  return 0x13;
+}
+
+
+
+### Function FUN_1001b060 @ 1001b060
+
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
+void FUN_1001b060(void)
+
+{
+  int unaff_EBX;
+  undefined1 *unaff_EDI;
+  
+  if (unaff_EBX != 0) {
+                    /* WARNING: Could not recover jumptable at 0x1001b06b. Too many branches */
+                    /* WARNING: Treating indirect jump as call */
+    (*_DAT_10159bb4)();
+    return;
+  }
+  *unaff_EDI = 0;
+  return;
+}
+
+
+
+### Function FUN_1001b080 @ 1001b080
+
+int __fastcall FUN_1001b080(int param_1)
+
+{
+  if (param_1 != 0) {
+    return *(int *)(param_1 + 0x10) + *(int *)(param_1 + 0xc);
+  }
+  return 0;
+}
+
+
+
+### Function FUN_1001b0a0 @ 1001b0a0
+
+undefined4 __fastcall FUN_1001b0a0(undefined4 *param_1)
+
+{
+  undefined4 uVar1;
+  
+  if (param_1 != (undefined4 *)0x0) {
+    uVar1 = (**(code **)(*(int *)*param_1 + 0x30))(param_1[1]);
+    return uVar1;
+  }
+  return 0;
+}
+
+
+
+### Function FUN_1001b0c0 @ 1001b0c0
+
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
+undefined4 __fastcall FUN_1001b0c0(int param_1)
+
+{
+  undefined4 uVar1;
+  
+  if (param_1 != 0) {
+                    /* WARNING: Could not recover jumptable at 0x1001b0cc. Too many branches */
+                    /* WARNING: Treating indirect jump as call */
+    uVar1 = (*_DAT_10159bb8)();
+    return uVar1;
+  }
+  return 0;
+}
+
+
+
+### Function FUN_1001ef60 @ 1001ef60
+
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
+void FUN_1001ef60(void)
+
+{
+  undefined4 in_EAX;
+  int unaff_EBP;
+  
+  DAT_1015ad7c = *(undefined4 *)(unaff_EBP + 8);
+  FUN_1001ef30();
+  DAT_1015ad80 = in_EAX;
+  *(undefined4 *)(unaff_EBP + 8) = DAT_1015ad7c;
+                    /* WARNING: Could not recover jumptable at 0x1001ef8b. Too many branches */
+                    /* WARNING: Treating indirect jump as call */
+  (*_DAT_1015ad84)();
+  return;
+}
+
+
+
+### Function FUN_10023480 @ 10023480
+
+undefined1 FUN_10023480(void)
+
+{
+  return 1;
+}
+
+
+
+### Function FUN_10023490 @ 10023490
+
+void FUN_10023490(void)
+
+{
+  undefined1 *unaff_ESI;
+  
+  *unaff_ESI = 0;
+  unaff_ESI[0x40] = 0;
+  unaff_ESI[0x80] = 0;
+  unaff_ESI[0xc0] = 0;
+  unaff_ESI[0x100] = 0;
+  if (unaff_ESI[0x167] == '\0') {
+    (*DAT_1015bddc)();
+    FUN_10023150((int)unaff_ESI);
+    unaff_ESI[0xa4] = 1;
+  }
+  else {
+    unaff_ESI[0x168] = 1;
+  }
+  return;
+}
+
+
+
+### Function FUN_10036e90 @ 10036e90
+
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
+void __fastcall FUN_10036e90(int param_1)
+
+{
+  if (param_1 != 8) {
+                    /* WARNING: Could not recover jumptable at 0x10036ea0. Too many branches */
+                    /* WARNING: Treating indirect jump as call */
+    (*_DAT_1015ad60)();
+    return;
+  }
+  return;
+}
+
+
+
+### Function FUN_10036eb0 @ 10036eb0
+
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
+undefined4 FUN_10036eb0(void)
+
+{
+  int iVar1;
+  int in_EAX;
+  undefined4 uVar2;
+  
+  iVar1 = *(int *)(in_EAX + 0x40);
+  if (((iVar1 != -0x32323233) && (iVar1 != -1)) && (iVar1 != 0)) {
+                    /* WARNING: Could not recover jumptable at 0x10036ecb. Too many branches */
+                    /* WARNING: Treating indirect jump as call */
+    uVar2 = (*_DAT_1015ad64)();
+    return uVar2;
+  }
+  return 0;
+}
+
+
+
+### Function FUN_10036ee0 @ 10036ee0
+
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
+void FUN_10036ee0(void)
+
+{
+  if ((7 < *DAT_1015ad5c) && (*DAT_1015ad5c < 0xb)) {
+    return;
+  }
+                    /* WARNING: Could not recover jumptable at 0x10036ef1. Too many branches */
+                    /* WARNING: Treating indirect jump as call */
+  (*_DAT_1015ad58)();
+  return;
+}
+
+
+
+### Function FUN_10036f00 @ 10036f00
+
+void FUN_10036f00(void)
+
+{
+  char *pcVar1;
+  char cVar2;
+  char *pcVar3;
+  
+  pcVar3 = (char *)(*DAT_1015ad68)();
+  cVar2 = *pcVar3;
+  while (cVar2 != '\0') {
+    if (cVar2 == '~') {
+      *pcVar3 = ' ';
+    }
+    pcVar1 = pcVar3 + 1;
+    pcVar3 = pcVar3 + 1;
+    cVar2 = *pcVar1;
+  }
+  return;
+}
+
+
+
+### Function FUN_10037ba0 @ 10037ba0
+
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
+void FUN_10037ba0(void)
+
+{
+  int unaff_EBP;
+  
+  DAT_10159c8c = *(undefined4 *)(unaff_EBP + 0xc);
+  DAT_10159ca4 = *(undefined4 *)(unaff_EBP + 0x10);
+  FUN_10037ac0();
+  *(undefined4 *)(unaff_EBP + 0x10) = DAT_10159ca4;
+                    /* WARNING: Could not recover jumptable at 0x10037bce. Too many branches */
+                    /* WARNING: Treating indirect jump as call */
+  (*_DAT_10159cb8)();
+  return;
+}
+
+
+
+### Function FUN_10038540 @ 10038540
+
+undefined4 __fastcall FUN_10038540(undefined4 param_1)
+
+{
+  return param_1;
+}
+
+
+
+### Function FUN_10038550 @ 10038550
+
+undefined1 FUN_10038550(void)
+
+{
+  return 1;
+}
+
+
+
+### Function guard_check_icall @ 10038560
+
+/* guard_check_icall */
+
+void __cdecl guard_check_icall(void)
+
+{
+  return;
+}
+
+
+
+### Function FUN_10038570 @ 10038570
+
+undefined4 FUN_10038570(void)
+
+{
+  return 0;
+}
+
+
+
+### Function FUN_10038580 @ 10038580
+
+void FUN_10038580(void)
+
+{
+  return;
+}
+
+
+
+### Function FUN_100385a0 @ 100385a0
+
+bool FUN_100385a0(uint param_1)
+
+{
+  int iVar1;
+  undefined4 *puVar2;
+  int iVar3;
+  undefined4 local_c [2];
+  
+  EnterCriticalSection((LPCRITICAL_SECTION)&DAT_101a0808);
+  puVar2 = FUN_1005c5a0(local_c,(int *)&param_1,
+                        ((((param_1 & 0xff ^ 0x811c9dc5) * 0x1000193 ^ param_1 >> 8 & 0xff) *
+                          0x1000193 ^ param_1 >> 0x10 & 0xff) * 0x1000193 ^ param_1 >> 0x18) *
+                        0x1000193);
+  iVar1 = DAT_101a8410;
+  iVar3 = DAT_101a8410;
+  if (puVar2[1] != 0) {
+    iVar3 = puVar2[1];
+  }
+  LeaveCriticalSection((LPCRITICAL_SECTION)&DAT_101a0808);
+  return iVar3 != iVar1;
+}
+
+
+
+### Function FUN_1003d7a0 @ 1003d7a0
+
+undefined8 __fastcall FUN_1003d7a0(undefined4 param_1,undefined4 param_2)
+
+{
+  undefined8 uVar1;
+  
+  uVar1 = FUN_1003d790(param_1,param_2);
+  return uVar1;
+}
+
+
+
+### Function FUN_1003d7b0 @ 1003d7b0
+
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
+void FUN_1003d7b0(void)
+
+{
+  int in_EAX;
+  
+  if (in_EAX != 0x1fffdf) {
+                    /* WARNING: Could not recover jumptable at 0x1003d7bd. Too many branches */
+                    /* WARNING: Treating indirect jump as call */
+    (*_DAT_1015be00)();
+    return;
+  }
+                    /* WARNING: Could not recover jumptable at 0x1003d7c3. Too many branches */
+                    /* WARNING: Treating indirect jump as call */
+  (*_DAT_1015bdfc)();
+  return;
+}
+
+
+
+### Function FUN_1003d870 @ 1003d870
+
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
+void FUN_1003d870(void)
+
+{
+  int in_EAX;
+  undefined1 unaff_BL;
+  
+  if (in_EAX != 0) {
+    *(undefined1 *)(in_EAX + 0x26) = unaff_BL;
+                    /* WARNING: Could not recover jumptable at 0x1003d880. Too many branches */
+                    /* WARNING: Treating indirect jump as call */
+    (*_DAT_1015be14)();
+    return;
+  }
+                    /* WARNING: Could not recover jumptable at 0x1003d886. Too many branches */
+                    /* WARNING: Treating indirect jump as call */
+  (*_DAT_1015be18)();
+  return;
+}
+
+
+
+### Function FUN_1003d9a0 @ 1003d9a0
+
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
+void FUN_1003d9a0(void)
+
+{
+  undefined4 in_EAX;
+  
+  DAT_10159d28 = in_EAX;
+  FUN_1003d930();
+                    /* WARNING: Could not recover jumptable at 0x1003d9b3. Too many branches */
+                    /* WARNING: Treating indirect jump as call */
+  (*_DAT_10159d2c)(DAT_10159d20);
+  return;
+}
+
+
+
+### Function FUN_10045580 @ 10045580
+
+undefined4 FUN_10045580(HANDLE param_1)
+
+{
+  CloseHandle(param_1);
+  return 0;
+}
+
+
+
+### Function FUN_100455a0 @ 100455a0
+
+undefined4 FUN_100455a0(void *param_1,uint param_2,void *param_3,uint *param_4)
+
+{
+  if (*param_4 < param_2) {
+    *param_4 = param_2;
+    return 0x8007007a;
+  }
+  if (param_3 != (void *)0x0) {
+    memcpy(param_3,param_1,param_2);
+  }
+  *param_4 = param_2;
+  return 0;
+}
+
+
+
+### Function FUN_100455e0 @ 100455e0
+
+undefined4 FUN_100455e0(undefined4 param_1,undefined4 *param_2)
+
+{
+  HANDLE pvVar1;
+  
+  if (param_2 != (undefined4 *)0x0) {
+    pvVar1 = CreateMutexA((LPSECURITY_ATTRIBUTES)0x0,0,(LPCSTR)0x0);
+    *param_2 = pvVar1;
+    return 0;
+  }
+  return 1;
+}
+
+
+
+### Function FUN_10046780 @ 10046780
+
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
+void FUN_10046780(void)
+
+{
+  int iVar1;
+  int in_EAX;
+  
+  iVar1 = *(int *)(in_EAX + 0x14);
+  if ((iVar1 != 0) && (iVar1 != -0x32323233)) {
+    *(undefined4 *)(iVar1 + 0x10) = *(undefined4 *)(in_EAX + 0x10);
+  }
+                    /* WARNING: Could not recover jumptable at 0x10046795. Too many branches */
+                    /* WARNING: Treating indirect jump as call */
+  (*_DAT_10159c6c)();
+  return;
+}
+
+
+
+### Function FUN_1004aab0 @ 1004aab0
+
+undefined8 __fastcall FUN_1004aab0(undefined4 param_1,undefined4 param_2)
+
+{
+  undefined4 in_stack_00000010;
+  undefined4 in_stack_00000014;
+  
+  DAT_1015d630 = in_stack_00000014;
+  DAT_1015d634 = in_stack_00000010;
+  FUN_1004aa80();
+  if (DAT_1015d638 != '\0') {
+    in_stack_00000010 = 0x7fffffff;
+  }
+  return CONCAT44(param_2,in_stack_00000010);
+}
+
+
+
+### Function FUN_10050490 @ 10050490
+
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
+void __fastcall FUN_10050490(int *param_1)
+
+{
+  if (param_1 != (int *)0x0) {
+    (**(code **)(*param_1 + 0x128))();
+                    /* WARNING: Could not recover jumptable at 0x100504a1. Too many branches */
+                    /* WARNING: Treating indirect jump as call */
+    (*_DAT_1015ad6c)();
+    return;
+  }
+  return;
+}
+
+
+
+### Function FUN_10050860 @ 10050860
+
+undefined8 __fastcall FUN_10050860(undefined4 param_1,undefined4 param_2)
+
+{
+  undefined8 uVar1;
+  
+  uVar1 = FUN_10050850(param_1,param_2);
+  return uVar1;
+}
+
+
+
+### Function FUN_10050870 @ 10050870
+
+/* WARNING: Function: __security_check_cookie replaced with injection: security_check_cookie */
+
+undefined4 __fastcall FUN_10050870(int param_1)
+
+{
+  ulong uVar1;
+  int local_c;
+  uint local_8;
+  
+  local_8 = DAT_1015800c ^ (uint)&stack0xfffffffc;
+  uVar1 = FUN_10003e50("player");
+  local_c = -1;
+  (*DAT_10159c0c)(uVar1,&local_c);
+  return CONCAT31((int3)(char)((ushort)*(short *)(param_1 + 0x2e) >> 8),
+                  *(short *)(param_1 + 0x2e) == local_c);
+}
+
+
+
+### Function FUN_100515e0 @ 100515e0
+
+void FUN_100515e0(void)
+
+{
+  (*DAT_10159c08)(0x2c89a1f9,FUN_100515d0);
+  return;
+}
+
+
+
+### Function FUN_10051600 @ 10051600
+
+undefined8 __fastcall FUN_10051600(undefined4 param_1,undefined4 param_2)
+
+{
+  undefined4 in_EAX;
+  
+  FUN_100515e0();
+  return CONCAT44(param_2,in_EAX);
+}
+
+
+
+### Function FUN_100521e0 @ 100521e0
+
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
+void FUN_100521e0(void)
+
+{
+  FUN_10051fd0();
+                    /* WARNING: Could not recover jumptable at 0x100521f4. Too many branches */
+                    /* WARNING: Treating indirect jump as call */
+  (*_DAT_1015ad88)();
+  return;
+}
+
+
+

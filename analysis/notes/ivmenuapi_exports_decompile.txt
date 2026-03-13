@@ -1,0 +1,87 @@
+### Function AddIVMenuEnum @ 10009f40
+
+/* WARNING: Function: __security_check_cookie replaced with injection: security_check_cookie */
+
+void __cdecl AddIVMenuEnum(uint *param_1,int param_2,int param_3,int param_4)
+
+{
+  int iVar1;
+  int iVar2;
+  int local_3c;
+  undefined4 local_38 [6];
+  basic_string<char,struct_std::char_traits<char>,class_std::allocator<char>_> local_20 [24];
+  uint local_8;
+  
+                    /* 0x9f40  1  AddIVMenuEnum */
+  local_8 = DAT_1002c00c ^ (uint)&stack0xfffffffc;
+  if (DAT_100300ec < 0x7f) {
+    iVar2 = DAT_100300f0 * 0x34;
+    DAT_100300f0 = DAT_100300f0 + 1;
+    iVar1 = DAT_100300ec * 8;
+    DAT_100300ec = DAT_100300ec + 1;
+    FUN_10005230(&DAT_10030120 + iVar2,param_1);
+    for (local_3c = 0; local_3c < param_4; local_3c = local_3c + 1) {
+      FUN_10004af0(local_20,*(uint **)(param_2 + local_3c * 4));
+      FUN_10009cc0((void *)(iVar2 + 0x10030138),local_20);
+      ~vector<>(local_20);
+      FUN_10004c30(local_38,*(wchar_t **)(param_3 + local_3c * 4));
+      FUN_10009cf0((void *)(iVar2 + 0x10030144),local_38);
+      ~basic_string<>(local_38);
+    }
+    iVar2 = DAT_100300e0 + 1;
+    *(int *)(&DAT_1002ece0 + iVar1) = DAT_100300e0;
+    DAT_100300e0 = iVar2;
+    *(uint **)(&DAT_1002ece4 + iVar1) = param_1;
+    FUN_10007d80();
+  }
+  return;
+}
+
+
+
+### Function AddIVMenuOption @ 1000a070
+
+void __cdecl
+AddIVMenuOption(undefined4 param_1,undefined4 param_2,undefined4 param_3,undefined4 param_4,
+               undefined4 param_5,undefined4 param_6,undefined4 param_7,undefined4 param_8)
+
+{
+  int iVar1;
+  int iVar2;
+  
+                    /* 0xa070  2  AddIVMenuOption */
+  if (DAT_100300e4 < 0x400) {
+    iVar2 = DAT_100300e8 * 0x20;
+    DAT_100300e8 = DAT_100300e8 + 1;
+    iVar1 = DAT_100300e4 * 8;
+    *(undefined4 *)(&DAT_10024000 + iVar2) = param_7;
+    *(undefined4 *)(&DAT_10024004 + iVar2) = param_8;
+    *(undefined4 *)(&DAT_10024008 + iVar2) = param_1;
+    *(undefined4 *)(&DAT_1002400c + iVar2) = param_2;
+    *(undefined4 *)(&DAT_10024010 + iVar2) = param_3;
+    *(undefined4 *)(&DAT_10024018 + iVar2) = param_5;
+    *(undefined4 *)(&DAT_1002401c + iVar2) = param_6;
+    *(undefined4 *)(&DAT_10024014 + iVar2) = param_4;
+    iVar2 = DAT_100300e4 + 1;
+    *(int *)(&DAT_1002cce0 + iVar1) = DAT_100300e4;
+    DAT_100300e4 = iVar2;
+    *(undefined4 *)(&DAT_1002cce4 + iVar1) = param_1;
+    FUN_10007d80();
+  }
+  return;
+}
+
+
+
+### Function ReloadIVMenus @ 1000a160
+
+void ReloadIVMenus(void)
+
+{
+                    /* 0xa160  3  ReloadIVMenus */
+  FUN_10007f40();
+  return;
+}
+
+
+

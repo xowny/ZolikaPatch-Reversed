@@ -1,0 +1,66 @@
+### Function FUN_10050bd0 @ 10050bd0
+
+/* WARNING: Function: __security_check_cookie replaced with injection: security_check_cookie */
+
+void FUN_10050bd0(void)
+
+{
+  int *piVar1;
+  HMODULE pHVar2;
+  int iVar3;
+  undefined1 *puVar4;
+  DWORD local_c;
+  uint local_8;
+  
+  local_8 = DAT_1015800c ^ (uint)&stack0xfffffffc;
+  pHVar2 = GetModuleHandleA((LPCSTR)0x0);
+  iVar3 = FindFirstPatternMatch("0F 57 C0 F3 0F 11 86 20 02 00 00",pHVar2);
+  if (iVar3 != 0) {
+    puVar4 = (undefined1 *)(iVar3 + -0xd);
+    VirtualProtect(puVar4,1,0x40,&local_c);
+    *puVar4 = 0xe8;
+    VirtualProtect(puVar4,1,local_c,&local_c);
+    piVar1 = (int *)(iVar3 + -0xc);
+    VirtualProtect(piVar1,4,0x40,&local_c);
+    *piVar1 = 0x10050acb - (int)puVar4;
+    VirtualProtect(piVar1,4,local_c,&local_c);
+  }
+  pHVar2 = GetModuleHandleA((LPCSTR)0x0);
+  iVar3 = FindFirstPatternMatch("C7 86 04 02 00 00 04 00 00 00 E9",pHVar2);
+  if (iVar3 != 0) {
+    puVar4 = (undefined1 *)(iVar3 + -0xd);
+    VirtualProtect(puVar4,1,0x40,&local_c);
+    *puVar4 = 0xe8;
+    VirtualProtect(puVar4,1,local_c,&local_c);
+    piVar1 = (int *)(iVar3 + -0xc);
+    VirtualProtect(piVar1,4,0x40,&local_c);
+    *piVar1 = 0x10050a4b - (int)puVar4;
+    VirtualProtect(piVar1,4,local_c,&local_c);
+  }
+  pHVar2 = GetModuleHandleA((LPCSTR)0x0);
+  puVar4 = (undefined1 *)FindFirstPatternMatch("E8 ? ? ? ? 84 C0 74 C6 8B BE",pHVar2);
+  if (puVar4 != (undefined1 *)0x0) {
+    VirtualProtect(puVar4,1,0x40,&local_c);
+    *puVar4 = 0xe8;
+    VirtualProtect(puVar4,1,local_c,&local_c);
+    piVar1 = (int *)(puVar4 + 1);
+    VirtualProtect(piVar1,4,0x40,&local_c);
+    *piVar1 = 0x10050a4b - (int)puVar4;
+    VirtualProtect(piVar1,4,local_c,&local_c);
+  }
+  return;
+}
+
+
+
+### Function FUN_10050a40 @ 10050a40
+
+void __cdecl FUN_10050a40(undefined4 param_1,int param_2)
+
+{
+  DAT_10159b86 = param_2 != 0;
+  return;
+}
+
+
+

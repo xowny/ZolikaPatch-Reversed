@@ -1,0 +1,785 @@
+### Function FUN_10022cf0 @ 10022cf0
+
+/* WARNING: Function: __security_check_cookie replaced with injection: security_check_cookie */
+
+void FUN_10022cf0(void)
+
+{
+  int *lpAddress;
+  HMODULE pHVar1;
+  undefined1 *lpAddress_00;
+  DWORD local_c;
+  uint local_8;
+  
+  local_8 = DAT_1015800c ^ (uint)&stack0xfffffffc;
+  pHVar1 = GetModuleHandleA((LPCSTR)0x0);
+  lpAddress_00 = (undefined1 *)FindFirstPatternMatch("8B 4C 24 08 56 8B 74 24 08 80 3E 22",pHVar1);
+  if (lpAddress_00 != (undefined1 *)0x0) {
+    VirtualProtect(lpAddress_00,1,0x40,&local_c);
+    *lpAddress_00 = 0xe9;
+    VirtualProtect(lpAddress_00,1,local_c,&local_c);
+    lpAddress = (int *)(lpAddress_00 + 1);
+    VirtualProtect(lpAddress,4,0x40,&local_c);
+    *lpAddress = 0x10003e4b - (int)lpAddress_00;
+    VirtualProtect(lpAddress,4,local_c,&local_c);
+  }
+  return;
+}
+
+
+
+### Function FUN_100234e0 @ 100234e0
+
+/* WARNING: Function: __security_check_cookie replaced with injection: security_check_cookie */
+
+void FUN_100234e0(void)
+
+{
+  int *piVar1;
+  int iVar2;
+  undefined4 *puVar3;
+  code *pcVar4;
+  undefined1 *puVar5;
+  DWORD local_c;
+  uint local_8;
+  
+  iVar2 = DAT_1015ad70;
+  local_8 = DAT_1015800c ^ (uint)&stack0xfffffffc;
+  pcVar4 = VirtualProtect_exref;
+  if (DAT_1015be04 == 7) {
+    DAT_1015804c = 0x4136e0;
+    DAT_101580d0 = 0x414080;
+    puVar5 = (undefined1 *)(DAT_1015ad70 + 0x41450e);
+    VirtualProtect(puVar5,1,0x40,&local_c);
+    *puVar5 = 0xe9;
+    VirtualProtect(puVar5,1,local_c,&local_c);
+    piVar1 = (int *)(iVar2 + 0x41450f);
+    VirtualProtect(piVar1,4,0x40,&local_c);
+    *piVar1 = (iVar2 - (int)puVar5) + 0x414527;
+    VirtualProtect(piVar1,4,local_c,&local_c);
+    iVar2 = DAT_1015ad70;
+    puVar5 = (undefined1 *)(DAT_1015ad70 + 0x41453a);
+    VirtualProtect(puVar5,1,0x40,&local_c);
+    *puVar5 = 0xe8;
+    VirtualProtect(puVar5,1,local_c,&local_c);
+    piVar1 = (int *)(iVar2 + 0x41453b);
+    VirtualProtect(piVar1,4,0x40,&local_c);
+    *piVar1 = (iVar2 - (int)puVar5) + 0x413e2b;
+    VirtualProtect(piVar1,4,local_c,&local_c);
+    iVar2 = DAT_1015ad70;
+    puVar3 = (undefined4 *)(DAT_1015ad70 + 0x41453f);
+    VirtualProtect(puVar3,0xc,0x40,&local_c);
+    *puVar3 = 0x90909090;
+    *(undefined4 *)(iVar2 + 0x414543) = 0x90909090;
+    *(undefined4 *)(iVar2 + 0x414547) = 0x90909090;
+    VirtualProtect(puVar3,0xc,local_c,&local_c);
+    iVar2 = DAT_1015ad70;
+    puVar5 = (undefined1 *)(DAT_1015ad70 + 0x41445c);
+    VirtualProtect(puVar5,1,0x40,&local_c);
+    *puVar5 = 0xe9;
+    VirtualProtect(puVar5,1,local_c,&local_c);
+    piVar1 = (int *)(iVar2 + 0x41445d);
+    VirtualProtect(piVar1,4,0x40,&local_c);
+    *piVar1 = (iVar2 - (int)puVar5) + 0x4144b3;
+    pcVar4 = VirtualProtect_exref;
+    VirtualProtect(piVar1,4,local_c,&local_c);
+    iVar2 = DAT_1015ad70;
+    puVar5 = (undefined1 *)(DAT_1015ad70 + 0x4137cd);
+    VirtualProtect(puVar5,1,0x40,&local_c);
+    *puVar5 = 0xe8;
+    VirtualProtect(puVar5,1,local_c,&local_c);
+    piVar1 = (int *)(iVar2 + 0x4137ce);
+    VirtualProtect(piVar1,4,0x40,&local_c);
+    *piVar1 = (int)&UNK_1002347b - (int)puVar5;
+    VirtualProtect(piVar1,4,local_c,&local_c);
+    iVar2 = DAT_1015ad70;
+    DAT_1015bddc = DAT_1015ad70 + 0x414560;
+    puVar5 = (undefined1 *)(DAT_1015ad70 + 0x4144d4);
+    VirtualProtect(puVar5,1,0x40,&local_c);
+    *puVar5 = 0xe9;
+    VirtualProtect(puVar5,1,local_c,&local_c);
+    piVar1 = (int *)(iVar2 + 0x4144d5);
+    VirtualProtect(piVar1,4,0x40,&local_c);
+    *piVar1 = (int)&UNK_1002348b - (int)puVar5;
+    VirtualProtect(piVar1,4,local_c,&local_c);
+  }
+  iVar2 = DAT_1015ad70;
+  if (DAT_1015be04 == 8) {
+    DAT_1015804c = 0x413480;
+    DAT_101580d0 = 0x413e20;
+    puVar5 = (undefined1 *)(DAT_1015ad70 + 0x4142ae);
+    (*pcVar4)(puVar5,1,0x40,&local_c);
+    *puVar5 = 0xe9;
+    (*pcVar4)(puVar5,1,local_c,&local_c);
+    piVar1 = (int *)(iVar2 + 0x4142af);
+    VirtualProtect(piVar1,4,0x40,&local_c);
+    *piVar1 = (iVar2 - (int)puVar5) + 0x4142c7;
+    VirtualProtect(piVar1,4,local_c,&local_c);
+    iVar2 = DAT_1015ad70;
+    puVar5 = (undefined1 *)(DAT_1015ad70 + 0x4142da);
+    VirtualProtect(puVar5,1,0x40,&local_c);
+    *puVar5 = 0xe8;
+    VirtualProtect(puVar5,1,local_c,&local_c);
+    piVar1 = (int *)(iVar2 + 0x4142db);
+    VirtualProtect(piVar1,4,0x40,&local_c);
+    *piVar1 = (iVar2 - (int)puVar5) + 0x413bcb;
+    VirtualProtect(piVar1,4,local_c,&local_c);
+    iVar2 = DAT_1015ad70;
+    puVar3 = (undefined4 *)(DAT_1015ad70 + 0x4142df);
+    VirtualProtect(puVar3,0xc,0x40,&local_c);
+    *puVar3 = 0x90909090;
+    *(undefined4 *)(iVar2 + 0x4142e3) = 0x90909090;
+    *(undefined4 *)(iVar2 + 0x4142e7) = 0x90909090;
+    VirtualProtect(puVar3,0xc,local_c,&local_c);
+    iVar2 = DAT_1015ad70;
+    puVar5 = (undefined1 *)(DAT_1015ad70 + 0x4141fc);
+    VirtualProtect(puVar5,1,0x40,&local_c);
+    *puVar5 = 0xe9;
+    VirtualProtect(puVar5,1,local_c,&local_c);
+    piVar1 = (int *)(iVar2 + 0x4141fd);
+    VirtualProtect(piVar1,4,0x40,&local_c);
+    *piVar1 = (iVar2 - (int)puVar5) + 0x414253;
+    VirtualProtect(piVar1,4,local_c,&local_c);
+    iVar2 = DAT_1015ad70;
+    puVar5 = (undefined1 *)(DAT_1015ad70 + 0x41356d);
+    VirtualProtect(puVar5,1,0x40,&local_c);
+    *puVar5 = 0xe8;
+    VirtualProtect(puVar5,1,local_c,&local_c);
+    piVar1 = (int *)(iVar2 + 0x41356e);
+    VirtualProtect(piVar1,4,0x40,&local_c);
+    *piVar1 = (int)&UNK_1002347b - (int)puVar5;
+    VirtualProtect(piVar1,4,local_c,&local_c);
+    iVar2 = DAT_1015ad70;
+    DAT_1015bddc = DAT_1015ad70 + 0x414300;
+    puVar5 = (undefined1 *)(DAT_1015ad70 + 0x414274);
+    VirtualProtect(puVar5,1,0x40,&local_c);
+    *puVar5 = 0xe9;
+    VirtualProtect(puVar5,1,local_c,&local_c);
+    piVar1 = (int *)(iVar2 + 0x414275);
+    VirtualProtect(piVar1,4,0x40,&local_c);
+    *piVar1 = (int)&UNK_1002348b - (int)puVar5;
+    VirtualProtect(piVar1,4,local_c,&local_c);
+  }
+  iVar2 = DAT_1015ad70;
+  if (DAT_1015be04 == 9) {
+    DAT_101580d0 = 0x48fe00;
+    DAT_1015804c = 0x48f440;
+    puVar5 = (undefined1 *)(DAT_1015ad70 + 0x49040e);
+    VirtualProtect(puVar5,1,0x40,&local_c);
+    *puVar5 = 0xe9;
+    VirtualProtect(puVar5,1,local_c,&local_c);
+    piVar1 = (int *)(iVar2 + 0x49040f);
+    VirtualProtect(piVar1,4,0x40,&local_c);
+    *piVar1 = (iVar2 - (int)puVar5) + 0x490427;
+    VirtualProtect(piVar1,4,local_c,&local_c);
+    iVar2 = DAT_1015ad70;
+    puVar5 = (undefined1 *)(DAT_1015ad70 + 0x49043a);
+    VirtualProtect(puVar5,1,0x40,&local_c);
+    *puVar5 = 0xe8;
+    VirtualProtect(puVar5,1,local_c,&local_c);
+    piVar1 = (int *)(iVar2 + 0x49043b);
+    VirtualProtect(piVar1,4,0x40,&local_c);
+    *piVar1 = (iVar2 - (int)puVar5) + 0x48fbab;
+    VirtualProtect(piVar1,4,local_c,&local_c);
+    iVar2 = DAT_1015ad70;
+    puVar3 = (undefined4 *)(DAT_1015ad70 + 0x49043f);
+    VirtualProtect(puVar3,0xc,0x40,&local_c);
+    *puVar3 = 0x90909090;
+    *(undefined4 *)(iVar2 + 0x490443) = 0x90909090;
+    *(undefined4 *)(iVar2 + 0x490447) = 0x90909090;
+    VirtualProtect(puVar3,0xc,local_c,&local_c);
+    iVar2 = DAT_1015ad70;
+    puVar5 = (undefined1 *)(DAT_1015ad70 + 0x49035c);
+    VirtualProtect(puVar5,1,0x40,&local_c);
+    *puVar5 = 0xe9;
+    VirtualProtect(puVar5,1,local_c,&local_c);
+    piVar1 = (int *)(iVar2 + 0x49035d);
+    VirtualProtect(piVar1,4,0x40,&local_c);
+    *piVar1 = (iVar2 - (int)puVar5) + 0x4903b3;
+    VirtualProtect(piVar1,4,local_c,&local_c);
+    iVar2 = DAT_1015ad70;
+    puVar5 = (undefined1 *)(DAT_1015ad70 + 0x48f558);
+    VirtualProtect(puVar5,1,0x40,&local_c);
+    *puVar5 = 0xe8;
+    VirtualProtect(puVar5,1,local_c,&local_c);
+    piVar1 = (int *)(iVar2 + 0x48f559);
+    VirtualProtect(piVar1,4,0x40,&local_c);
+    *piVar1 = (int)&UNK_1002347b - (int)puVar5;
+    VirtualProtect(piVar1,4,local_c,&local_c);
+    iVar2 = DAT_1015ad70;
+    DAT_1015bddc = DAT_1015ad70 + 0x490460;
+    puVar5 = (undefined1 *)(DAT_1015ad70 + 0x4903d4);
+    VirtualProtect(puVar5,1,0x40,&local_c);
+    *puVar5 = 0xe9;
+    VirtualProtect(puVar5,1,local_c,&local_c);
+    piVar1 = (int *)(iVar2 + 0x4903d5);
+    VirtualProtect(piVar1,4,0x40,&local_c);
+    *piVar1 = (int)&UNK_1002348b - (int)puVar5;
+    VirtualProtect(piVar1,4,local_c,&local_c);
+  }
+  return;
+}
+
+
+
+### Function FUN_1003d670 @ 1003d670
+
+/* WARNING: Function: __security_check_cookie replaced with injection: security_check_cookie */
+
+void FUN_1003d670(void)
+
+{
+  undefined4 *lpAddress;
+  HMODULE pHVar1;
+  int iVar2;
+  DWORD local_c;
+  uint local_8;
+  
+  local_8 = DAT_1015800c ^ (uint)&stack0xfffffffc;
+  pHVar1 = GetModuleHandleA((LPCSTR)0x0);
+  iVar2 = FindFirstPatternMatch("68 88 13 00 00 FF 15",pHVar1);
+  if (iVar2 != 0) {
+    lpAddress = (undefined4 *)(iVar2 + 1);
+    VirtualProtect(lpAddress,4,0x40,&local_c);
+    *lpAddress = 0;
+    VirtualProtect(lpAddress,4,local_c,&local_c);
+  }
+  return;
+}
+
+
+
+### Function FUN_10045610 @ 10045610
+
+/* WARNING: Function: __security_check_cookie replaced with injection: security_check_cookie */
+
+void FUN_10045610(void)
+
+{
+  int *piVar1;
+  HMODULE pHVar2;
+  undefined2 *lpAddress;
+  int iVar3;
+  code *pcVar4;
+  undefined1 *puVar5;
+  undefined2 *puVar6;
+  DWORD local_c;
+  uint local_8;
+  
+  local_8 = DAT_1015800c ^ (uint)&stack0xfffffffc;
+  pHVar2 = GetModuleHandleA((LPCSTR)0x0);
+  lpAddress = (undefined2 *)FindFirstPatternMatch("75 ? 83 C1 01 83 C0 01 83 F9 04",pHVar2);
+  pcVar4 = VirtualProtect_exref;
+  if (lpAddress != (undefined2 *)0x0) {
+    VirtualProtect(lpAddress,2,0x40,&local_c);
+    *lpAddress = 0x9090;
+    VirtualProtect(lpAddress,2,local_c,&local_c);
+    puVar5 = (undefined1 *)((int)lpAddress + -0x49);
+    VirtualProtect(puVar5,1,0x40,&local_c);
+    *puVar5 = 0xe8;
+    VirtualProtect(puVar5,1,local_c,&local_c);
+    piVar1 = (int *)(lpAddress + -0x24);
+    VirtualProtect(piVar1,4,0x40,&local_c);
+    *piVar1 = 0x1004557b - (int)puVar5;
+    VirtualProtect(piVar1,4,local_c,&local_c);
+    puVar5 = (undefined1 *)((int)lpAddress + -0x8f);
+    VirtualProtect(puVar5,1,0x40,&local_c);
+    *puVar5 = 0xe8;
+    VirtualProtect(puVar5,1,local_c,&local_c);
+    piVar1 = (int *)(lpAddress + -0x47);
+    VirtualProtect(piVar1,4,0x40,&local_c);
+    *piVar1 = (int)&UNK_1004559b - (int)puVar5;
+    VirtualProtect(piVar1,4,local_c,&local_c);
+    puVar6 = lpAddress + -0x58;
+    VirtualProtect(puVar6,1,0x40,&local_c);
+    *(undefined1 *)puVar6 = 0xe8;
+    VirtualProtect(puVar6,1,local_c,&local_c);
+    piVar1 = (int *)((int)lpAddress + -0xaf);
+    VirtualProtect(piVar1,4,0x40,&local_c);
+    *piVar1 = (int)&UNK_1004559b - (int)puVar6;
+    pcVar4 = VirtualProtect_exref;
+    VirtualProtect(piVar1,4,local_c,&local_c);
+    puVar6 = lpAddress + -0x8c;
+    VirtualProtect(puVar6,1,0x40,&local_c);
+    *(undefined1 *)puVar6 = 0xe8;
+    VirtualProtect(puVar6,1,local_c,&local_c);
+    piVar1 = (int *)((int)lpAddress + -0x117);
+    VirtualProtect(piVar1,4,0x40,&local_c);
+    *piVar1 = (int)&UNK_100455db - (int)puVar6;
+    VirtualProtect(piVar1,4,local_c,&local_c);
+    puVar6 = lpAddress + -0x78;
+    VirtualProtect(puVar6,1,0x40,&local_c);
+    *(undefined1 *)puVar6 = 0xe8;
+    VirtualProtect(puVar6,1,local_c,&local_c);
+    piVar1 = (int *)((int)lpAddress + -0xef);
+    VirtualProtect(piVar1,4,0x40,&local_c);
+    *piVar1 = (int)&UNK_1003856b - (int)puVar6;
+    VirtualProtect(piVar1,4,local_c,&local_c);
+  }
+  pHVar2 = GetModuleHandleA((LPCSTR)0x0);
+  iVar3 = FindFirstPatternMatch("8D 4C 24 18 51 6A 00 6A 0C 57",pHVar2);
+  if (iVar3 != 0) {
+    puVar5 = (undefined1 *)(iVar3 + -0x56);
+    (*pcVar4)(puVar5,1,0x40,&local_c);
+    *puVar5 = 0xe8;
+    (*pcVar4)(puVar5,1,local_c,&local_c);
+    piVar1 = (int *)(iVar3 + -0x55);
+    (*pcVar4)(piVar1,4,0x40,&local_c);
+    *piVar1 = (int)&UNK_100455db - (int)puVar5;
+    (*pcVar4)(piVar1,4,local_c,&local_c);
+    puVar5 = (undefined1 *)(iVar3 + -0x2f);
+    (*pcVar4)(puVar5,1,0x40,&local_c);
+    *puVar5 = 0xe8;
+    (*pcVar4)(puVar5,1,local_c,&local_c);
+    piVar1 = (int *)(iVar3 + -0x2e);
+    (*pcVar4)(piVar1,4,0x40,&local_c);
+    *piVar1 = (int)&UNK_1003856b - (int)puVar5;
+    (*pcVar4)(piVar1,4,local_c,&local_c);
+    puVar5 = (undefined1 *)(iVar3 + 10);
+    (*pcVar4)(puVar5,1,0x40,&local_c);
+    *puVar5 = 0xe8;
+    (*pcVar4)(puVar5,1,local_c,&local_c);
+    piVar1 = (int *)(iVar3 + 0xb);
+    (*pcVar4)(piVar1,4,0x40,&local_c);
+    *piVar1 = (int)&UNK_1004559b - (int)puVar5;
+    VirtualProtect(piVar1,4,local_c,&local_c);
+    puVar5 = (undefined1 *)(iVar3 + 0x5a);
+    VirtualProtect(puVar5,1,0x40,&local_c);
+    *puVar5 = 0xe8;
+    VirtualProtect(puVar5,1,local_c,&local_c);
+    piVar1 = (int *)(iVar3 + 0x5b);
+    VirtualProtect(piVar1,4,0x40,&local_c);
+    *piVar1 = (int)&UNK_1004559b - (int)puVar5;
+    VirtualProtect(piVar1,4,local_c,&local_c);
+    puVar5 = (undefined1 *)(iVar3 + 0x80);
+    VirtualProtect(puVar5,1,0x40,&local_c);
+    *puVar5 = 0xe8;
+    VirtualProtect(puVar5,1,local_c,&local_c);
+    piVar1 = (int *)(iVar3 + 0x81);
+    VirtualProtect(piVar1,4,0x40,&local_c);
+    *piVar1 = 0x1004557b - (int)puVar5;
+    VirtualProtect(piVar1,4,local_c,&local_c);
+  }
+  return;
+}
+
+
+
+### Function FUN_10045980 @ 10045980
+
+/* WARNING: Function: __security_check_cookie replaced with injection: security_check_cookie */
+
+void FUN_10045980(void)
+
+{
+  undefined1 *lpAddress;
+  HMODULE pHVar1;
+  int iVar2;
+  DWORD local_c;
+  uint local_8;
+  
+  local_8 = DAT_1015800c ^ (uint)&stack0xfffffffc;
+  pHVar1 = GetModuleHandleA((LPCSTR)0x0);
+  iVar2 = FindFirstPatternMatch("8B 6C 24 1C 66 89 6E 14 64 8B 0D 2C 00 00 00 8B",pHVar1);
+  if (iVar2 != 0) {
+    lpAddress = (undefined1 *)(iVar2 + -0x20);
+    VirtualProtect(lpAddress,1,0x40,&local_c);
+    *lpAddress = 0xeb;
+    VirtualProtect(lpAddress,1,local_c,&local_c);
+  }
+  return;
+}
+
+
+
+### Function FUN_100468d0 @ 100468d0
+
+/* WARNING: Function: __security_check_cookie replaced with injection: security_check_cookie */
+
+void FUN_100468d0(void)
+
+{
+  HMODULE pHVar1;
+  void *pvVar2;
+  undefined4 *lpAddress;
+  uint uVar3;
+  undefined8 local_18;
+  int local_10;
+  DWORD local_c;
+  uint local_8;
+  
+  local_8 = DAT_1015800c ^ (uint)&stack0xfffffffc;
+  local_10 = 0;
+  local_18 = 0;
+  pHVar1 = GetModuleHandleA((LPCSTR)0x0);
+  FUN_1005afa0(&local_18,"68 00 C2 EC 80 68",pHVar1,0);
+  uVar3 = 0;
+  if (local_18._4_4_ - (int)(void *)local_18 >> 2 != 0) {
+    do {
+      lpAddress = (undefined4 *)(*(int *)((int)(void *)local_18 + uVar3 * 4) + 6);
+      VirtualProtect(lpAddress,4,0x40,&local_c);
+      *lpAddress = &PTR_DAT_101580d8;
+      VirtualProtect(lpAddress,4,local_c,&local_c);
+      uVar3 = uVar3 + 1;
+    } while (uVar3 < (uint)(local_18._4_4_ - (int)(void *)local_18 >> 2));
+  }
+  if ((void *)local_18 != (void *)0x0) {
+    pvVar2 = (void *)local_18;
+    if ((0xfff < (local_10 - (int)(void *)local_18 & 0xfffffffcU)) &&
+       (pvVar2 = *(void **)((int)(void *)local_18 + -4),
+       0x1f < (uint)((int)(void *)local_18 + (-4 - (int)pvVar2)))) {
+                    /* WARNING: Subroutine does not return */
+      _invalid_parameter_noinfo_noreturn();
+    }
+    FUN_100603e3(pvVar2);
+  }
+  return;
+}
+
+
+
+### Function FUN_100503b0 @ 100503b0
+
+/* WARNING: Function: __security_check_cookie replaced with injection: security_check_cookie */
+
+void FUN_100503b0(void)
+
+{
+  undefined4 *puVar1;
+  HMODULE pHVar2;
+  int iVar3;
+  DWORD local_c;
+  uint local_8;
+  
+  local_8 = DAT_1015800c ^ (uint)&stack0xfffffffc;
+  if ((((DAT_1015be04 != 9) && (DAT_1015be04 != 0xd)) && (DAT_1015be04 != 1)) &&
+     (((DAT_1015be04 != 2 && (DAT_1015be04 != 3)) && ((DAT_1015be04 != 4 && (DAT_1015be04 != 5))))))
+  {
+    pHVar2 = GetModuleHandleA((LPCSTR)0x0);
+    iVar3 = FindFirstPatternMatch("8B 10 50 8B 82 A8 00 00 00 FF D0 83",pHVar2);
+    if (iVar3 != 0) {
+      puVar1 = (undefined4 *)(iVar3 + 0xd);
+      VirtualProtect(puVar1,4,0x40,&local_c);
+      *puVar1 = &DAT_10159bc0;
+      VirtualProtect(puVar1,4,local_c,&local_c);
+    }
+    pHVar2 = GetModuleHandleA((LPCSTR)0x0);
+    iVar3 = FindFirstPatternMatch
+                      ("8B 08 8B 51 0C 6A 01 6A 00 6A 00 6A 00 6A 00 50 FF D2 8B F0 81 FE ? ? ? ? 74"
+                       ,pHVar2);
+    if (iVar3 != 0) {
+      puVar1 = (undefined4 *)(iVar3 + 0x1e);
+      VirtualProtect(puVar1,4,0x40,&local_c);
+      *puVar1 = &DAT_10159bc0;
+      VirtualProtect(puVar1,4,local_c,&local_c);
+    }
+  }
+  return;
+}
+
+
+
+### Function FUN_100506b0 @ 100506b0
+
+/* WARNING: Function: __security_check_cookie replaced with injection: security_check_cookie */
+
+void FUN_100506b0(void)
+
+{
+  undefined1 *lpAddress;
+  int *lpAddress_00;
+  HMODULE pHVar1;
+  int iVar2;
+  DWORD local_c;
+  uint local_8;
+  
+  local_8 = DAT_1015800c ^ (uint)&stack0xfffffffc;
+  pHVar1 = GetModuleHandleA((LPCSTR)0x0);
+  iVar2 = FindFirstPatternMatch("50 64 89 25 00 00 00 00 83 EC 34",pHVar1);
+  if (iVar2 != 0) {
+    lpAddress = (undefined1 *)(iVar2 + -0x15);
+    DAT_10159350 = *(undefined4 *)(iVar2 + 0x1a);
+    DAT_10159364 = *(undefined4 *)(iVar2 + 0xa5);
+    DAT_10159360 = *(undefined4 *)(iVar2 + 0xbc);
+    DAT_1015935c = *(undefined4 *)(iVar2 + 0xe2);
+    DAT_10159368 = *(undefined4 *)(iVar2 + 0xea);
+    DAT_1015934c = *(undefined4 *)(iVar2 + 0xf9);
+    DAT_10159354 = *(undefined4 *)(iVar2 + 0x108);
+    DAT_10159358 = *(undefined4 *)(iVar2 + 0x114);
+    VirtualProtect(lpAddress,1,0x40,&local_c);
+    *lpAddress = 0xe9;
+    VirtualProtect(lpAddress,1,local_c,&local_c);
+    lpAddress_00 = (int *)(iVar2 + -0x14);
+    VirtualProtect(lpAddress_00,4,0x40,&local_c);
+    *lpAddress_00 = 0x1005053b - (int)lpAddress;
+    VirtualProtect(lpAddress_00,4,local_c,&local_c);
+  }
+  return;
+}
+
+
+
+### Function FUN_100508c0 @ 100508c0
+
+/* WARNING: Function: __security_check_cookie replaced with injection: security_check_cookie */
+
+void FUN_100508c0(void)
+
+{
+  int *lpAddress;
+  HMODULE pHVar1;
+  undefined1 *lpAddress_00;
+  DWORD local_c;
+  uint local_8;
+  
+  local_8 = DAT_1015800c ^ (uint)&stack0xfffffffc;
+  pHVar1 = GetModuleHandleA((LPCSTR)0x0);
+  lpAddress_00 = (undefined1 *)
+                 FindFirstPatternMatch("56 8B F1 E8 ? ? ? ? 85 C0 74 0E 66 8B 40 2E",pHVar1);
+  if (lpAddress_00 != (undefined1 *)0x0) {
+    VirtualProtect(lpAddress_00,1,0x40,&local_c);
+    *lpAddress_00 = 0xe9;
+    VirtualProtect(lpAddress_00,1,local_c,&local_c);
+    lpAddress = (int *)(lpAddress_00 + 1);
+    VirtualProtect(lpAddress,4,0x40,&local_c);
+    *lpAddress = (int)&UNK_1005086b - (int)lpAddress_00;
+    VirtualProtect(lpAddress,4,local_c,&local_c);
+  }
+  return;
+}
+
+
+
+### Function FUN_100513a0 @ 100513a0
+
+/* WARNING: Function: __security_check_cookie replaced with injection: security_check_cookie */
+
+void FUN_100513a0(void)
+
+{
+  char cVar1;
+  WCHAR WVar2;
+  HMODULE pHVar3;
+  int iVar4;
+  undefined4 uVar5;
+  undefined1 *puVar6;
+  char *pcVar7;
+  WCHAR *pWVar8;
+  code *pcVar9;
+  undefined4 *puVar10;
+  undefined4 *lpAddress;
+  undefined1 *lpAddress_00;
+  DWORD local_320;
+  WCHAR local_31c;
+  undefined1 local_31a [518];
+  CHAR local_114 [268];
+  uint local_8;
+  
+  local_8 = DAT_1015800c ^ (uint)&stack0xfffffffc;
+  GetCurrentDirectoryA(0x104,local_114);
+  GetCurrentDirectoryW(0x104,&local_31c);
+  pcVar7 = local_114;
+  do {
+    cVar1 = *pcVar7;
+    pcVar7 = pcVar7 + 1;
+  } while (cVar1 != '\0');
+  AssignManagedString(&DAT_101580e0,local_114,(int)pcVar7 - (int)(local_114 + 1));
+  pWVar8 = &local_31c;
+  do {
+    WVar2 = *pWVar8;
+    pWVar8 = pWVar8 + 1;
+  } while (WVar2 != L'\0');
+  FUN_10058470(&DAT_10158110,&local_31c,(int)pWVar8 - (int)local_31a >> 1);
+  pcVar9 = GetModuleHandleA_exref;
+  pHVar3 = GetModuleHandleA((LPCSTR)0x0);
+  iVar4 = FindFirstPatternMatch("53 8B 5C 24 08 56 6A 00 6A 00",pHVar3);
+  if (iVar4 != 0) {
+    puVar10 = (undefined4 *)(iVar4 + 0x10);
+    VirtualProtect(puVar10,4,0x40,&local_320);
+    *puVar10 = &PTR_FUN_10158064;
+    VirtualProtect(puVar10,4,local_320,&local_320);
+    puVar10 = &DAT_101580f8;
+    if (0xf < DAT_1015810c) {
+      puVar10 = DAT_101580f8;
+    }
+    lpAddress = (undefined4 *)(iVar4 + 0x20);
+    VirtualProtect(lpAddress,4,0x40,&local_320);
+    *lpAddress = puVar10;
+    VirtualProtect(lpAddress,4,local_320,&local_320);
+    pcVar9 = GetModuleHandleA_exref;
+  }
+  uVar5 = (*pcVar9)(0);
+  iVar4 = FindFirstPatternMatch("7C 0C 68 ? ? ? ? 68 ? ? ? ? FF D6 5F 5E 5B C3",uVar5);
+  if (iVar4 == 0) {
+    uVar5 = (*pcVar9)(0);
+    iVar4 = FindFirstPatternMatch("7C 0C 68 ? ? ? ? 68 ? ? ? ? FF D7 5F C3",uVar5);
+    if (iVar4 == 0) {
+      return;
+    }
+    DAT_10159d18 = *(undefined4 *)(iVar4 + -0xa0);
+    lpAddress_00 = (undefined1 *)(iVar4 + -0xd);
+    DAT_10159d1c = *(undefined4 *)(iVar4 + -0x37);
+    VirtualProtect(lpAddress_00,1,0x40,&local_320);
+    *lpAddress_00 = 0xe9;
+    VirtualProtect(lpAddress_00,1,local_320,&local_320);
+    puVar10 = (undefined4 *)(iVar4 + -0xc);
+    VirtualProtect(puVar10,4,0x40,&local_320);
+    puVar6 = &LAB_10051300;
+  }
+  else {
+    DAT_10159d1c = *(undefined4 *)(iVar4 + -0xb2);
+    DAT_10159d14 = *(undefined4 *)(iVar4 + -0x97);
+    DAT_10159d10 = *(undefined4 *)(iVar4 + -0xbe);
+    DAT_10159d18 = *(undefined4 *)(iVar4 + -0x1bc);
+    DAT_10159d08 = *(undefined4 *)(iVar4 + -0x1b0);
+    lpAddress_00 = (undefined1 *)(iVar4 + 0xe);
+    VirtualProtect(lpAddress_00,1,0x40,&local_320);
+    *lpAddress_00 = 0xe9;
+    VirtualProtect(lpAddress_00,1,local_320,&local_320);
+    puVar10 = (undefined4 *)(iVar4 + 0xf);
+    VirtualProtect(puVar10,4,0x40,&local_320);
+    puVar6 = &LAB_100512f0;
+  }
+  *puVar10 = puVar6 + (-5 - (int)lpAddress_00);
+  VirtualProtect(puVar10,4,local_320,&local_320);
+  return;
+}
+
+
+
+### Function FUN_10051920 @ 10051920
+
+/* WARNING: Function: __security_check_cookie replaced with injection: security_check_cookie */
+
+void FUN_10051920(void)
+
+{
+  HMODULE pHVar1;
+  int iVar2;
+  undefined4 uVar3;
+  undefined1 *puVar4;
+  int *piVar5;
+  code *pcVar6;
+  DWORD local_c;
+  uint local_8;
+  
+  pcVar6 = GetModuleHandleA_exref;
+  local_8 = DAT_1015800c ^ (uint)&stack0xfffffffc;
+  pHVar1 = GetModuleHandleA("GTAC.dll");
+  if (pHVar1 == (HMODULE)0x0) {
+    pHVar1 = GetModuleHandleA("JacksIVFixes.asi");
+    if (pHVar1 == (HMODULE)0x0) {
+      pHVar1 = GetModuleHandleA((LPCSTR)0x0);
+      iVar2 = FindFirstPatternMatch("68 64 28 C8 67 E8",pHVar1);
+      if (iVar2 != 0) {
+        puVar4 = (undefined1 *)(iVar2 + 0x1c);
+        DAT_10159c08 = *(int *)(iVar2 + 6) + 10 + iVar2;
+        VirtualProtect(puVar4,1,0x40,&local_c);
+        *puVar4 = 0xe9;
+        VirtualProtect(puVar4,1,local_c,&local_c);
+        piVar5 = (int *)(iVar2 + 0x1d);
+        VirtualProtect(piVar5,4,0x40,&local_c);
+        *piVar5 = (int)&UNK_100515fb - (int)puVar4;
+        VirtualProtect(piVar5,4,local_c,&local_c);
+        pcVar6 = GetModuleHandleA_exref;
+      }
+      uVar3 = (*pcVar6)(0);
+      puVar4 = (undefined1 *)
+               FindFirstPatternMatch
+                         ("E8 ? ? ? ? 8B 36 85 F6 75 ED E8 ? ? ? ? 8B 3F 03 EB 85 FF 0F 85 7B FF FF FF"
+                          ,uVar3);
+      if (puVar4 != (undefined1 *)0x0) {
+        VirtualProtect(puVar4,1,0x40,&local_c);
+        *puVar4 = 0xe8;
+        VirtualProtect(puVar4,1,local_c,&local_c);
+        piVar5 = (int *)(puVar4 + 1);
+        VirtualProtect(piVar5,4,0x40,&local_c);
+        *piVar5 = 0x1005188b - (int)puVar4;
+        VirtualProtect(piVar5,4,local_c,&local_c);
+      }
+      uVar3 = (*pcVar6)(0);
+      puVar4 = (undefined1 *)
+               FindFirstPatternMatch
+                         ("E8 ? ? ? ? 8B 36 85 F6 75 ED E8 ? ? ? ? 8B 3F 03 EB 85 FF 0F 85 6C FF FF FF"
+                          ,uVar3);
+      if (puVar4 != (undefined1 *)0x0) {
+        VirtualProtect(puVar4,1,0x40,&local_c);
+        *puVar4 = 0xe8;
+        VirtualProtect(puVar4,1,local_c,&local_c);
+        piVar5 = (int *)(puVar4 + 1);
+        VirtualProtect(piVar5,4,0x40,&local_c);
+        *piVar5 = 0x100518cb - (int)puVar4;
+        VirtualProtect(piVar5,4,local_c,&local_c);
+      }
+    }
+  }
+  return;
+}
+
+
+
+### Function FUN_10052200 @ 10052200
+
+/* WARNING: Function: __security_check_cookie replaced with injection: security_check_cookie */
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
+void FUN_10052200(void)
+
+{
+  int *lpAddress;
+  HMODULE pHVar1;
+  int iVar2;
+  undefined1 *lpAddress_00;
+  DWORD local_c;
+  uint local_8;
+  
+  local_8 = DAT_1015800c ^ (uint)&stack0xfffffffc;
+  pHVar1 = GetModuleHandleA((LPCSTR)0x0);
+  iVar2 = FindFirstPatternMatch("68 ? ? ? ? E8 ? ? ? ? 8B 2D ? ? ? ? 83 C4 08",pHVar1);
+  if (iVar2 != 0) {
+    DAT_1015ad9c = *(undefined4 *)(iVar2 + 1);
+    pHVar1 = GetModuleHandleA((LPCSTR)0x0);
+    lpAddress_00 = (undefined1 *)
+                   FindFirstPatternMatch("89 84 24 E0 01 00 00 8B 45 08 53 33 DB",pHVar1);
+    if (lpAddress_00 != (undefined1 *)0x0) {
+      VirtualProtect(lpAddress_00,1,0x40,&local_c);
+      *lpAddress_00 = 0xe9;
+      VirtualProtect(lpAddress_00,1,local_c,&local_c);
+      lpAddress = (int *)(lpAddress_00 + 1);
+      VirtualProtect(lpAddress,4,0x40,&local_c);
+      *lpAddress = (int)&UNK_100521db - (int)lpAddress_00;
+      VirtualProtect(lpAddress,4,local_c,&local_c);
+      _DAT_1015ad88 = lpAddress_00 + 0xd;
+    }
+  }
+  return;
+}
+
+
+
+### Function FUN_10052380 @ 10052380
+
+undefined4 FUN_10052380(void)
+
+{
+  uint in_EAX;
+  HMODULE pHVar1;
+  
+  if (DAT_10158038 != '\0') {
+    pHVar1 = GetModuleHandleA("IVMenuAPI.asi");
+    if (pHVar1 != (HMODULE)0x0) {
+LAB_10052398:
+      return CONCAT31((int3)((uint)pHVar1 >> 8),1);
+    }
+    if (DAT_101a843c == '\0') {
+      pHVar1 = LoadLibraryA("IVMenuAPI.asi");
+      if (pHVar1 != (HMODULE)0x0) goto LAB_10052398;
+    }
+    in_EAX = 0;
+    DAT_101a843c = '\x01';
+  }
+  return in_EAX & 0xffffff00;
+}
+
+
+

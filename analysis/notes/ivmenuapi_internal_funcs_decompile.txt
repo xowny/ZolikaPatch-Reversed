@@ -1,0 +1,141 @@
+### Function FUN_10007d80 @ 10007d80
+
+void FUN_10007d80(void)
+
+{
+  int iVar1;
+  uint uVar2;
+  undefined4 extraout_ECX;
+  undefined4 extraout_ECX_00;
+  undefined4 uVar3;
+  undefined4 uVar4;
+  char cVar5;
+  
+  cVar5 = '\x01';
+  uVar3 = DAT_100300e4;
+  uVar4 = DAT_100300e4;
+  iVar1 = FUN_10002f80(0x383da,0x9bdba);
+  FUN_10004eb0(iVar1);
+  FUN_10003290(uVar3,uVar4,cVar5);
+  cVar5 = '\x01';
+  uVar2 = (uint)(byte)DAT_100300ec;
+  uVar3 = extraout_ECX;
+  iVar1 = FUN_10002f80(0x3841b,0x9bdfb);
+  FUN_10004eb0(iVar1);
+  FUN_10003230(uVar3,uVar2,cVar5);
+  uVar3 = CONCAT31((int3)((uint)extraout_ECX_00 >> 8),(byte)DAT_100300ec);
+  cVar5 = '\x01';
+  uVar2 = (uint)(byte)DAT_100300ec;
+  iVar1 = FUN_10002f80(0x3866a,0x9c04a);
+  FUN_10004eb0(iVar1);
+  FUN_10003230(uVar3,uVar2,cVar5);
+  return;
+}
+
+
+
+### Function FUN_10007f40 @ 10007f40
+
+void FUN_10007f40(void)
+
+{
+  code *pcVar1;
+  
+  pcVar1 = (code *)FUN_10002f80(0x37b40,0x9b520);
+  (*pcVar1)();
+  return;
+}
+
+
+
+### Function FUN_10009cc0 @ 10009cc0
+
+void __thiscall FUN_10009cc0(void *this,undefined4 param_1)
+
+{
+  undefined4 uVar1;
+  
+  uVar1 = _Unfancy<>(param_1);
+  FUN_100046c0(this,uVar1);
+  return;
+}
+
+
+
+### Function FUN_10009cf0 @ 10009cf0
+
+void __thiscall FUN_10009cf0(void *this,undefined4 param_1)
+
+{
+  undefined4 uVar1;
+  
+  uVar1 = _Unfancy<>(param_1);
+  FUN_10004730(this,uVar1);
+  return;
+}
+
+
+
+### Function FUN_10005230 @ 10005230
+
+void __thiscall FUN_10005230(void *this,uint *param_1)
+
+{
+  FID_conflict_append(this,param_1);
+  return;
+}
+
+
+
+### Function FUN_10004af0 @ 10004af0
+
+void * __thiscall FUN_10004af0(void *this,uint *param_1)
+
+{
+  undefined1 local_11;
+  void *local_10;
+  undefined1 *puStack_c;
+  undefined4 local_8;
+  
+  local_8 = 0xffffffff;
+  puStack_c = &LAB_1001b78d;
+  local_10 = ExceptionList;
+  ExceptionList = &local_10;
+  _Compressed_pair<><>(this);
+  local_8 = 0;
+  FUN_10004d30(&local_11);
+  FUN_100090b0(this);
+  FID_conflict_append(this,param_1);
+  FUN_100050e0();
+  ExceptionList = local_10;
+  return this;
+}
+
+
+
+### Function FUN_10004c30 @ 10004c30
+
+void * __thiscall FUN_10004c30(void *this,wchar_t *param_1)
+
+{
+  undefined1 local_11;
+  void *local_10;
+  undefined1 *puStack_c;
+  undefined4 local_8;
+  
+  local_8 = 0xffffffff;
+  puStack_c = &LAB_1001b78d;
+  local_10 = ExceptionList;
+  ExceptionList = &local_10;
+  _Compressed_pair<><>(this);
+  local_8 = 0;
+  FUN_10004d30(&local_11);
+  FUN_10009100(this);
+  FID_conflict_append(this,param_1);
+  FUN_100050e0();
+  ExceptionList = local_10;
+  return this;
+}
+
+
+

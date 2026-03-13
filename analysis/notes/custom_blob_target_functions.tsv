@@ -1,0 +1,43 @@
+addr	function_entry	function_name
+0x100054db		
+0x1000558b	10005500	InstallLegacyModCheckOrGFWLPopupHook
+0x1000564b		
+0x1000566b		
+0x100057eb		
+0x10005aeb		
+0x10005d7b	10005ca0	InstallBuildingAlphaFixPatch
+0x10005ecb		
+0x1001af5b	1001af20	FUN_1001af20
+0x1001b03b	1001afa0	InstallEmissiveLerpFixPatch
+0x1001b05b		
+0x1001b07b		
+0x1001b09b		
+0x1001b0bb		
+0x1001ef5b		
+0x1002347b		
+0x1002348b		
+0x10036e8b		
+0x10036eab		
+0x10036edb		
+0x10036efb		
+0x10037b9b		
+0x1003854b		
+0x1003856b		
+0x1003d7ab		
+0x1003d86b		
+0x1003d99b		
+0x10045a2b		
+0x10045a7b	10045a30	FUN_10045a30
+0x1004557b	10045490	InstallRemoveRGSCLoginRequirementPatch
+0x1004559b		
+0x100455db		
+0x1004677b		
+0x100469db	100469a0	FUN_100469a0
+0x1004aaab		
+0x1005048b		
+0x1005053b	100504b0	InstallWantedLevelCrashFixPatch
+0x1005086b		
+0x100515fb		
+0x1005188b	100517e0	FUN_100517e0
+0x100518cb	10051890	FUN_10051890
+0x100521db		
