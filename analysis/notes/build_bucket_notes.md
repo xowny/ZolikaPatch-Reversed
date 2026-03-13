@@ -40,9 +40,3 @@ This pass replaces the old inference-only mapping with direct decompiled assignm
 
 - The same bootstrap routine special-cases a version-token range starting at `1201` and uses it to open the downgrading page, sleep briefly, and terminate the process.
 - That explains why the legacy ASI rejects current Complete Edition executables such as `1.2.0.43` and newer `1.2.x.x` builds.
-
-## Remaining Caveat
-
-The assignment mechanism is now proven.
-
-The only thing still worth cross-checking externally is the human-facing retail label for every supported historical file version, especially the `1004` and `1061` cases, if the public documentation needs exact Rockstar patch naming rather than raw file-version strings.
