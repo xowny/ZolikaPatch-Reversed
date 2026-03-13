@@ -2,7 +2,7 @@
 
 These functions are the graphics-side patch installers in `ZolikaPatch.asi`.
 
-Raw decompile:
+Raw decomp:
 
 - `graphics_feature_funcs_decompile.txt`
 
@@ -597,5 +597,6 @@ This cluster splits into three patch styles:
     - the live water/reflection batching lane and the reflection-map phase pair together are enough to explain the modern reflection runtime behavior needed for implementation
 - the reflection porting path is still code-path driven
   - the important change is that the code-path search now has a credible target subsystem instead of only adjacent render landmarks
+
 
 
