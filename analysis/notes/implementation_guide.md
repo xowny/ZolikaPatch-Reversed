@@ -1,20 +1,3 @@
-# Implementation Guide
-
-This note is the shortest useful entry point for anyone implementing the recovered ZolikaPatch behavior in an open codebase.
-
-## Short Answer
-
-The Markdown and TSV notes in this workspace should be enough for implementation planning.
-
-The raw Ghidra project database should not be required if the handoff is based on:
-
-- `reimplementation_status.md`
-- `zolikapatch_feature_matrix_verified.tsv`
-- the per-cluster feature notes
-- `current_build_signature_audit.md`
-
-That is also the safer public-sharing route, because binary Ghidra databases can still contain analyst metadata and are not needed for implementation.
-
 ## What Is Already Recovered
 
 - `IVMenuAPI.asi` is no longer a black box.
@@ -82,16 +65,3 @@ That is also the safer public-sharing route, because binary Ghidra databases can
 
 - Episode/content unlock features
   Useful, but they are broader multi-site behavior patches and should follow the smaller wins.
-
-## What Is Still Not Fully Closed
-
-- engine-side semantics of the host render/reflection object passed as `DAT_10158060`
-- field-level naming for the callback/scratch structures around `0x10190ac0` and `DAT_10159ce0`
-- a few helper names that are as far as ASI-only RE can take them, but still need game-side structure meaning
-- full current-build semantic mapping for many features beyond the first confirmed carry-over landmark
-
-## Practical Recommendation
-
-If this package is being handed to implementers, ship the notes and TSV files first.
-
-Do not make the Ghidra database a required dependency for understanding the work. The Markdown and TSV documents should stand on their own.
