@@ -89,25 +89,6 @@ That matches the binary design we already recovered:
 3. install feature-specific runtime patches
 4. optionally register menu options
 
-For the open version, the right workflow is:
-
-1. choose one feature
-2. identify what gameplay/system behavior it changes in the old build
-3. find the corresponding code path in the current build
-4. reimplement the patch in open source against the current executable layout
-
-## Recommended Porting Order
-
-Start with features that are small and easy to validate, e.g:
-
-- `IncreaseVehicleModelLimit`
-- `IncreaseVehicleStructLimit`
-
-Defer broader multi-site patch sets until later:
-
-- `EpisodicVehicleSupport`
-- large graphics and streaming fixes
-- grouped "misc" toggles that bundle multiple writes
 
 ## Reflection Follow-up
 
