@@ -54,12 +54,6 @@
 - `IncreaseVehicleModelLimit`
   Small feature with clear intent.
 
-- `SkipIntro`
-  Straightforward user-visible behavior.
-
-- `SkipMenu`
-  User-visible, but current-build match still needs semantic confirmation.
-
 - `HighQualityReflections`
   Worth porting, but only after the current reflection path is understood on the game side.
 
