@@ -1,5 +1,8 @@
 # ZolikaPatch-Reversed
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+
+
 This folder is organized as a public reverse engineering and implementation-reference workspace.
 
 ## Layout
